@@ -197,7 +197,7 @@
 </div>
 
 <script>
-    // Data for questions, answers, and rationales
+    // Data for questions, answers, and rationales, including options text
     const quizData = {
         'q1': {
             question: 'จงหาค่าของอินทิกรัลไม่จำกัดเขต: $$ \\int (3x^2 + 4x - 5) \\,dx $$',
@@ -234,6 +234,7 @@
     let userAnswers = {};
     const totalQuestions = 5;
 
+    // A single function to handle user's answer and move to the next step
     function handleAnswer(qNumber) {
         const questionId = 'q' + qNumber;
         const selectedOption = document.querySelector(`input[name="${questionId}_option"]:checked`);
@@ -246,15 +247,20 @@
         userAnswers[questionId] = selectedOption.value;
 
         if (qNumber < totalQuestions) {
+            // Hide current question and show the next one
             document.getElementById(`question-${qNumber}`).style.display = 'none';
             document.getElementById(`question-${qNumber + 1}`).style.display = 'block';
         } else {
+            // If it's the last question, show results
             showResults();
         }
     }
 
     function showResults() {
+        // Hide the quiz container
         document.querySelector('.quiz-container').style.display = 'none';
+        
+        // Show the results container
         const resultsContainer = document.getElementById('results');
         resultsContainer.style.display = 'block';
 
@@ -275,21 +281,24 @@
             const resultItem = document.createElement('div');
             resultItem.className = `result-item ${isCorrect ? 'correct' : 'incorrect'}`;
             
-            const chosenOptionText = quizData[qId].options[userAnswer];
-            const correctOptionText = quizData[qId].options[correctAnswer];
+            // ดึงข้อความคำตอบจาก quizData object โดยตรง ซึ่งปลอดภัยกว่า
+            const chosenOptionText = quizData[qId].options[userAnswer] || 'ไม่ได้เลือก';
+            const correctOptionText = quizData[qId].options[correctAnswer] || 'ไม่พบคำตอบ';
             
             let resultHTML = `<b>คำถามที่ ${i}:</b> ${isCorrect ? '✅ ถูกต้อง' : '❌ ผิด'}<br>`;
-            resultHTML += `<b>คำตอบของคุณ:</b> ${chosenOptionText || 'ไม่ได้เลือก'}<br>`;
-            resultHTML += `<b>คำตอบที่ถูกต้องคือ:</b> ${correctOptionText || 'ไม่พบคำตอบ'}<br>`;
+            resultHTML += `<b>คำตอบของคุณ:</b> ${chosenOptionText}<br>`;
+            resultHTML += `<b>คำตอบที่ถูกต้องคือ:</b> ${correctOptionText}<br>`;
             resultHTML += `${quizData[qId].rationale}`;
 
             resultItem.innerHTML = resultHTML;
             resultsList.appendChild(resultItem);
         }
         
+        // Display the final score
         const scoreDisplay = document.getElementById('score-display');
         scoreDisplay.innerHTML = `คุณได้คะแนน <span class="summary-score">${score}</span>/${totalQuestions} คะแนน`;
         
+        // Render MathJax in the results
         MathJax.Hub.Queue(["Typeset", MathJax.Hub, resultsContainer]);
     }
 
