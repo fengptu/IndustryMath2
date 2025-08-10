@@ -38,6 +38,7 @@
             padding: 20px;
             border-radius: 8px;
             margin-bottom: 20px;
+            display: none; /* ซ่อนทุกข้อไว้ก่อน */
         }
         .options-list {
             list-style-type: none;
@@ -136,22 +137,22 @@
                 <li><label><input type="radio" name="q1_option" value="c">ค. $6x + 4$</label></li>
                 <li><label><input type="radio" name="q1_option" value="d">ง. $x^3 + 2x^2 - 5x$</label></li>
             </ul>
-            <button class="nav-button" onclick="nextQuestion(1)">ข้อต่อไป</button>
+            <button class="nav-button" onclick="handleAnswer(1)">ข้อต่อไป</button>
         </div>
 
-        <div class="question-container" id="question-2" style="display:none;">
+        <div class="question-container" id="question-2">
             <h3>คำถามที่ 2</h3>
             <p>จงหาค่าของอินทิกรัลจำกัดเขต: $$ \int_0^2 (2x + 1) \,dx $$</p>
             <ul class="options-list">
                 <li><label><input type="radio" name="q2_option" value="a">ก. $6$</label></li>
-                <li><label><input type="radio" name="q2_b" name="q2_option" value="b">ข. $5$</label></li>
-                <li><label><input type="radio" name="q2_c" name="q2_option" value="c">ค. $3$</label></li>
-                <li><label><input type="radio" name="q2_d" name="q2_option" value="d">ง. $4$</label></li>
+                <li><label><input type="radio" name="q2_option" value="b">ข. $5$</label></li>
+                <li><label><input type="radio" name="q2_option" value="c">ค. $3$</label></li>
+                <li><label><input type="radio" name="q2_option" value="d">ง. $4$</label></li>
             </ul>
-            <button class="nav-button" onclick="nextQuestion(2)">ข้อต่อไป</button>
+            <button class="nav-button" onclick="handleAnswer(2)">ข้อต่อไป</button>
         </div>
 
-        <div class="question-container" id="question-3" style="display:none;">
+        <div class="question-container" id="question-3">
             <h3>คำถามที่ 3</h3>
             <p>ถ้า $F'(x) = 4x^3$ และ $F(1) = 5$ จงหา $F(x)$</p>
             <ul class="options-list">
@@ -160,10 +161,10 @@
                 <li><label><input type="radio" name="q3_option" value="c">ค. $x^4$</label></li>
                 <li><label><input type="radio" name="q3_option" value="d">ง. $12x^2$</label></li>
             </ul>
-            <button class="nav-button" onclick="nextQuestion(3)">ข้อต่อไป</button>
+            <button class="nav-button" onclick="handleAnswer(3)">ข้อต่อไป</button>
         </div>
 
-        <div class="question-container" id="question-4" style="display:none;">
+        <div class="question-container" id="question-4">
             <h3>คำถามที่ 4</h3>
             <p>การอินทิเกรต $ \int \sin(x) \,dx $ ได้ผลลัพธ์ตรงกับข้อใด</p>
             <ul class="options-list">
@@ -172,10 +173,10 @@
                 <li><label><input type="radio" name="q4_option" value="c">ค. $-\sin(x) + C$</label></li>
                 <li><label><input type="radio" name="q4_option" value="d">ง. $\sin(x) + C$</label></li>
             </ul>
-            <button class="nav-button" onclick="nextQuestion(4)">ข้อต่อไป</button>
+            <button class="nav-button" onclick="handleAnswer(4)">ข้อต่อไป</button>
         </div>
 
-        <div class="question-container" id="question-5" style="display:none;">
+        <div class="question-container" id="question-5">
             <h3>คำถามที่ 5</h3>
             <p>จงหาค่าของ $ \int_1^e \frac{1}{x} \,dx $</p>
             <ul class="options-list">
@@ -184,7 +185,7 @@
                 <li><label><input type="radio" name="q5_option" value="c">ค. $0$</label></li>
                 <li><label><input type="radio" name="q5_option" value="d">ง. $-1$</label></li>
             </ul>
-            <button class="nav-button" onclick="showResults()">ดูผลลัพธ์</button>
+            <button class="nav-button" onclick="handleAnswer(5)">ดูผลลัพธ์</button>
         </div>
 
         <div class="results-container" id="results">
@@ -200,61 +201,41 @@
     const quizData = {
         'q1': {
             question: 'จงหาค่าของอินทิกรัลไม่จำกัดเขต: $$ \\int (3x^2 + 4x - 5) \\,dx $$',
-            options: {
-                'a': '$x^3 + 2x^2 - 5x + C$',
-                'b': '$3x^3 + 4x^2 - 5x + C$',
-                'c': '$6x + 4$',
-                'd': '$x^3 + 2x^2 - 5x$'
-            },
+            options: { 'a': 'ก. $x^3 + 2x^2 - 5x + C$', 'b': 'ข. $3x^3 + 4x^2 - 5x + C$', 'c': 'ค. $6x + 4$', 'd': 'ง. $x^3 + 2x^2 - 5x$' },
             correct: 'a',
             rationale: '<b>เหตุผล:</b> ใช้กฎการอินทิเกรตพหุนาม: $\\int x^n \\,dx = \\frac{x^{n+1}}{n+1} + C$'
         },
         'q2': {
             question: 'จงหาค่าของอินทิกรัลจำกัดเขต: $$ \\int_0^2 (2x + 1) \\,dx $$',
-            options: { 'a': '6', 'b': '5', 'c': '3', 'd': '4' },
+            options: { 'a': 'ก. $6$', 'b': 'ข. $5$', 'c': 'ค. $3$', 'd': 'ง. $4$' },
             correct: 'a',
             rationale: '<b>เหตุผล:</b> อินทิเกรตได้ $x^2+x$ แล้วแทนค่า: $(2^2+2) - (0^2+0) = 6$'
         },
         'q3': {
             question: 'ถ้า $F\'(x) = 4x^3$ และ $F(1) = 5$ จงหา $F(x)$',
-            options: {
-                'a': '$x^4 + 4$',
-                'b': '$x^4 + C$',
-                'c': '$x^4$',
-                'd': '$12x^2$'
-            },
+            options: { 'a': 'ก. $x^4 + 4$', 'b': 'ข. $x^4 + C$', 'c': 'ค. $x^4$', 'd': 'ง. $12x^2$' },
             correct: 'a',
             rationale: '<b>เหตุผล:</b> อินทิเกรต $4x^3$ ได้ $x^4+C$ ใช้ $F(1)=5$ จะได้ $1^4+C=5$ ดังนั้น $C=4$'
         },
         'q4': {
             question: 'การอินทิเกรต $ \\int \\sin(x) \\,dx $ ได้ผลลัพธ์ตรงกับข้อใด',
-            options: {
-                'a': '$-\\cos(x) + C$',
-                'b': '$\\cos(x) + C$',
-                'c': '$-\\sin(x) + C$',
-                'd': '$\\sin(x) + C$'
-            },
+            options: { 'a': 'ก. $-\\cos(x) + C$', 'b': 'ข. $\\cos(x) + C$', 'c': 'ค. $-\\sin(x) + C$', 'd': 'ง. $\\sin(x) + C$' },
             correct: 'a',
             rationale: '<b>เหตุผล:</b> อนุพันธ์ของ $-\\cos(x)$ คือ $\\sin(x)$'
         },
         'q5': {
             question: 'จงหาค่าของ $ \\int_1^e \\frac{1}{x} \\,dx $',
-            options: {
-                'a': '$1$',
-                'b': '$\\ln(e)$',
-                'c': '$0$',
-                'd': '$-1$'
-            },
+            options: { 'a': 'ก. $1$', 'b': 'ข. $\\ln(e)$', 'c': 'ค. $0$', 'd': 'ง. $-1$' },
             correct: 'a',
             rationale: '<b>เหตุผล:</b> อินทิกรัลของ $1/x$ คือ $\\ln|x|$ แล้วแทนค่าขอบเขต $\\ln(e) - \\ln(1) = 1-0=1$'
         }
     };
     
-    let userAnswers = {}; // Store user's choices
+    let userAnswers = {};
     const totalQuestions = 5;
 
-    function nextQuestion(currentQ) {
-        const questionId = 'q' + currentQ;
+    function handleAnswer(qNumber) {
+        const questionId = 'q' + qNumber;
         const selectedOption = document.querySelector(`input[name="${questionId}_option"]:checked`);
         
         if (!selectedOption) {
@@ -263,27 +244,23 @@
         }
 
         userAnswers[questionId] = selectedOption.value;
-        document.getElementById(`question-${currentQ}`).style.display = 'none';
-        
-        const nextQ = currentQ + 1;
-        if (nextQ <= totalQuestions) {
-            document.getElementById(`question-${nextQ}`).style.display = 'block';
-            // Reset selected option for next question
-            document.querySelector(`input[name="q${nextQ}_option"]:checked`)?.checked = false;
+
+        if (qNumber < totalQuestions) {
+            document.getElementById(`question-${qNumber}`).style.display = 'none';
+            document.getElementById(`question-${qNumber + 1}`).style.display = 'block';
+        } else {
+            showResults();
         }
     }
 
     function showResults() {
-        // Hide the last question
-        document.getElementById(`question-5`).style.display = 'none';
-        
-        // Show the results container
+        document.querySelector('.quiz-container').style.display = 'none';
         const resultsContainer = document.getElementById('results');
         resultsContainer.style.display = 'block';
 
         let score = 0;
         const resultsList = document.getElementById('results-list');
-        resultsList.innerHTML = ''; // Clear previous results
+        resultsList.innerHTML = '';
 
         for (let i = 1; i <= totalQuestions; i++) {
             const qId = 'q' + i;
@@ -298,412 +275,28 @@
             const resultItem = document.createElement('div');
             resultItem.className = `result-item ${isCorrect ? 'correct' : 'incorrect'}`;
             
-            let resultText = `<b>คำถามที่ ${i}:</b> `;
-            if (isCorrect) {
-                resultText += '✅ ถูกต้อง';
-            } else {
-                resultText += '❌ ผิด';
-            }
-
-            // Get the text for the chosen option
-            const chosenOptionText = document.querySelector(`input[name="${qId}_option"][value="${userAnswer}"]`).nextElementSibling.innerHTML;
+            const chosenOptionText = quizData[qId].options[userAnswer];
+            const correctOptionText = quizData[qId].options[correctAnswer];
             
-            resultText += `<br><b>คำตอบของคุณ:</b> ${chosenOptionText}`;
-            resultText += `<br><b>คำตอบที่ถูกต้องคือ:</b> ${quizData[qId].options[correctAnswer]}`;
-            resultText += `<br>${quizData[qId].rationale}`;
+            let resultHTML = `<b>คำถามที่ ${i}:</b> ${isCorrect ? '✅ ถูกต้อง' : '❌ ผิด'}<br>`;
+            resultHTML += `<b>คำตอบของคุณ:</b> ${chosenOptionText || 'ไม่ได้เลือก'}<br>`;
+            resultHTML += `<b>คำตอบที่ถูกต้องคือ:</b> ${correctOptionText || 'ไม่พบคำตอบ'}<br>`;
+            resultHTML += `${quizData[qId].rationale}`;
 
-            resultItem.innerHTML = resultText;
+            resultItem.innerHTML = resultHTML;
             resultsList.appendChild(resultItem);
         }
         
-        // Display the final score
         const scoreDisplay = document.getElementById('score-display');
         scoreDisplay.innerHTML = `คุณได้คะแนน <span class="summary-score">${score}</span>/${totalQuestions} คะแนน`;
         
-        // Render MathJax in the results
         MathJax.Hub.Queue(["Typeset", MathJax.Hub, resultsContainer]);
     }
 
-</script>
-
-</body>
-</html>
-            padding: 10px;
-            border-radius: 4px;
-            display: none; /* ซ่อนไว้ก่อน */
-        }
-        .correct {
-            background-color: #d1e7dd;
-            color: #0f5132;
-            border: 1px solid #badbcc;
-        }
-        .incorrect {
-            background-color: #f8d7da;
-            color: #842029;
-            border: 1px solid #f5c2c7;
-        }
-    </style>
-    <script type="text/javascript" async
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
-    </script>
-    <script type="text/x-mathjax-config">
-        MathJax.Hub.Config({
-            tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
-            "HTML-CSS": { linebreaks: { automatic: true } },
-            "SVG": { linebreaks: { automatic: true } }
-        });
-    </script>
-</head>
-<body>
-
-<div class="container">
-    <h1>บทเรียน: การอินทิเกรตเบื้องต้น</h1>
-    <p>สวัสดีเพื่อน! วันนี้เราจะมาเรียนรู้เรื่องการอินทิเกรต (Integration) กันนะ มันอาจจะดูยาก แต่จริงๆ แล้วเป็นแนวคิดที่น่าสนใจมากๆ เลย</p>
-
-    <h2>อินทิเกรตคืออะไร?</h2>
-    <p>ถ้าพูดง่ายๆ <b>การอินทิเกรตคือกระบวนการตรงกันข้ามกับการหาอนุพันธ์ (Differentiation)</b> ถ้าอนุพันธ์เป็นการหาความชันของเส้นโค้งในแต่ละจุด การอินทิเกรตก็คือการหา <b>พื้นที่ใต้เส้นโค้ง</b> นั่นเอง</p>
-
-    <h2>ประเภทของการอินทิเกรต</h2>
-    <p>การอินทิเกรตแบ่งออกเป็น 2 ประเภทหลักๆ</p>
-    <h3>1. การอินทิเกรตแบบไม่จำกัดเขต (Indefinite Integral)</h3>
-    <p>เป็นการหาฟังก์ชันดั้งเดิม (antiderivative) ของฟังก์ชันที่เราต้องการอินทิเกรต ผลลัพธ์ที่ได้จะเป็นฟังก์ชันที่มีค่าคงที่ (Constant of Integration) หรือที่เราเรียกว่า "$C$" เพิ่มเข้ามาเสมอ</p>
-    <p class="latex-formula">$$ \int f(x) \,dx = F(x) + C $$</p>
-
-    <h3>2. การอินทิเกรตแบบจำกัดเขต (Definite Integral)</h3>
-    <p>เป็นการหาค่าพื้นที่ที่แท้จริงใต้กราฟตั้งแต่จุดหนึ่งไปถึงอีกจุดหนึ่ง ผลลัพธ์ที่ได้จะเป็นตัวเลข ซึ่งเราจะใช้สัญลักษณ์ $a$ และ $b$ กำหนดขอบเขตของการอินทิเกรต</p>
-    <p class="latex-formula">$$ \int_a^b f(x) \,dx = F(b) - F(a) $$</p>
-</div>
-
-<div class="container">
-    <h2>แบบฝึกหัด: การอินทิเกรต (ชุดที่ 1)</h2>
-    <p>ลองทำแบบฝึกหัดต่อไปนี้เพื่อทบทวนความเข้าใจ</p>
-
-    <div class="question" id="q1">
-        <h3>คำถามที่ 1</h3>
-        <p>จงหาค่าของอินทิกรัลไม่จำกัดเขตต่อไปนี้: $$ \int (3x^2 + 4x - 5) \,dx $$</p>
-        <ul class="options-list">
-            <li>
-                <input type="radio" id="q1_a" name="q1_option" value="a">
-                <label for="q1_a">ก. $x^3 + 2x^2 - 5x + C$</label>
-            </li>
-            <li>
-                <input type="radio" id="q1_b" name="q1_option" value="b">
-                <label for="q1_b">ข. $3x^3 + 4x^2 - 5x + C$</label>
-            </li>
-            <li>
-                <input type="radio" id="q1_c" name="q1_option" value="c">
-                <label for="q1_c">ค. $6x + 4$</label>
-            </li>
-            <li>
-                <input type="radio" id="q1_d" name="q1_option" value="d">
-                <label for="q1_d">ง. $x^3 + 2x^2 - 5x$</label>
-            </li>
-        </ul>
-        <button class="check-button" onclick="checkAnswer('q1')">ตรวจคำตอบ</button>
-        <div class="feedback" id="feedback-q1"></div>
-    </div>
-
-    <div class="question" id="q2">
-        <h3>คำถามที่ 2</h3>
-        <p>จงหาค่าของอินทิกรัลจำกัดเขต: $$ \int_0^2 (2x + 1) \,dx $$</p>
-        <ul class="options-list">
-            <li>
-                <input type="radio" id="q2_a" name="q2_option" value="a">
-                <label for="q2_a">ก. $6$</label>
-            </li>
-            <li>
-                <input type="radio" id="q2_b" name="q2_option" value="b">
-                <label for="q2_b">ข. $5$</label>
-            </li>
-            <li>
-                <input type="radio" id="q2_c" name="q2_option" value="c">
-                <label for="q2_c">ค. $3$</label>
-            </li>
-            <li>
-                <input type="radio" id="q2_d" name="q2_option" value="d">
-                <label for="q2_d">ง. $4$</label>
-            </li>
-        </ul>
-        <button class="check-button" onclick="checkAnswer('q2')">ตรวจคำตอบ</button>
-        <div class="feedback" id="feedback-q2"></div>
-    </div>
-    
-    <div class="question" id="q3">
-        <h3>คำถามที่ 3</h3>
-        <p>ถ้า $F'(x) = 4x^3$ และ $F(1) = 5$ จงหา $F(x)$</p>
-        <ul class="options-list">
-            <li>
-                <input type="radio" id="q3_a" name="q3_option" value="a">
-                <label for="q3_a">ก. $x^4 + 4$</label>
-            </li>
-            <li>
-                <input type="radio" id="q3_b" name="q3_option" value="b">
-                <label for="q3_b">ข. $x^4 + C$</label>
-            </li>
-            <li>
-                <input type="radio" id="q3_c" name="q3_option" value="c">
-                <label for="q3_c">ค. $x^4$</label>
-            </li>
-            <li>
-                <input type="radio" id="q3_d" name="q3_option" value="d">
-                <label for="q3_d">ง. $12x^2$</label>
-            </li>
-        </ul>
-        <button class="check-button" onclick="checkAnswer('q3')">ตรวจคำตอบ</button>
-        <div class="feedback" id="feedback-q3"></div>
-    </div>
-
-    <div class="question" id="q4">
-        <h3>คำถามที่ 4</h3>
-        <p>การอินทิเกรต $ \int \sin(x) \,dx $ ได้ผลลัพธ์ตรงกับข้อใด</p>
-        <ul class="options-list">
-            <li>
-                <input type="radio" id="q4_a" name="q4_option" value="a">
-                <label for="q4_a">ก. $-\cos(x) + C$</label>
-            </li>
-            <li>
-                <input type="radio" id="q4_b" name="q4_option" value="b">
-                <label for="q4_b">ข. $\cos(x) + C$</label>
-            </li>
-            <li>
-                <input type="radio" id="q4_c" name="q4_option" value="c">
-                <label for="q4_c">ค. $-\sin(x) + C$</label>
-            </li>
-            <li>
-                <input type="radio" id="q4_d" name="q4_option" value="d">
-                <label for="q4_d">ง. $\sin(x) + C$</label>
-            </li>
-        </ul>
-        <button class="check-button" onclick="checkAnswer('
-            padding: 10px;
-            border-radius: 4px;
-            display: none; /* ซ่อนไว้ก่อน */
-        }
-        .correct {
-            background-color: #d1e7dd;
-            color: #0f5132;
-            border: 1px solid #badbcc;
-        }
-        .incorrect {
-            background-color: #f8d7da;
-            color: #842029;
-            border: 1px solid #f5c2c7;
-        }
-    </style>
-    <script type="text/javascript" async
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
-    </script>
-    <script type="text/x-mathjax-config">
-        MathJax.Hub.Config({
-            tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
-            "HTML-CSS": { linebreaks: { automatic: true } },
-            "SVG": { linebreaks: { automatic: true } }
-        });
-    </script>
-</head>
-<body>
-
-<div class="container">
-    <h1>บทเรียน: การอินทิเกรตเบื้องต้น</h1>
-    <p>สวัสดีเพื่อน! วันนี้เราจะมาเรียนรู้เรื่องการอินทิเกรต (Integration) กันนะ มันอาจจะดูยาก แต่จริงๆ แล้วเป็นแนวคิดที่น่าสนใจมากๆ เลย</p>
-
-    <h2>อินทิเกรตคืออะไร?</h2>
-    <p>ถ้าพูดง่ายๆ <b>การอินทิเกรตคือกระบวนการตรงกันข้ามกับการหาอนุพันธ์ (Differentiation)</b> ถ้าอนุพันธ์เป็นการหาความชันของเส้นโค้งในแต่ละจุด การอินทิเกรตก็คือการหา <b>พื้นที่ใต้เส้นโค้ง</b> นั่นเอง</p>
-    <p>ลองนึกภาพว่าเรามีกราฟของฟังก์ชัน $f(x)$ และเราอยากรู้ว่าพื้นที่ใต้กราฟนี้จากจุด $x=a$ ไปยัง $x=b$ มีค่าเท่าไหร่ การอินทิเกรตจะช่วยเราคำนวณพื้นที่นี้ได้</p>
-
-    <h2>ประเภทของการอินทิเกรต</h2>
-    <p>การอินทิเกรตแบ่งออกเป็น 2 ประเภทหลักๆ</p>
-    <h3>1. การอินทิเกรตแบบไม่จำกัดเขต (Indefinite Integral)</h3>
-    <p>เป็นการหาฟังก์ชันดั้งเดิม (antiderivative) ของฟังก์ชันที่เราต้องการอินทิเกรต ผลลัพธ์ที่ได้จะเป็นฟังก์ชันที่มีค่าคงที่ (Constant of Integration) หรือที่เราเรียกว่า "$C$" เพิ่มเข้ามาเสมอ</p>
-    <p class="latex-formula">$$ \int f(x) \,dx = F(x) + C $$</p>
-
-    <h3>2. การอินทิเกรตแบบจำกัดเขต (Definite Integral)</h3>
-    <p>เป็นการหาค่าพื้นที่ที่แท้จริงใต้กราฟตั้งแต่จุดหนึ่งไปถึงอีกจุดหนึ่ง ผลลัพธ์ที่ได้จะเป็นตัวเลข ซึ่งเราจะใช้สัญลักษณ์ $a$ และ $b$ กำหนดขอบเขตของการอินทิเกรต</p>
-    <p class="latex-formula">$$ \int_a^b f(x) \,dx = F(b) - F(a) $$</p>
-</div>
-
-<div class="container">
-    <h2>แบบฝึกหัด: การอินทิเกรต</h2>
-    <p>ลองทำแบบฝึกหัดต่อไปนี้เพื่อทบทวนความเข้าใจ</p>
-
-    <div class="question" id="q1">
-        <h3>คำถามที่ 1</h3>
-        <p>จงหาค่าของอินทิกรัลไม่จำกัดเขตต่อไปนี้: $$ \int (3x^2 + 4x - 5) \,dx $$</p>
-        <ul class="options-list">
-            <li>
-                <input type="radio" id="q1_a" name="q1_option" value="a">
-                <label for="q1_a">ก. $x^3 + 2x^2 - 5x + C$</label>
-            </li>
-            <li>
-                <input type="radio" id="q1_b" name="q1_option" value="b">
-                <label for="q1_b">ข. $3x^3 + 4x^2 - 5x + C$</label>
-            </li>
-            <li>
-                <input type="radio" id="q1_c" name="q1_option" value="c">
-                <label for="q1_c">ค. $6x + 4$</label>
-            </li>
-            <li>
-                <input type="radio" id="q1_d" name="q1_option" value="d">
-                <label for="q1_d">ง. $x^3 + 2x^2 - 5x$</label>
-            </li>
-        </ul>
-        <button class="check-button" onclick="checkAnswer('q1', 'a')">ตรวจคำตอบ</button>
-        <div class="feedback" id="feedback-q1"></div>
-    </div>
-
-    <div class="question" id="q2">
-        <h3>คำถามที่ 2</h3>
-        <p>จงหาค่าของอินทิกรัลจำกัดเขต: $$ \int_0^2 (2x + 1) \,dx $$</p>
-        <ul class="options-list">
-            <li>
-                <input type="radio" id="q2_a" name="q2_option" value="a">
-                <label for="q2_a">ก. $6$</label>
-            </li>
-            <li>
-                <input type="radio" id="q2_b" name="q2_option" value="b">
-                <label for="q2_b">ข. $5$</label>
-            </li>
-            <li>
-                <input type="radio" id="q2_c" name="q2_option" value="c">
-                <label for="q2_c">ค. $3$</label>
-            </li>
-            <li>
-                <input type="radio" id="q2_d" name="q2_option" value="d">
-                <label for="q2_d">ง. $4$</label>
-            </li>
-        </ul>
-        <button class="check-button" onclick="checkAnswer('q2', 'a')">ตรวจคำตอบ</button>
-        <div class="feedback" id="feedback-q2"></div>
-    </div>
-    
-    <div class="question" id="q3">
-        <h3>คำถามที่ 3</h3>
-        <p>ถ้า $F'(x) = 4x^3$ และ $F(1) = 5$ จงหา $F(x)$</p>
-        <ul class="options-list">
-            <li>
-                <input type="radio" id="q3_a" name="q3_option" value="a">
-                <label for="q3_a">ก. $x^4 + 4$</label>
-            </li>
-            <li>
-                <input type="radio" id="q3_b" name="q3_option" value="b">
-                <label for="q3_b">ข. $x^4 + C$</label>
-            </li>
-            <li>
-                <input type="radio" id="q3_c" name="q3_option" value="c">
-                <label for="q3_c">ค. $x^4$</label>
-            </li>
-            <li>
-                <input type="radio" id="q3_d" name="q3_option" value="d">
-                <label for="q3_d">ง. $12x^2$</label>
-            </li>
-        </ul>
-        <button class="check-button" onclick="checkAnswer('q3', 'a')">ตรวจคำตอบ</button>
-        <div class="feedback" id="feedback-q3"></div>
-    </div>
-
-    <div class="question" id="q4">
-        <h3>คำถามที่ 4</h3>
-        <p>การอินทิเกรต $ \int \sin(x) \,dx $ ได้ผลลัพธ์ตรงกับข้อใด</p>
-        <ul class="options-list">
-            <li>
-                <input type="radio" id="q4_a" name="q4_option" value="a">
-                <label for="q4_a">ก. $-\cos(x) + C$</label>
-            </li>
-            <li>
-                <input type="radio" id="q4_b" name="q4_option" value="b">
-                <label for="q4_b">ข. $\cos(x) + C$</label>
-            </li>
-            <li>
-                <input type="radio" id="q4_c" name="q4_option" value="c">
-                <label for="q4_c">ค. $-\sin(x) + C$</label>
-            </li>
-            <li>
-                <input type="radio" id="q4_d" name="q4_option" value="d">
-                <label for="q4_d">ง. $\sin(x) + C$</label>
-            </li>
-        </ul>
-        <button class="check-button" onclick="checkAnswer('q4', 'a')">ตรวจคำตอบ</button>
-        <div class="feedback" id="feedback-q4"></div>
-    </div>
-
-    <div class="question" id="q5">
-        <h3>คำถามที่ 5</h3>
-        <p>จงหาค่าของ $ \int_1^e \frac{1}{x} \,dx $</p>
-        <ul class="options-list">
-            <li>
-                <input type="radio" id="q5_a" name="q5_option" value="a">
-                <label for="q5_a">ก. $1$</label>
-            </li>
-            <li>
-                <input type="radio" id="q5_b" name="q5_option" value="b">
-                <label for="q5_b">ข. $\ln(e)$</label>
-            </li>
-            <li>
-                <input type="radio" id="q5_c" name="q5_option" value="c">
-                <label for="q5_c">ค. $0$</label>
-            </li>
-            <li>
-                <input type="radio" id="q5_d" name="q5_option" value="d">
-                <label for="q5_d">ง. $-1$</label>
-            </li>
-        </ul>
-        <button class="check-button" onclick="checkAnswer('q5', 'a')">ตรวจคำตอบ</button>
-        <div class="feedback" id="feedback-q5"></div>
-    </div>
-</div>
-
-<script>
-    // ข้อมูลคำตอบที่ถูกต้องและเหตุผล
-    const answers = {
-        'q1': {
-            correct: 'a',
-            rationale: '<b>เหตุผล:</b> ข้อนี้ใช้กฎการอินทิเกรตพหุนาม: $\\int x^n \\,dx = \\frac{x^{n+1}}{n+1} + C$ สำหรับแต่ละพจน์ และอย่าลืมค่าคงที่ของการอินทิเกรต $C$'
-        },
-        'q2': {
-            correct: 'a',
-            rationale: '<b>เหตุผล:</b> ทำการอินทิเกรตก่อนจะได้ $x^2 + x$, จากนั้นแทนค่าขอบเขตบนและล่าง: $(2^2+2) - (0^2+0) = 4+2 = 6$'
-        },
-        'q3': {
-            correct: 'a',
-            rationale: '<b>เหตุผล:</b> เมื่ออินทิเกรต $F\'(x)$ จะได้ $F(x) = x^4 + C$ จากนั้นใช้เงื่อนไขเริ่มต้น $F(1)=5$ เพื่อหาค่า $C$ ซึ่งจะได้ $1^4 + C = 5$ ดังนั้น $C=4$'
-        },
-        'q4': {
-            correct: 'a',
-            rationale: '<b>เหตุผล:</b> อนุพันธ์ของ $-\\cos(x)$ คือ $-[-\\sin(x)] = \\sin(x)$ ซึ่งตรงกับฟังก์ชันที่ต้องการอินทิเกรต'
-        },
-        'q5': {
-            correct: 'a',
-            rationale: '<b>เหตุผล:</b> อินทิกรัลของ $1/x$ คือ $\\ln|x|$, เมื่อแทนค่าขอบเขตจะได้ $\\ln(e) - \\ln(1) = 1 - 0 = 1$'
-        }
-    };
-
-    function checkAnswer(questionId, correctAnswer) {
-        const selectedOption = document.querySelector(`input[name="${questionId}_option"]:checked`);
-        const feedbackDiv = document.getElementById(`feedback-${questionId}`);
-
-        if (!selectedOption) {
-            feedbackDiv.style.display = 'block';
-            feedbackDiv.className = 'feedback incorrect';
-            feedbackDiv.innerHTML = 'กรุณาเลือกคำตอบก่อนครับ';
-            return;
-        }
-
-        const selectedValue = selectedOption.value;
-        const rationale = answers[questionId].rationale;
-
-        if (selectedValue === correctAnswer) {
-            feedbackDiv.style.display = 'block';
-            feedbackDiv.className = 'feedback correct';
-            feedbackDiv.innerHTML = '<b>ถูกต้องครับ!</b> ' + rationale;
-        } else {
-            feedbackDiv.style.display = 'block';
-            feedbackDiv.className = 'feedback incorrect';
-            feedbackDiv.innerHTML = '<b>ยังไม่ถูกต้องครับ ลองดูเหตุผลที่ถูกต้องด้านล่าง:</b><br>' + rationale;
-        }
-
-        // ทำให้ MathJax แสดงผลสูตรใหม่ใน feedback div
-        MathJax.Hub.Queue(["Typeset", MathJax.Hub, feedbackDiv]);
-    }
+    // Initialize the quiz: show the first question when the page loads
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('question-1').style.display = 'block';
+    });
 </script>
 
 </body>
