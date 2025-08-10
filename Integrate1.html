@@ -105,6 +105,153 @@
 
     <h2>อินทิเกรตคืออะไร?</h2>
     <p>ถ้าพูดง่ายๆ <b>การอินทิเกรตคือกระบวนการตรงกันข้ามกับการหาอนุพันธ์ (Differentiation)</b> ถ้าอนุพันธ์เป็นการหาความชันของเส้นโค้งในแต่ละจุด การอินทิเกรตก็คือการหา <b>พื้นที่ใต้เส้นโค้ง</b> นั่นเอง</p>
+
+    <h2>ประเภทของการอินทิเกรต</h2>
+    <p>การอินทิเกรตแบ่งออกเป็น 2 ประเภทหลักๆ</p>
+    <h3>1. การอินทิเกรตแบบไม่จำกัดเขต (Indefinite Integral)</h3>
+    <p>เป็นการหาฟังก์ชันดั้งเดิม (antiderivative) ของฟังก์ชันที่เราต้องการอินทิเกรต ผลลัพธ์ที่ได้จะเป็นฟังก์ชันที่มีค่าคงที่ (Constant of Integration) หรือที่เราเรียกว่า "$C$" เพิ่มเข้ามาเสมอ</p>
+    <p class="latex-formula">$$ \int f(x) \,dx = F(x) + C $$</p>
+
+    <h3>2. การอินทิเกรตแบบจำกัดเขต (Definite Integral)</h3>
+    <p>เป็นการหาค่าพื้นที่ที่แท้จริงใต้กราฟตั้งแต่จุดหนึ่งไปถึงอีกจุดหนึ่ง ผลลัพธ์ที่ได้จะเป็นตัวเลข ซึ่งเราจะใช้สัญลักษณ์ $a$ และ $b$ กำหนดขอบเขตของการอินทิเกรต</p>
+    <p class="latex-formula">$$ \int_a^b f(x) \,dx = F(b) - F(a) $$</p>
+</div>
+
+<div class="container">
+    <h2>แบบฝึกหัด: การอินทิเกรต (ชุดที่ 1)</h2>
+    <p>ลองทำแบบฝึกหัดต่อไปนี้เพื่อทบทวนความเข้าใจ</p>
+
+    <div class="question" id="q1">
+        <h3>คำถามที่ 1</h3>
+        <p>จงหาค่าของอินทิกรัลไม่จำกัดเขตต่อไปนี้: $$ \int (3x^2 + 4x - 5) \,dx $$</p>
+        <ul class="options-list">
+            <li>
+                <input type="radio" id="q1_a" name="q1_option" value="a">
+                <label for="q1_a">ก. $x^3 + 2x^2 - 5x + C$</label>
+            </li>
+            <li>
+                <input type="radio" id="q1_b" name="q1_option" value="b">
+                <label for="q1_b">ข. $3x^3 + 4x^2 - 5x + C$</label>
+            </li>
+            <li>
+                <input type="radio" id="q1_c" name="q1_option" value="c">
+                <label for="q1_c">ค. $6x + 4$</label>
+            </li>
+            <li>
+                <input type="radio" id="q1_d" name="q1_option" value="d">
+                <label for="q1_d">ง. $x^3 + 2x^2 - 5x$</label>
+            </li>
+        </ul>
+        <button class="check-button" onclick="checkAnswer('q1')">ตรวจคำตอบ</button>
+        <div class="feedback" id="feedback-q1"></div>
+    </div>
+
+    <div class="question" id="q2">
+        <h3>คำถามที่ 2</h3>
+        <p>จงหาค่าของอินทิกรัลจำกัดเขต: $$ \int_0^2 (2x + 1) \,dx $$</p>
+        <ul class="options-list">
+            <li>
+                <input type="radio" id="q2_a" name="q2_option" value="a">
+                <label for="q2_a">ก. $6$</label>
+            </li>
+            <li>
+                <input type="radio" id="q2_b" name="q2_option" value="b">
+                <label for="q2_b">ข. $5$</label>
+            </li>
+            <li>
+                <input type="radio" id="q2_c" name="q2_option" value="c">
+                <label for="q2_c">ค. $3$</label>
+            </li>
+            <li>
+                <input type="radio" id="q2_d" name="q2_option" value="d">
+                <label for="q2_d">ง. $4$</label>
+            </li>
+        </ul>
+        <button class="check-button" onclick="checkAnswer('q2')">ตรวจคำตอบ</button>
+        <div class="feedback" id="feedback-q2"></div>
+    </div>
+    
+    <div class="question" id="q3">
+        <h3>คำถามที่ 3</h3>
+        <p>ถ้า $F'(x) = 4x^3$ และ $F(1) = 5$ จงหา $F(x)$</p>
+        <ul class="options-list">
+            <li>
+                <input type="radio" id="q3_a" name="q3_option" value="a">
+                <label for="q3_a">ก. $x^4 + 4$</label>
+            </li>
+            <li>
+                <input type="radio" id="q3_b" name="q3_option" value="b">
+                <label for="q3_b">ข. $x^4 + C$</label>
+            </li>
+            <li>
+                <input type="radio" id="q3_c" name="q3_option" value="c">
+                <label for="q3_c">ค. $x^4$</label>
+            </li>
+            <li>
+                <input type="radio" id="q3_d" name="q3_option" value="d">
+                <label for="q3_d">ง. $12x^2$</label>
+            </li>
+        </ul>
+        <button class="check-button" onclick="checkAnswer('q3')">ตรวจคำตอบ</button>
+        <div class="feedback" id="feedback-q3"></div>
+    </div>
+
+    <div class="question" id="q4">
+        <h3>คำถามที่ 4</h3>
+        <p>การอินทิเกรต $ \int \sin(x) \,dx $ ได้ผลลัพธ์ตรงกับข้อใด</p>
+        <ul class="options-list">
+            <li>
+                <input type="radio" id="q4_a" name="q4_option" value="a">
+                <label for="q4_a">ก. $-\cos(x) + C$</label>
+            </li>
+            <li>
+                <input type="radio" id="q4_b" name="q4_option" value="b">
+                <label for="q4_b">ข. $\cos(x) + C$</label>
+            </li>
+            <li>
+                <input type="radio" id="q4_c" name="q4_option" value="c">
+                <label for="q4_c">ค. $-\sin(x) + C$</label>
+            </li>
+            <li>
+                <input type="radio" id="q4_d" name="q4_option" value="d">
+                <label for="q4_d">ง. $\sin(x) + C$</label>
+            </li>
+        </ul>
+        <button class="check-button" onclick="checkAnswer('
+            padding: 10px;
+            border-radius: 4px;
+            display: none; /* ซ่อนไว้ก่อน */
+        }
+        .correct {
+            background-color: #d1e7dd;
+            color: #0f5132;
+            border: 1px solid #badbcc;
+        }
+        .incorrect {
+            background-color: #f8d7da;
+            color: #842029;
+            border: 1px solid #f5c2c7;
+        }
+    </style>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+            "HTML-CSS": { linebreaks: { automatic: true } },
+            "SVG": { linebreaks: { automatic: true } }
+        });
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <h1>บทเรียน: การอินทิเกรตเบื้องต้น</h1>
+    <p>สวัสดีเพื่อน! วันนี้เราจะมาเรียนรู้เรื่องการอินทิเกรต (Integration) กันนะ มันอาจจะดูยาก แต่จริงๆ แล้วเป็นแนวคิดที่น่าสนใจมากๆ เลย</p>
+
+    <h2>อินทิเกรตคืออะไร?</h2>
+    <p>ถ้าพูดง่ายๆ <b>การอินทิเกรตคือกระบวนการตรงกันข้ามกับการหาอนุพันธ์ (Differentiation)</b> ถ้าอนุพันธ์เป็นการหาความชันของเส้นโค้งในแต่ละจุด การอินทิเกรตก็คือการหา <b>พื้นที่ใต้เส้นโค้ง</b> นั่นเอง</p>
     <p>ลองนึกภาพว่าเรามีกราฟของฟังก์ชัน $f(x)$ และเราอยากรู้ว่าพื้นที่ใต้กราฟนี้จากจุด $x=a$ ไปยัง $x=b$ มีค่าเท่าไหร่ การอินทิเกรตจะช่วยเราคำนวณพื้นที่นี้ได้</p>
 
     <h2>ประเภทของการอินทิเกรต</h2>
