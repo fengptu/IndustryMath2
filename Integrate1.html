@@ -152,11 +152,11 @@
         <ul class="options-list">
             <li>
                 <input type="radio" id="q2_a" name="q2_option" value="a">
-                <label for="q2_a">A. $5$</label>
+                <label for="q2_a">A. $6$</label>
             </li>
             <li>
                 <input type="radio" id="q2_b" name="q2_option" value="b">
-                <label for="q2_b">B. $6$</label>
+                <label for="q2_b">B. $5$</label>
             </li>
             <li>
                 <input type="radio" id="q2_c" name="q2_option" value="c">
@@ -202,11 +202,11 @@
         <ul class="options-list">
             <li>
                 <input type="radio" id="q4_a" name="q4_option" value="a">
-                <label for="q4_a">A. $\cos(x) + C$</label>
+                <label for="q4_a">A. $-\cos(x) + C$</label>
             </li>
             <li>
                 <input type="radio" id="q4_b" name="q4_option" value="b">
-                <label for="q4_b">B. $-\cos(x) + C$</label>
+                <label for="q4_b">B. $\cos(x) + C$</label>
             </li>
             <li>
                 <input type="radio" id="q4_c" name="q4_option" value="c">
@@ -282,19 +282,19 @@
         <ul class="options-list">
             <li>
                 <input type="radio" id="q7_a" name="q7_option" value="a">
-                <label for="q7_a">A. $\frac{1}{4}$</label>
+                <label for="q7_a">A. $\frac{7}{12}$</label>
             </li>
             <li>
                 <input type="radio" id="q7_b" name="q7_option" value="b">
-                <label for="q7_b">B. $\frac{1}{3}$</label>
+                <label for="q7_b">B. $\frac{1}{12}$</label>
             </li>
             <li>
                 <input type="radio" id="q7_c" name="q7_option" value="c">
-                <label for="q7_c">C. $\frac{7}{12}$</label>
+                <label for="q7_c">C. $\frac{1}{4}$</label>
             </li>
             <li>
                 <input type="radio" id="q7_d" name="q7_option" value="d">
-                <label for="q7_d">D. $\frac{1}{12}$</label>
+                <label for="q7_d">D. $\frac{1}{3}$</label>
             </li>
         </ul>
         <button class="check-button" onclick="checkAnswer('q7')">ตรวจคำตอบ</button>
@@ -307,7 +307,7 @@
         <ul class="options-list">
             <li>
                 <input type="radio" id="q8_a" name="q8_option" value="a">
-                <label for="q8_a">A. $-4\cot(x) + C$</label>
+                <label for="q8_a">A. $4\tan(x) + C$</label>
             </li>
             <li>
                 <input type="radio" id="q8_b" name="q8_option" value="b">
@@ -319,7 +319,7 @@
             </li>
             <li>
                 <input type="radio" id="q8_d" name="q8_option" value="d">
-                <label for="q8_d">D. $4\tan(x) + C$</label>
+                <label for="q8_d">D. $-4\cot(x) + C$</label>
             </li>
         </ul>
         <button class="check-button" onclick="checkAnswer('q8')">ตรวจคำตอบ</button>
@@ -332,7 +332,7 @@
         <ul class="options-list">
             <li>
                 <input type="radio" id="q9_a" name="q9_option" value="a">
-                <label for="q9_a">A. $2$</label>
+                <label for="q9_a">A. $6$</label>
             </li>
             <li>
                 <input type="radio" id="q9_b" name="q9_option" value="b">
@@ -340,7 +340,7 @@
             </li>
             <li>
                 <input type="radio" id="q9_c" name="q9_option" value="c">
-                <label for="q9_c">C. $6$</label>
+                <label for="q9_c">C. $2$</label>
             </li>
             <li>
                 <input type="radio" id="q9_d" name="q9_option" value="d">
@@ -357,11 +357,11 @@
         <ul class="options-list">
             <li>
                 <input type="radio" id="q10_a" name="q10_option" value="a">
-                <label for="q10_a">A. $3$</label>
+                <label for="q10_a">A. $3x + C$</label>
             </li>
             <li>
                 <input type="radio" id="q10_b" name="q10_option" value="b">
-                <label for="q10_b">B. $3x + C$</label>
+                <label for="q10_b">B. $3$</label>
             </li>
             <li>
                 <input type="radio" id="q10_c" name="q10_option" value="c">
@@ -378,94 +378,140 @@
 </div>
 
 <script>
-    // ข้อมูลคำตอบที่ถูกต้องและเหตุผลสำหรับทุกคำถาม
-    const originalAnswers = {
+    // ข้อมูลคำตอบที่ถูกต้องเดิมและเหตุผลสำหรับทุกคำถาม
+    // ค่าใน 'correct' คือค่าที่ถูกสับเปลี่ยนตำแหน่งแล้ว
+    const answers = {
         'q1': {
-            correct: 'a',
+            options: [
+                { text: '$x^3 + 2x^2 - 5x + C$', correct: true },
+                { text: '$3x^3 + 4x^2 - 5x + C$', correct: false },
+                { text: '$6x + 4$', correct: false },
+                { text: '$x^3 + 2x^2 - 5x$', correct: false }
+            ],
             rationale: '<b>เหตุผล:</b> ใช้กฎการอินทิเกรตพหุนาม: $\\int x^n \\,dx = \\frac{x^{n+1}}{n+1} + C$'
         },
         'q2': {
-            correct: 'b',
+            options: [
+                { text: '$6$', correct: true },
+                { text: '$5$', correct: false },
+                { text: '$3$', correct: false },
+                { text: '$4$', correct: false }
+            ],
             rationale: '<b>เหตุผล:</b> อินทิเกรตได้ $x^2+x$ แล้วแทนค่า: $(2^2+2) - (0^2+0) = 6$'
         },
         'q3': {
-            correct: 'a',
+            options: [
+                { text: '$x^4 + 4$', correct: true },
+                { text: '$x^4 + C$', correct: false },
+                { text: '$x^4$', correct: false },
+                { text: '$12x^2$', correct: false }
+            ],
             rationale: '<b>เหตุผล:</b> อินทิเกรต $4x^3$ ได้ $x^4+C$ ใช้ $F(1)=5$ จะได้ $1^4+C=5$ ดังนั้น $C=4$'
         },
         'q4': {
-            correct: 'b',
+            options: [
+                { text: '$-\\cos(x) + C$', correct: true },
+                { text: '$\\cos(x) + C$', correct: false },
+                { text: '$-\\sin(x) + C$', correct: false },
+                { text: '$\\sin(x) + C$', correct: false }
+            ],
             rationale: '<b>เหตุผล:</b> อนุพันธ์ของ $-\\cos(x)$ คือ $\\sin(x)$'
         },
         'q5': {
-            correct: 'a',
+            options: [
+                { text: '$1$', correct: true },
+                { text: '$\\ln(e)$', correct: false },
+                { text: '$0$', correct: false },
+                { text: '$-1$', correct: false }
+            ],
             rationale: '<b>เหตุผล:</b> อินทิกรัลของ $1/x$ คือ $\\ln|x|$ แล้วแทนค่าขอบเขต $\\ln(e) - \\ln(1) = 1-0=1$'
         },
         'q6': {
-            correct: 'a',
+            options: [
+                { text: '$e^x - 2\\sin(x) + C$', correct: true },
+                { text: '$e^x + 2\\sin(x) + C$', correct: false },
+                { text: '$e^x - 2\\cos(x) + C$', correct: false },
+                { text: '$e^x + 2\\cos(x) + C$', correct: false }
+            ],
             rationale: '<b>เหตุผล:</b> อินทิเกรต $e^x$ ได้ $e^x$ และอินทิเกรต $2\\cos(x)$ ได้ $2\\sin(x)$'
         },
         'q7': {
-            correct: 'c',
+            options: [
+                { text: '$\\frac{7}{12}$', correct: true },
+                { text: '$\\frac{1}{12}$', correct: false },
+                { text: '$\\frac{1}{4}$', correct: false },
+                { text: '$\\frac{1}{3}$', correct: false }
+            ],
             rationale: '<b>เหตุผล:</b> อินทิเกรตได้ $\\frac{x^4}{4} + \\frac{x^3}{3}$ แล้วแทนค่าขอบเขต: $(\\frac{1^4}{4} + \\frac{1^3}{3}) - (0) = \\frac{1}{4} + \\frac{1}{3} = \\frac{3+4}{12} = \\frac{7}{12}$'
         },
         'q8': {
-            correct: 'd',
+            options: [
+                { text: '$4\\tan(x) + C$', correct: true },
+                { text: '$\\frac{4}{3}\\sec^3(x) + C$', correct: false },
+                { text: '$4\\cos(x) + C$', correct: false },
+                { text: '$-4\\cot(x) + C$', correct: false }
+            ],
             rationale: '<b>เหตุผล:</b> อนุพันธ์ของ $\\tan(x)$ คือ $\\sec^2(x)$ ดังนั้นอินทิกรัลของ $4\\sec^2(x)$ คือ $4\\tan(x)$'
         },
         'q9': {
-            correct: 'c',
+            options: [
+                { text: '$6$', correct: true },
+                { text: '$0$', correct: false },
+                { text: '$2$', correct: false },
+                { text: '$4$', correct: false }
+            ],
             rationale: '<b>เหตุผล:</b> อินทิเกรตได้ $x^2+3x$ แล้วแทนค่าขอบเขต: $(1^2+3(1)) - ((-1)^2+3(-1)) = (1+3) - (1-3) = 4 - (-2) = 6$'
         },
         'q10': {
-            correct: 'b',
+            options: [
+                { text: '$3x + C$', correct: true },
+                { text: '$3$', correct: false },
+                { text: '$0$', correct: false },
+                { text: '$3x^2 + C$', correct: false }
+            ],
             rationale: '<b>เหตุผล:</b> การอินทิเกรตค่าคงที่ $k$ คือ $kx+C$'
         }
     };
-    
+
+    // ฟังก์ชันสำหรับสับเปลี่ยน array
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
     // ทำการสับเปลี่ยนตัวเลือกและอัปเดตคำตอบที่ถูกต้อง
-    const correctOptions = {};
     const questionContainers = document.querySelectorAll('.question');
     questionContainers.forEach(container => {
         const questionId = container.id;
         const optionsList = container.querySelector('.options-list');
-        const options = Array.from(optionsList.children);
+        const questionData = answers[questionId];
         
-        // สร้างลำดับใหม่แบบสุ่ม
-        const shuffledOptions = shuffleArray(options);
-
-        // หาตัวเลือกที่ถูกต้องเดิม
-        const originalCorrectOption = originalAnswers[questionId].correct;
-        let newCorrectLabel = '';
-
-        // แทนที่ตัวอักษร ก ข ค ง เป็น A B C D
-        shuffledOptions.forEach((li, index) => {
-            const newLabel = String.fromCharCode(65 + index); // 65 คือรหัส ASCII ของ 'A'
-            const labelElement = li.querySelector('label');
-            const originalLabelText = labelElement.textContent.trim().substring(2);
-            labelElement.innerHTML = `${newLabel}. ${originalLabelText}`;
-            
-            const radioInput = li.querySelector('input[type="radio"]');
-            radioInput.id = `${questionId}_${newLabel.toLowerCase()}`;
-            radioInput.value = newLabel.toLowerCase();
-
-            // ตรวจสอบว่าตัวเลือกนี้คือคำตอบที่ถูกต้องหรือไม่
-            if (options[index].querySelector('input').value === originalCorrectOption) {
-                correctOptions[questionId] = newLabel.toLowerCase();
-            }
-        });
-
+        // สับเปลี่ยนลำดับตัวเลือก
+        const shuffledOptions = shuffleArray([...questionData.options]);
+        
         // ล้างรายการเดิม
         optionsList.innerHTML = '';
-        // เพิ่มรายการที่สับเปลี่ยนแล้วเข้าไป
-        shuffledOptions.forEach(li => optionsList.appendChild(li));
+
+        // สร้างตัวเลือกใหม่และเพิ่มลงใน HTML
+        shuffledOptions.forEach((option, index) => {
+            const newLabel = String.fromCharCode(65 + index); // A, B, C, D
+            const li = document.createElement('li');
+            li.innerHTML = `
+                <input type="radio" id="${questionId}_${newLabel.toLowerCase()}" name="${questionId}_option" value="${newLabel.toLowerCase()}" data-correct="${option.correct}">
+                <label for="${questionId}_${newLabel.toLowerCase()}">${newLabel}. ${option.text}</label>
+            `;
+            optionsList.appendChild(li);
+        });
     });
 
-    // อัปเดตฟังก์ชัน checkAnswer ให้ใช้คำตอบที่สับเปลี่ยนแล้ว
     function checkAnswer(questionId) {
         const selectedOption = document.querySelector(`input[name="${questionId}_option"]:checked`);
         const feedbackDiv = document.getElementById(`feedback-${questionId}`);
-        const correctAnswer = correctOptions[questionId];
-        const rationale = originalAnswers[questionId].rationale;
+        const questionData = answers[questionId];
+        const rationale = questionData.rationale;
 
         if (!selectedOption) {
             feedbackDiv.style.display = 'block';
@@ -474,9 +520,9 @@
             return;
         }
 
-        const selectedValue = selectedOption.value;
+        const isCorrect = selectedOption.getAttribute('data-correct') === 'true';
 
-        if (selectedValue === correctAnswer) {
+        if (isCorrect) {
             feedbackDiv.style.display = 'block';
             feedbackDiv.className = 'feedback correct';
             feedbackDiv.innerHTML = '<b>ถูกต้องครับ!</b> ' + rationale;
@@ -488,15 +534,6 @@
 
         // ทำให้ MathJax แสดงผลสูตรใหม่ใน feedback div
         MathJax.Hub.Queue(["Typeset", MathJax.Hub, feedbackDiv]);
-    }
-
-    // ฟังก์ชันสำหรับสับเปลี่ยน array
-    function shuffleArray(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
-        return array;
     }
 </script>
 
