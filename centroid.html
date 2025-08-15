@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ที่มาของสูตรเซนทรอยด์</title>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+        }
+        h3 {
+            color: #34495e;
+        }
+        .formula {
+            font-size: 1.2em;
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        li::before {
+            content: "•";
+            color: #3498db;
+            font-size: 1.2em;
+            position: absolute;
+            left: 0;
+        }
+        p strong {
+            color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>ที่มาของสูตรเซนทรอยด์</h2>
+    <p>ที่มาของสูตรเหล่านี้มาจากหลักการของ <strong>โมเมนต์ (Moment)</strong> ซึ่งในทางฟิสิกส์คือการวัดแนวโน้มของแรงที่ทำให้วัตถุเกิดการหมุนรอบจุดหมุน โดยโมเมนต์ของมวล (mass moment) ของวัตถุสามารถคำนวณได้โดยการคูณมวลกับระยะห่างจากแกนหมุน และเมื่อเราต้องการหาจุดที่ทำให้วัตถุสมดุล (จุดเซนทรอยด์) เราจะใช้หลักการที่ว่าผลรวมของโมเมนต์รอบจุดนั้นมีค่าเป็นศูนย์ครับ</p>
+    
+    <h3>1. สูตรมวลรวม M</h3>
+    <p>$$M = \int_{a}^{b} \rho(x)dx$$</p>
+    <p>สูตรนี้คือการคำนวณ <strong>มวลรวมทั้งหมด</strong> ของวัตถุ โดยที่ \(\rho(x)\) คือฟังก์ชันความหนาแน่นเชิงเส้น (mass density function) ณ ตำแหน่ง \(x\) ครับ</p>
+    <h4>แนวคิด:</h4>
+    <ul>
+        <li>เราแบ่งวัตถุออกเป็นชิ้นส่วนเล็กๆ จำนวนอนันต์ ชิ้นส่วนแต่ละชิ้นมีความยาว \(dx\) และมีความหนาแน่น \(\rho(x)\) ดังนั้นมวลของชิ้นส่วนเล็กๆ นี้คือ \(dm = \rho(x)dx\)</li>
+        <li><strong>การคำนวณ:</strong> การหาผลรวมของมวลของชิ้นส่วนเล็กๆ ทั้งหมดตั้งแต่ \(x=a\) ถึง \(x=b\) คือการใช้การอินทิเกรตครับ: $$M = \int_{a}^{b} dm = \int_{a}^{b} \rho(x)dx$$</li>
+    </ul>
+
+    <h3>2. สูตรพิกัด \(\bar{x}\)</h3>
+    <p>$$\bar{x} = \frac{1}{M}\int_{a}^{b} x\rho(x)dx$$</p>
+    <p>สูตรนี้ใช้หาพิกัด <strong>x-coordinate ของจุดเซนทรอยด์</strong> (\(\bar{x}\)) ซึ่งก็คือจุดสมดุลในแนวแกน \(x\)</p>
+    <h4>แนวคิด:</h4>
+    <ul>
+        <li>โมเมนต์ของมวลรอบแกน \(y\) (หรือโมเมนต์ที่ทำให้วัตถุหมุนรอบแกน \(y\)) คือการเอาโมเมนต์ของชิ้นส่วนเล็กๆ ทั้งหมดมารวมกัน โมเมนต์ของชิ้นส่วนเล็กๆ แต่ละชิ้นคือ มวล x ระยะทางจากแกนหมุน ซึ่งก็คือ \(dm \cdot x = (\rho(x)dx) \cdot x\)</li>
+        <li><strong>การคำนวณ:</strong> โมเมนต์รวมรอบแกน \(y\) (\(M_y\)) คือ $$M_y = \int_{a}^{b} x\rho(x)dx$$</li>
+        <li><strong>สมการสมดุล:</strong> จุดเซนทรอยด์คือจุดที่โมเมนต์ที่เกิดจากมวลรวมที่จุดนั้นมีค่าเท่ากับโมเมนต์รวมของทุกชิ้นส่วนในวัตถุ: $$M\cdot\bar{x} = M_y$$ ดังนั้น $$\bar{x} = \frac{M_y}{M} = \frac{\int_{a}^{b} x\rho(x)dx}{M}$$</li>
+    </ul>
+
+    <h3>3. สูตรพิกัด \(\bar{y}\)</h3>
+    <p>$$\bar{y} = \frac{1}{M}\int_{a}^{b} \frac{1}{2}[f(x)]^2 \rho(x)dx$$</p>
+    <p>สูตรนี้ใช้หาพิกัด <strong>y-coordinate ของจุดเซนทรอยด์</strong> (\(\bar{y}\)) ซึ่งคือจุดสมดุลในแนวแกน \(y\) สำหรับพื้นที่ใต้เส้นโค้ง \(y=f(x)\)</p>
+    <h4>แนวคิด:</h4>
+    <ul>
+        <li>เราใช้หลักการเดียวกับสูตร \(\bar{x}\) แต่เปลี่ยนมาพิจารณาโมเมนต์รอบแกน \(x\) โดยพิจารณาชิ้นส่วนเล็กๆ เป็นแถบสี่เหลี่ยมผืนผ้าบางๆ ในแนวตั้งที่ความกว้าง \(dx\) และความสูง \(f(x)\)</li>
+        <li><strong>จุดศูนย์กลางของแถบ:</strong> จุดศูนย์กลางของแถบสี่เหลี่ยมผืนผ้าเล็กๆ แต่ละแถบนี้อยู่ตรงกลางความสูงพอดี ซึ่งก็คือที่พิกัด \(y = \frac{1}{2}f(x)\)</li>
+        <li><strong>โมเมนต์ของแถบ:</strong> โมเมนต์ของแถบเล็กๆ รอบแกน \(x\) คือ มวลของแถบ x ระยะทางจากแกน \(x\) ซึ่งก็คือ \((\rho(x)dx \cdot f(x))\cdot\frac{1}{2}f(x)\)</li>
+        <li><strong>การคำนวณ:</strong> โมเมนต์รวมรอบแกน \(x\) (\(M_x\)) คือการอินทิเกรตผลรวมโมเมนต์ของแต่ละแถบ: $$M_x = \int_{a}^{b} (\rho(x)f(x)\cdot\frac{1}{2}f(x))dx = \int_{a}^{b} \frac{1}{2}[f(x)]^2\rho(x)dx$$</li>
+        <li><strong>สมการสมดุล:</strong> $$M\cdot\bar{y} = M_x$$ ดังนั้น $$\bar{y} = \frac{M_x}{M} = \frac{\int_{a}^{b} \frac{1}{2}[f(x)]^2\rho(x)dx}{M}$$</li>
+    </ul>
+
+</body>
+</html>
