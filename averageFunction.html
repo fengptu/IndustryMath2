@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ที่มาของสูตรค่าเฉลี่ยฟังก์ชัน</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        code {
+            background-color: #ecf0f1;
+            padding: 2px 5px;
+            border-radius: 4px;
+        }
+        pre {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .formula {
+            font-size: 1.5em;
+            text-align: center;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>ที่มาของสูตรค่าเฉลี่ยของฟังก์ชัน (Average Value of a Function)</h1>
+    <p>สูตรค่าเฉลี่ยของฟังก์ชัน คือ $f_{avg} = \frac{1}{b-a}\int_{a}^{b}f(x)dx$ มีที่มาจากแนวคิดเดียวกับการหาค่าเฉลี่ยเลขคณิตธรรมดา แต่ขยายให้ใช้กับฟังก์ชันต่อเนื่องได้</p>
+    
+    <h2>แนวคิดเบื้องต้น</h2>
+    <p>การหาค่าเฉลี่ยของชุดข้อมูลตัวเลข เช่น ${y_1, y_2, ..., y_n}$ เราจะใช้สูตร $\text{Average} = \frac{y_1 + y_2 + ... + y_n}{n}$ โดย $n$ คือจำนวนข้อมูลทั้งหมด</p>
+    <p>เมื่อนำแนวคิดนี้มาใช้กับฟังก์ชันต่อเนื่อง $f(x)$ บนช่วง $[a, b]$ จะเกิดปัญหาเพราะฟังก์ชันมีค่ามากมายนับไม่ถ้วนตลอดช่วง การจะบวกค่าทั้งหมดเข้าด้วยกันจึงเป็นไปไม่ได้ ดังนั้นเราจึงต้องใช้ <strong>การอินทิเกรต</strong> ซึ่งเปรียบเสมือนการ <strong>"บวก"</strong> ค่าของฟังก์ชันตลอดช่วงต่อเนื่อง</p>
+    
+    <h2>ที่มาของสูตร</h2>
+    <ol>
+        <li><strong>แบ่งช่วง:</strong> แบ่งช่วง $[a, b]$ ออกเป็น $n$ ส่วนย่อยเท่าๆ กัน โดยแต่ละส่วนมีความกว้าง $\Delta x = \frac{b-a}{n}$</li>
+        <li><strong>สุ่มตัวอย่าง:</strong> เลือกจุดตัวอย่าง $x_i^*$ หนึ่งจุดในแต่ละส่วนย่อย แล้วหาค่าของฟังก์ชันที่จุดนั้น คือ $f(x_i^*)$</li>
+        <li><strong>หาค่าเฉลี่ยโดยประมาณ:</strong> ค่าเฉลี่ยของฟังก์ชันโดยประมาณ (จากการสุ่มตัวอย่าง) คือ<br>
+            <pre>Average &approx; (f(x*₁) + f(x*₂) + ... + f(x*ₙ)) / n</pre>
+        </li>
+        <li><strong>ปรับรูปสมการ:</strong> เราทราบว่า $n = \frac{b-a}{\Delta x}$ ดังนั้นเราสามารถจัดรูปสมการใหม่ได้เป็น<br>
+            <pre>Average &approx; (1 / (b-a)) * Σ[i=1 to n] f(x*ᵢ)Δx</pre>
+        </li>
+    </ol>
+    
+    <h2>บทสรุป</h2>
+    <p>ในสมการสุดท้าย $\sum_{i=1}^{n} f(x_i^*)\Delta x$ คือ <strong>ผลบวกรีมันน์ (Riemann Sum)</strong> ซึ่งเป็นการประมาณค่าของการอินทิเกรต ยิ่งเราแบ่งช่วงย่อยมากขึ้น ($n \rightarrow \infty$) ค่าประมาณนี้ก็จะยิ่งเข้าใกล้ค่าจริงของการอินทิเกรต</p>
+    <p>เมื่อ $n$ เข้าสู่ค่าอนันต์ ผลรวมรีมันน์ก็จะกลายเป็นการอินทิเกรต:</p>
+    <pre>lim[n→∞] Σ[i=1 to n] f(x*ᵢ)Δx = ∫[a to b] f(x)dx</pre>
+    <p>เมื่อนำมาแทนที่ในสมการค่าเฉลี่ย เราจะได้สูตรที่สมบูรณ์:</p>
+    <div class="formula">
+        $f_{avg} = \frac{1}{b-a}\int_{a}^{b}f(x)dx$
+    </div>
+    <p>กล่าวโดยสรุป การอินทิเกรต $\int_{a}^{b}f(x)dx$ คือ <strong>"ผลรวม" ของค่าฟังก์ชัน</strong> ทั้งหมด และเราหารด้วยความยาวของช่วง $(b-a)$ เพื่อหา <strong>ค่าเฉลี่ย</strong> ที่แท้จริงของฟังก์ชันบนช่วงนั้นๆ</p>
+</div>
+
+</body>
+</html>
