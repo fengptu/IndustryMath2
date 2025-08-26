@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ตารางสูตรอนุพันธ์</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h2, h3 {
+            color: #333;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            text-align: left;
+            padding: 12px;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            text-align: center;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .proof-section {
+            background-color: #f9f9f9;
+            border-left: 4px solid #4CAF50;
+            padding: 15px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+      // ตั้งค่า MathJax
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        svg: {
+          fontCache: 'global'
+        }
+      };
+    </script>
+</head>
+<body>
+
+    <h2>ตารางสูตรอนุพันธ์พื้นฐาน</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ฟังก์ชัน ($y$)</th>
+                <th>อนุพันธ์ ($\frac{dy}{dx}$)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>$c$ (ค่าคงที่)</td>
+                <td>$0$</td>
+            </tr>
+            <tr>
+                <td>$x^n$</td>
+                <td>$nx^{n-1}$</td>
+            </tr>
+            <tr>
+                <td>$c \cdot f(x)$</td>
+                <td>$c \cdot f'(x)$</td>
+            </tr>
+            <tr>
+                <td>$f(x) \pm g(x)$</td>
+                <td>$f'(x) \pm g'(x)$</td>
+            </tr>
+            <tr>
+                <td>$e^x$</td>
+                <td>$e^x$</td>
+            </tr>
+            <tr>
+                <td>$a^x$</td>
+                <td>$a^x \ln a$</td>
+            </tr>
+            <tr>
+                <td>$\ln|x|$</td>
+                <td>$\frac{1}{x}$</td>
+            </tr>
+            <tr>
+                <td>$\log_a x$</td>
+                <td>$\frac{1}{x \ln a}$</td>
+            </tr>
+            <tr>
+                <td>$\sin x$</td>
+                <td>$\cos x$</td>
+            </tr>
+            <tr>
+                <td>$\cos x$</td>
+                <td>$-\sin x$</td>
+            </tr>
+            <tr>
+                <td>$\tan x$</td>
+                <td>$\sec^2 x$</td>
+            </tr>
+            <tr>
+                <td>$\cot x$</td>
+                <td>$-\csc^2 x$</td>
+            </tr>
+            <tr>
+                <td>$\sec x$</td>
+                <td>$\sec x \tan x$</td>
+            </tr>
+            <tr>
+                <td>$\csc x$</td>
+                <td>$-\csc x \cot x$</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>กฎการหาอนุพันธ์</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>ชื่อกฎ</th>
+                <th>สูตร</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>กฎผลคูณ (Product Rule)</td>
+                <td>$(u \cdot v)' = u'v + uv'$</td>
+            </tr>
+            <tr>
+                <td>กฎผลหาร (Quotient Rule)</td>
+                <td>$(\frac{u}{v})' = \frac{u'v - uv'}{v^2}$</td>
+            </tr>
+            <tr>
+                <td>กฎลูกโซ่ (Chain Rule)</td>
+                <td>$(f(g(x)))' = f'(g(x)) \cdot g'(x)$</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="proof-section">
+                        <h3>บทพิสูจน์: อนุพันธ์ของ $x^n$</h3>
+                        <p>เราสามารถใช้หลักการจากนิยามของอนุพันธ์ ($f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}$) และทฤษฎีบททวินาม (Binomial Theorem) ในการพิสูจน์ โดยกำหนดให้ $f(x) = x^n$:</p>
+                        <p>$\frac{d}{dx}x^n = \lim_{h \to 0} \frac{(x+h)^n - x^n}{h}$</p>
+                        <p>โดยทฤษฎีบททวินาม $(x+h)^n = x^n + nx^{n-1}h + \frac{n(n-1)}{2!}x^{n-2}h^2 + ... + h^n$</p>
+                        <p>ดังนั้น $\frac{d}{dx}x^n = \lim_{h \to 0} \frac{(x^n + nx^{n-1}h + \frac{n(n-1)}{2!}x^{n-2}h^2 + ... + h^n) - x^n}{h}$</p>
+                        <p>$= \lim_{h \to 0} \frac{nx^{n-1}h + \frac{n(n-1)}{2!}x^{n-2}h^2 + ... + h^n}{h}$</p>
+                        <p>เมื่อหารด้วย $h$ จะได้:</p>
+                        <p>$= \lim_{h \to 0} (nx^{n-1} + \frac{n(n-1)}{2!}x^{n-2}h + ... + h^{n-1})$</p>
+                        <p>เมื่อ $h \to 0$ พจน์ที่มี $h$ ทั้งหมดจะเข้าใกล้ศูนย์ เหลือเพียงพจน์แรกเท่านั้น:</p>
+                        <p>$= nx^{n-1}$</p>
+                    </div>
+    <div class="proof-section">
+                        <h3>บทพิสูจน์: อนุพันธ์ของ $e^x$</h3>
+                        <p>การพิสูจน์นี้อาศัยนิยามของอนุพันธ์และคุณสมบัติสำคัญของจำนวน $e$ โดยกำหนดให้ $f(x) = e^x$:</p>
+                        <p>$\frac{d}{dx}e^x = \lim_{h \to 0} \frac{e^{x+h} - e^x}{h}$</p>
+                        <p>ใช้คุณสมบัติเลขชี้กำลัง $e^{x+h} = e^x \cdot e^h$ จะได้:</p>
+                        <p>$= \lim_{h \to 0} \frac{e^x \cdot e^h - e^x}{h} = \lim_{h \to 0} e^x \left( \frac{e^h - 1}{h} \right)$</p>
+                        <p>เนื่องจาก $e^x$ ไม่ขึ้นกับ $h$ เราสามารถดึงออกมานอกลิมิตได้:</p>
+                        <p>$= e^x \lim_{h \to 0} \frac{e^h - 1}{h}$</p>
+                        <p>นิยามของจำนวน $e$ คือ $\lim_{h \to 0} (1+h)^{1/h} = e$ และจากนิยามนี้เราจะได้ว่า $\lim_{h \to 0} \frac{e^h - 1}{h} = 1$ ซึ่งเป็นคุณสมบัติสำคัญ</p>
+                        <p>ดังนั้น $= e^x \cdot 1 = e^x$</p>
+                    </div>
+  <div class="proof-section">
+                        <h3>บทพิสูจน์: อนุพันธ์ของ $\ln|x|$</h3>
+                        <p>เราใช้วิธีการหาอนุพันธ์โดยปริยาย (Implicit Differentiation) และความสัมพันธ์ของฟังก์ชันผกผันระหว่าง $\ln(x)$ และ $e^x$</p>
+                        <p>กำหนดให้ $y = \ln(x)$ ซึ่งเป็นฟังก์ชันเดียวกับ $x = e^y$</p>
+                        <p>ทำการหาอนุพันธ์เทียบกับตัวแปร $x$ ทั้งสองข้างของสมการ $x = e^y$</p>
+                        <p>$\frac{d}{dx}(x) = \frac{d}{dx}(e^y)$</p>
+                        <p>ใช้กฎลูกโซ่ทางฝั่งขวาจะได้:</p>
+                        <p>$1 = e^y \cdot \frac{dy}{dx}$</p>
+                        <p>จัดรูปใหม่เพื่อหา $\frac{dy}{dx}$:</p>
+                        <p>$\frac{dy}{dx} = \frac{1}{e^y}$</p>
+                        <p>แทนค่า $e^y = x$ กลับเข้าไป จะได้:</p>
+                        <p>$\frac{dy}{dx} = \frac{1}{x}$</p>
+                        <p>สำหรับกรณี $y = \ln|x|$ เมื่อ $x < 0$ ให้ $y = \ln(-x)$ จะได้ $\frac{dy}{dx} = \frac{1}{-x} \cdot (-1) = \frac{1}{x}$</p>
+                    </div>
+                    <div class="proof-section">
+        <h3>บทพิสูจน์: อนุพันธ์ของ $a^x$</h3>
+        <p>สูตร: $\frac{d}{dx}(a^x) = a^x \ln a$</p>
+        <p>การพิสูจน์นี้ใช้การแปลงฐานของฟังก์ชันเลขชี้กำลังและกฎลูกโซ่</p>
+        <ol>
+            <li><strong>แปลงฐาน:</strong> เราสามารถเขียน $a^x$ ในรูปฐาน $e$ โดยใช้คุณสมบัติของลอการิทึม:
+                <p>$a^x = e^{\ln(a^x)} = e^{x \ln a}$</p>
+            </li>
+            <li><strong>ใช้กฎลูกโซ่:</strong> ให้ $u = x \ln a$ เราจะหาอนุพันธ์ของ $e^u$
+                <p>$\frac{d}{dx}(e^{x \ln a}) = \frac{d}{du}(e^u) \cdot \frac{du}{dx}$</p>
+                <p>ซึ่ง $\frac{d}{du}(e^u) = e^u$ และ $\frac{du}{dx} = \frac{d}{dx}(x \ln a) = \ln a$</p>
+            </li>
+            <li><strong>สรุปผล:</strong> เมื่อนำมารวมกันจะได้
+                <p>$\frac{d}{dx}(e^{x \ln a}) = e^{x \ln a} \cdot \ln a = a^x \ln a$</p>
+            </li>
+        </ol>
+    </div>
+
+      <div class="proof-section">
+        <h3>บทพิสูจน์: อนุพันธ์ของ $\log_a x$</h3>
+        <p>เราสามารถใช้กฎการเปลี่ยนฐานลอการิทึมเพื่อเปลี่ยน $\log_a x$ ให้เป็นฐานธรรมชาติ $\ln x$ ซึ่งมีอนุพันธ์ที่เรารู้จักอยู่แล้ว</p>
+        <ol>
+            <li><strong>เปลี่ยนฐาน:</strong> จากสูตรการเปลี่ยนฐานจะได้
+                <p>$\log_a x = \frac{\ln x}{\ln a}$</p>
+            </li>
+            <li><strong>หาอนุพันธ์:</strong> เนื่องจาก $\frac{1}{\ln a}$ เป็นค่าคงที่ เราสามารถดึงออกมาได้
+                <p>$\frac{d}{dx}(\log_a x) = \frac{d}{dx}\left(\frac{\ln x}{\ln a}\right) = \frac{1}{\ln a} \cdot \frac{d}{dx}(\ln x)$</p>
+            </li>
+            <li><strong>สรุปผล:</strong> เรารู้ว่าอนุพันธ์ของ $\ln x$ คือ $\frac{1}{x}$ ดังนั้น
+                <p>$\frac{d}{dx}(\log_a x) = \frac{1}{\ln a} \cdot \frac{1}{x} = \frac{1}{x \ln a}$</p>
+            </li>
+        </ol>
+    </div>
+    <div class="proof-section">
+        <h3>บทพิสูจน์: อนุพันธ์ของ $\sin x$</h3>
+        <p>เราใช้นิยามของอนุพันธ์และเอกลักษณ์ผลบวกของมุมในตรีโกณมิติ</p>
+        <ol>
+            <li><strong>นิยามของอนุพันธ์:</strong>
+                <p>$\frac{d}{dx}(\sin x) = \lim_{h \to 0} \frac{\sin(x+h) - \sin x}{h}$</p>
+            </li>
+            <li><strong>ใช้เอกลักษณ์ตรีโกณ:</strong> $\sin(x+h) = \sin x \cos h + \cos x \sin h$
+                <p>$= \lim_{h \to 0} \frac{(\sin x \cos h + \cos x \sin h) - \sin x}{h}$</p>
+            </li>
+            <li><strong>จัดรูป:</strong> ดึงตัวร่วม $\sin x$ ออก
+                <p>$= \lim_{h \to 0} \left( \sin x \left( \frac{\cos h - 1}{h} \right) + \cos x \left( \frac{\sin h}{h} \right) \right)$</p>
+            </li>
+            <li><strong>หาลิมิต:</strong> ใช้ลิมิตตรีโกณมิติพื้นฐาน $\lim_{h \to 0} \frac{\sin h}{h} = 1$ และ $\lim_{h \to 0} \frac{\cos h - 1}{h} = 0$
+                <p>$= \sin x \cdot (0) + \cos x \cdot (1) = \cos x$</p>
+            </li>
+        </ol>
+    </div>
+<div class="proof-section">
+        <h3>บทพิสูจน์: อนุพันธ์ของ $\cos x$</h3>
+        <p>การพิสูจน์นี้คล้ายกับการพิสูจน์ $\sin x$ โดยใช้นิยามอนุพันธ์และเอกลักษณ์ $\cos(x+h) = \cos x \cos h - \sin x \sin h$</p>
+        <ol>
+            <li><strong>นิยามของอนุพันธ์:</strong>
+                <p>$\frac{d}{dx}(\cos x) = \lim_{h \to 0} \frac{\cos(x+h) - \cos x}{h}$</p>
+            </li>
+            <li><strong>ใช้เอกลักษณ์ตรีโกณ:</strong>
+                <p>$= \lim_{h \to 0} \frac{(\cos x \cos h - \sin x \sin h) - \cos x}{h}$</p>
+            </li>
+            <li><strong>จัดรูป:</strong>
+                <p>$= \lim_{h \to 0} \left( \cos x \left( \frac{\cos h - 1}{h} \right) - \sin x \left( \frac{\sin h}{h} \right) \right)$</p>
+            </li>
+            <li><strong>หาลิมิต:</strong>
+                <p>$= \cos x \cdot (0) - \sin x \cdot (1) = -\sin x$</p>
+            </li>
+        </ol>
+    </div>
+    <div class="proof-section">
+        <h3>บทพิสูจน์: อนุพันธ์ของ $\tan x$</h3>
+        <p>เราจะใช้กฎผลหาร (Quotient Rule) โดยเปลี่ยน $\tan x$ ให้เป็นอัตราส่วนของ $\sin x$ และ $\cos x$ ซึ่งเราทราบอนุพันธ์อยู่แล้ว</p>
+        <ol>
+            <li><strong>เปลี่ยนรูปฟังก์ชัน:</strong>
+                <p>$\tan x = \frac{\sin x}{\cos x}$</p>
+            </li>
+            <li><strong>ใช้กฎผลหาร:</strong> ให้ $u = \sin x$ และ $v = \cos x$
+                <p>$\frac{d}{dx}\left(\frac{u}{v}\right) = \frac{v \cdot u' - u \cdot v'}{v^2}$</p>
+                <p>โดยที่ $u' = \frac{d}{dx}(\sin x) = \cos x$ และ $v' = \frac{d}{dx}(\cos x) = -\sin x$</p>
+            </li>
+            <li><strong>แทนค่าและคำนวณ:</strong>
+                <p>$= \frac{(\cos x)(\cos x) - (\sin x)(-\sin x)}{\cos^2 x} = \frac{\cos^2 x + \sin^2 x}{\cos^2 x}$</p>
+            </li>
+            <li><strong>ใช้เอกลักษณ์ตรีโกณมิติ:</strong> $\sin^2 x + \cos^2 x = 1$
+                <p>$= \frac{1}{\cos^2 x} = \left(\frac{1}{\cos x}\right)^2 = \sec^2 x$</p>
+            </li>
+        </ol>
+    </div>
+    <div class="proof-section">
+        <h3>บทพิสูจน์: อนุพันธ์ของ $\sec x$</h3>
+        <p>เราจะใช้กฎลูกโซ่และกฎยกกำลังโดยเปลี่ยน $\sec x$ ให้เป็น $(\cos x)^{-1}$</p>
+        <ol>
+            <li><strong>เปลี่ยนรูปฟังก์ชัน:</strong>
+                <p>$\sec x = \frac{1}{\cos x} = (\cos x)^{-1}$</p>
+            </li>
+            <li><strong>ใช้กฎลูกโซ่:</strong> ให้ $u = \cos x$ และฟังก์ชันคือ $u^{-1}$
+                <p>$\frac{d}{dx}(u^{-1}) = -1 \cdot u^{-2} \cdot \frac{du}{dx}$</p>
+                <p>โดยที่ $\frac{du}{dx} = \frac{d}{dx}(\cos x) = -\sin x$</p>
+            </li>
+            <li><strong>แทนค่าและคำนวณ:</strong>
+                <p>$= -1 \cdot (\cos x)^{-2} \cdot (-\sin x) = \frac{\sin x}{\cos^2 x}$</p>
+            </li>
+            <li><strong>จัดรูป:</strong> แยกตัวประกอบของ $\frac{\sin x}{\cos^2 x}$
+                <p>$= \frac{\sin x}{\cos x \cdot \cos x} = \left(\frac{1}{\cos x}\right) \left(\frac{\sin x}{\cos x}\right) = \sec x \tan x$</p>
+            </li>
+        </ol>
+    </div>
+</body>
+</html>
