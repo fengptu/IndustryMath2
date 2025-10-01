@@ -4,8 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>แบบฝึกหัด: สมการเชิงอนุพันธ์เชิงเส้น (15 ข้อ)</title>
+    
+    <script>
+        // กำหนดค่าคอนฟิกูเรชันสำหรับ MathJax
+        window.MathJax = {
+            tex: {
+                // กำหนดให้ใช้ $...$ สำหรับสูตรคณิตศาสตร์แบบอินไลน์
+                inlineMath: [['$', '$'], ['\\(', '\\)']] 
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
     <style>
-        /* Base Styling */
+        /* Base Styling (CSS เหมือนเดิม) */
         body { font-family: 'Tahoma', sans-serif; background-color: #f0f2f5; padding: 20px; }
         .exercise-container { max-width: 800px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); padding-bottom: 20px; }
         .exercise-header { background-color: #007bff; color: white; padding: 15px 20px; text-align: center; font-size: 24px; font-weight: bold; border-bottom: 3px solid #0056b3; }
@@ -14,7 +29,6 @@
         .question-text { font-size: 16px; line-height: 1.6; margin-bottom: 15px; }
 
         /* Option Styling */
-        /* ใช้ label เป็นตัวจัดการ class สำหรับการไฮไลท์สี */
         .options-group label { 
             display: flex; 
             align-items: center; 
@@ -40,9 +54,9 @@
         /* Feedback Colors */
         .feedback-box.wrong { background-color: #f5c6cb; color: #721c24; border: 1px solid #f0959f; }
         .feedback-box.correct { background-color: #c3e6cb; color: #155724; border: 1px solid #99e699; }
-
-        /* Math Styling */
-        .math { font-family: 'Times New Roman', serif; font-style: italic; font-size: 1.1em; margin: 0 2px; }
+        
+        /* จัด Style สำหรับ MathJax/LaTeX */
+        .mjx-chtml { font-size: 1.1em !important; }
     </style>
 </head>
 <body>
@@ -55,13 +69,13 @@
     <div class="question-box" id="q1-box">
         <h2>1. สมการเชิงอนุพันธ์เชิงเส้น (พื้นฐาน)</h2>
         <div class="question-text">
-            จงหาผลเฉลยทั่วไปของสมการเชิงอนุพันธ์อันดับหนึ่ง <span class="math">$\frac{dy}{dx} + \frac{2}{x}y = 6x$</span>
+            จงหาผลเฉลยทั่วไปของสมการเชิงอนุพันธ์อันดับหนึ่ง $\frac{dy}{dx} + \frac{2}{x}y = 6x$
         </div>
         <div class="options-group">
-            <label><input type="radio" name="q1" value="A"> A) <span class="math">$y = 2x^2 + C/x^2$</span></label>
-            <label><input type="radio" name="q1" value="B"> B) <span class="math">$y = x^3 + C/x^2$</span></label>
-            <label><input type="radio" name="q1" value="C"> C) <span class="math">$y = 2x^2 + C/x$</span></label>
-            <label><input type="radio" name="q1" value="D"> D) <span class="math">$y = 1.5x^2 + C/x^2$</span></label>
+            <label><input type="radio" name="q1" value="A"> A) $y = 2x^2 + C/x^2$</label>
+            <label><input type="radio" name="q1" value="B"> B) $y = x^3 + C/x^2$</label>
+            <label><input type="radio" name="q1" value="C"> C) $y = 2x^2 + C/x$</label>
+            <label><input type="radio" name="q1" value="D"> D) $y = 1.5x^2 + C/x^2$</label>
         </div>
         <button class="check-answer-button" data-question="q1">ตรวจคำตอบ</button>
         <div class="feedback-box" id="feedback-q1"></div>
@@ -70,13 +84,13 @@
     <div class="question-box" id="q2-box">
         <h2>2. สมการเชิงอนุพันธ์เชิงเส้น (พื้นฐาน)</h2>
         <div class="question-text">
-            จงหาผลเฉลยเฉพาะของสมการ <span class="math">$y' + 3y = 0$</span> เมื่อกำหนดค่าเริ่มต้น <span class="math">$y(0) = 4$</span>
+            จงหาผลเฉลยเฉพาะของสมการ $y' + 3y = 0$ เมื่อกำหนดค่าเริ่มต้น $y(0) = 4$
         </div>
         <div class="options-group">
-            <label><input type="radio" name="q2" value="A"> A) <span class="math">$y = 4e^{3x}$</span></label>
-            <label><input type="radio" name="q2" value="B"> B) <span class="math">$y = 4e^{-3x}$</span></label>
-            <label><input type="radio" name="q2" value="C"> C) <span class="math">$y = e^{-3x} + 4$</span></label>
-            <label><input type="radio" name="q2" value="D"> D) <span class="math">$y = 3e^{4x}$</span></label>
+            <label><input type="radio" name="q2" value="A"> A) $y = 4e^{3x}$</label>
+            <label><input type="radio" name="q2" value="B"> B) $y = 4e^{-3x}$</label>
+            <label><input type="radio" name="q2" value="C"> C) $y = e^{-3x} + 4$</label>
+            <label><input type="radio" name="q2" value="D"> D) $y = 3e^{4x}$</label>
         </div>
         <button class="check-answer-button" data-question="q2">ตรวจคำตอบ</button>
         <div class="feedback-box" id="feedback-q2"></div>
@@ -85,13 +99,13 @@
     <div class="question-box" id="q3-box">
         <h2>3. สมการเชิงอนุพันธ์เชิงเส้น (พื้นฐาน)</h2>
         <div class="question-text">
-            สมการ <span class="math">$x \frac{dy}{dx} - y = x^2 \sin x$</span> มีตัวประกอบอินทิเกรต (Integrating Factor) คืออะไร?
+            สมการ $x \frac{dy}{dx} - y = x^2 \sin x$ มีตัวประกอบอินทิเกรต (Integrating Factor) คืออะไร?
         </div>
         <div class="options-group">
-            <label><input type="radio" name="q3" value="A"> A) <span class="math">$x$</span></label>
-            <label><input type="radio" name="q3" value="B"> B) <span class="math">$1/x$</span></label>
-            <label><input type="radio" name="q3" value="C"> C) <span class="math">$e^x$</span></label>
-            <label><input type="radio" name="q3" value="D"> D) <span class="math">$e^{-x}$</span></label>
+            <label><input type="radio" name="q3" value="A"> A) $x$</label>
+            <label><input type="radio" name="q3" value="B"> B) $1/x$</label>
+            <label><input type="radio" name="q3" value="C"> C) $e^x$</label>
+            <label><input type="radio" name="q3" value="D"> D) $e^{-x}$</label>
         </div>
         <button class="check-answer-button" data-question="q3">ตรวจคำตอบ</button>
         <div class="feedback-box" id="feedback-q3"></div>
@@ -100,13 +114,13 @@
     <div class="question-box" id="q4-box">
         <h2>4. สมการเชิงอนุพันธ์เชิงเส้น (พื้นฐาน)</h2>
         <div class="question-text">
-            จงหาผลเฉลยทั่วไปของสมการเชิงอนุพันธ์อันดับสอง <span class="math">$y'' - 5y' + 6y = 0$</span>
+            จงหาผลเฉลยทั่วไปของสมการเชิงอนุพันธ์อันดับสอง $y'' - 5y' + 6y = 0$
         </div>
         <div class="options-group">
-            <label><input type="radio" name="q4" value="A"> A) <span class="math">$y = c_1 e^{2x} + c_2 e^{3x}$</span></label>
-            <label><input type="radio" name="q4" value="B"> B) <span class="math">$y = c_1 e^{-2x} + c_2 e^{-3x}$</span></label>
-            <label><input type="radio" name="q4" value="C"> C) <span class="math">$y = (c_1 + c_2 x) e^{5x}$</span></label>
-            <label><input type="radio" name="q4" value="D"> D) <span class="math">$y = c_1 \cos(2x) + c_2 \sin(3x)$</span></label>
+            <label><input type="radio" name="q4" value="A"> A) $y = c_1 e^{2x} + c_2 e^{3x}$</label>
+            <label><input type="radio" name="q4" value="B"> B) $y = c_1 e^{-2x} + c_2 e^{-3x}$</label>
+            <label><input type="radio" name="q4" value="C"> C) $y = (c_1 + c_2 x) e^{5x}$</label>
+            <label><input type="radio" name="q4" value="D"> D) $y = c_1 \cos(2x) + c_2 \sin(3x)$</label>
         </div>
         <button class="check-answer-button" data-question="q4">ตรวจคำตอบ</button>
         <div class="feedback-box" id="feedback-q4"></div>
@@ -115,13 +129,13 @@
     <div class="question-box" id="q5-box">
         <h2>5. สมการเชิงอนุพันธ์เชิงเส้น (พื้นฐาน)</h2>
         <div class="question-text">
-            จงหาผลเฉลยเฉพาะ (Particular Solution, <span class="math">$y_p$</span>) ของสมการ <span class="math">$y'' + y = 2x^2$</span> โดยวิธีเทียบสัมประสิทธิ์
+            จงหาผลเฉลยเฉพาะ (Particular Solution, $y_p$) ของสมการ $y'' + y = 2x^2$ โดยวิธีเทียบสัมประสิทธิ์
         </div>
         <div class="options-group">
-            <label><input type="radio" name="q5" value="A"> A) <span class="math">$y_p = 2x^2 - 4$</span></label>
-            <label><input type="radio" name="q5" value="B"> B) <span class="math">$y_p = 2x^2 + 2$</span></label>
-            <label><input type="radio" name="q5" value="C"> C) <span class="math">$y_p = 2x$</span></label>
-            <label><input type="radio" name="q5" value="D"> D) <span class="math">$y_p = 2x^2$</span></label>
+            <label><input type="radio" name="q5" value="A"> A) $y_p = 2x^2 - 4$</label>
+            <label><input type="radio" name="q5" value="B"> B) $y_p = 2x^2 + 2$</label>
+            <label><input type="radio" name="q5" value="C"> C) $y_p = 2x$</label>
+            <label><input type="radio" name="q5" value="D"> D) $y_p = 2x^2$</label>
         </div>
         <button class="check-answer-button" data-question="q5">ตรวจคำตอบ</button>
         <div class="feedback-box" id="feedback-q5"></div>
@@ -130,13 +144,13 @@
     <div class="question-box" id="q6-box">
         <h2>6. สมการเชิงอนุพันธ์เชิงเส้น (พื้นฐาน)</h2>
         <div class="question-text">
-            ผลเฉลยทั่วไปของสมการ <span class="math">$y'' + 9y = 0$</span> คืออะไร?
+            ผลเฉลยทั่วไปของสมการ $y'' + 9y = 0$ คืออะไร?
         </div>
         <div class="options-group">
-            <label><input type="radio" name="q6" value="A"> A) <span class="math">$y = c_1 e^{-3x} + c_2 e^{3x}$</span></label>
-            <label><input type="radio" name="q6" value="B"> B) <span class="math">$y = c_1 \cos(3x) + c_2 \sin(3x)$</span></label>
-            <label><input type="radio" name="q6" value="C"> C) <span class="math">$y = e^{3x} (c_1 \cos x + c_2 \sin x)$</span></label>
-            <label><input type="radio" name="q6" value="D"> D) <span class="math">$y = c_1 \cos(9x) + c_2 \sin(9x)$</span></label>
+            <label><input type="radio" name="q6" value="A"> A) $y = c_1 e^{-3x} + c_2 e^{3x}$</label>
+            <label><input type="radio" name="q6" value="B"> B) $y = c_1 \cos(3x) + c_2 \sin(3x)$</label>
+            <label><input type="radio" name="q6" value="C"> C) $y = e^{3x} (c_1 \cos x + c_2 \sin x)$</label>
+            <label><input type="radio" name="q6" value="D"> D) $y = c_1 \cos(9x) + c_2 \sin(9x)$</label>
         </div>
         <button class="check-answer-button" data-question="q6">ตรวจคำตอบ</button>
         <div class="feedback-box" id="feedback-q6"></div>
@@ -145,13 +159,13 @@
     <div class="question-box" id="q7-box">
         <h2>7. สมการเชิงอนุพันธ์เชิงเส้น (พื้นฐาน)</h2>
         <div class="question-text">
-            จงหาผลเฉลยของสมการ <span class="math">$y' + y \cot x = \csc x$</span>
+            จงหาผลเฉลยของสมการ $y' + y \cot x = \csc x$
         </div>
         <div class="options-group">
-            <label><input type="radio" name="q7" value="A"> A) <span class="math">$y = \cot x + C \csc x$</span></label>
-            <label><input type="radio" name="q7" value="B"> B) <span class="math">$y = \sin x + C \cos x$</span></label>
-            <label><input type="radio" name="q7" value="C"> C) <span class="math">$y = \tan x + C \sin x$</span></label>
-            <label><input type="radio" name="q7" value="D"> D) <span class="math">$y = x / \sin x + C / \sin x$</span></label>
+            <label><input type="radio" name="q7" value="A"> A) $y = \cot x + C \csc x$</label>
+            <label><input type="radio" name="q7" value="B"> B) $y = \sin x + C \cos x$</label>
+            <label><input type="radio" name="q7" value="C"> C) $y = \tan x + C \sin x$</label>
+            <label><input type="radio" name="q7" value="D"> D) $y = x / \sin x + C / \sin x$</label>
         </div>
         <button class="check-answer-button" data-question="q7">ตรวจคำตอบ</button>
         <div class="feedback-box" id="feedback-q7"></div>
@@ -160,13 +174,13 @@
     <div class="question-box" id="q8-box">
         <h2>8. สมการเชิงอนุพันธ์เชิงเส้น (พื้นฐาน)</h2>
         <div class="question-text">
-            จงหาผลเฉลยทั่วไปของสมการ <span class="math">$y'' + 4y' + 4y = 0$</span>
+            จงหาผลเฉลยทั่วไปของสมการ $y'' + 4y' + 4y = 0$
         </div>
         <div class="options-group">
-            <label><input type="radio" name="q8" value="A"> A) <span class="math">$y = c_1 e^{-2x} + c_2 e^{2x}$</span></label>
-            <label><input type="radio" name="q8" value="B"> B) <span class="math">$y = c_1 e^{-2x} + c_2 x e^{-2x}$</span></label>
-            <label><input type="radio" name="q8" value="C"> C) <span class="math">$y = (c_1 + c_2 x) e^{4x}$</span></label>
-            <label><input type="radio" name="q8" value="D"> D) <span class="math">$y = c_1 \cos(2x) + c_2 \sin(2x)$</span></label>
+            <label><input type="radio" name="q8" value="A"> A) $y = c_1 e^{-2x} + c_2 e^{2x}$</label>
+            <label><input type="radio" name="q8" value="B"> B) $y = c_1 e^{-2x} + c_2 x e^{-2x}$</label>
+            <label><input type="radio" name="q8" value="C"> C) $y = (c_1 + c_2 x) e^{4x}$</label>
+            <label><input type="radio" name="q8" value="D"> D) $y = c_1 \cos(2x) + c_2 \sin(2x)$</label>
         </div>
         <button class="check-answer-button" data-question="q8">ตรวจคำตอบ</button>
         <div class="feedback-box" id="feedback-q8"></div>
@@ -178,10 +192,10 @@
             สมการเชิงอนุพันธ์สามัญใดต่อไปนี้ **ไม่เป็น** สมการเชิงเส้น?
         </div>
         <div class="options-group">
-            <label><input type="radio" name="q9" value="A"> A) <span class="math">$y' + x^2 y = \cos x$</span></label>
-            <label><input type="radio" name="q9" value="B"> B) <span class="math">$(1+x^2) y'' - y = 0$</span></label>
-            <label><input type="radio" name="q9" value="C"> C) <span class="math">$y' + \sin(y) = 0$</span></label>
-            <label><input type="radio" name="q9" value="D"> D) <span class="math">$y' + e^x y = 1$</span></label>
+            <label><input type="radio" name="q9" value="A"> A) $y' + x^2 y = \cos x$</label>
+            <label><input type="radio" name="q9" value="B"> B) $(1+x^2) y'' - y = 0$</label>
+            <label><input type="radio" name="q9" value="C"> C) $y' + \sin(y) = 0$</label>
+            <label><input type="radio" name="q9" value="D"> D) $y' + e^x y = 1$</label>
         </div>
         <button class="check-answer-button" data-question="q9">ตรวจคำตอบ</button>
         <div class="feedback-box" id="feedback-q9"></div>
@@ -190,13 +204,13 @@
     <div class="question-box" id="q10-box">
         <h2>10. สมการเชิงอนุพันธ์เชิงเส้น (พื้นฐาน)</h2>
         <div class="question-text">
-            ถ้าผลเฉลยทั่วไปของ <span class="math">$y' - 2y = 0$</span> คือ <span class="math">$y = C e^{2x}$</span> จงหาผลเฉลยเฉพาะเมื่อ <span class="math">$y(1) = 3$</span>
+            ถ้าผลเฉลยทั่วไปของ $y' - 2y = 0$ คือ $y = C e^{2x}$ จงหาผลเฉลยเฉพาะเมื่อ $y(1) = 3$
         </div>
         <div class="options-group">
-            <label><input type="radio" name="q10" value="A"> A) <span class="math">$y = 3 e^{2x}$</span></label>
-            <label><input type="radio" name="q10" value="B"> B) <span class="math">$y = 3 e^2 e^{2x}$</span></label>
-            <label><input type="radio" name="q10" value="C"> C) <span class="math">$y = 3 e^{-2} e^{2x}$</span></label>
-            <label><input type="radio" name="q10" value="D"> D) <span class="math">$y = e^{2x} + 3$</span></label>
+            <label><input type="radio" name="q10" value="A"> A) $y = 3 e^{2x}$</label>
+            <label><input type="radio" name="q10" value="B"> B) $y = 3 e^2 e^{2x}$</label>
+            <label><input type="radio" name="q10" value="C"> C) $y = 3 e^{-2} e^{2x}$</label>
+            <label><input type="radio" name="q10" value="D"> D) $y = e^{2x} + 3$</label>
         </div>
         <button class="check-answer-button" data-question="q10">ตรวจคำตอบ</button>
         <div class="feedback-box" id="feedback-q10"></div>
@@ -207,39 +221,39 @@
     </div>
 
     <div class="question-box" id="q11-box">
-        <h2>11. การประยุกต์: วิศวกรรมการเกษตร (ปัญหาการผสมปุ๋ย)</h2>
+        <h2>11. การประยุกต์: ปัญหาการผสมปุ๋ย</h2>
         <div class="question-text">
-            ถังน้ำมีน้ำ 100 ลิตร มีการเติมน้ำปุ๋ยความเข้มข้น **0.5 กก./ลิตร** เข้ามาในอัตรา **4 ลิตร/นาที** และปล่อยน้ำปุ๋ยออกในอัตรา **4 ลิตร/นาที** จงหาสมการเชิงอนุพันธ์สำหรับปริมาณปุ๋ย <span class="math">$A(t)$</span> (กก.) ในถัง
+            ถังน้ำมีน้ำ 100 ลิตร มีการเติมน้ำปุ๋ยความเข้มข้น **0.5 กก./ลิตร** เข้ามาในอัตรา **4 ลิตร/นาที** และปล่อยน้ำปุ๋ยออกในอัตรา **4 ลิตร/นาที** จงหาสมการเชิงอนุพันธ์สำหรับปริมาณปุ๋ย $A(t)$ (กก.) ในถัง
         </div>
         <div class="options-group">
-            <label><input type="radio" name="q11" value="A"> A) <span class="math">$\frac{dA}{dt} = 2 - \frac{A}{25}$</span></label>
-            <label><input type="radio" name="q11" value="B"> B) <span class="math">$\frac{dA}{dt} = 4 - \frac{A}{100}$</span></label>
-            <label><input type="radio" name="q11" value="C"> C) <span class="math">$\frac{dA}{dt} = 0.5 - \frac{A}{4}$</span></label>
-            <label><input type="radio" name="q11" value="D"> D) <span class="math">$\frac{dA}{dt} = 4 - \frac{4A}{100}$</span></label>
+            <label><input type="radio" name="q11" value="A"> A) $\frac{dA}{dt} = 2 - \frac{A}{25}$</label>
+            <label><input type="radio" name="q11" value="B"> B) $\frac{dA}{dt} = 4 - \frac{A}{100}$</label>
+            <label><input type="radio" name="q11" value="C"> C) $\frac{dA}{dt} = 0.5 - \frac{A}{4}$</label>
+            <label><input type="radio" name="q11" value="D"> D) $\frac{dA}{dt} = 4 - \frac{4A}{100}$</label>
         </div>
         <button class="check-answer-button" data-question="q11">ตรวจคำตอบ</button>
         <div class="feedback-box" id="feedback-q11"></div>
     </div>
     
     <div class="question-box" id="q12-box">
-        <h2>12. การประยุกต์: วิศวกรรมอุตสาหกรรม (กฎการเย็นตัวของนิวตัน)</h2>
+        <h2>12. การประยุกต์: กฎการเย็นตัวของนิวตัน</h2>
         <div class="question-text">
-            ในการพาสเจอร์ไรซ์ผลิตภัณฑ์นม หากอุณหภูมิเริ่มต้นของนมคือ <span class="math">$T_0 = 80^\circ \text{C}$</span> และอุณหภูมิห้องคือ <span class="math">$T_m = 25^\circ \text{C}$</span> และอัตราการเย็นตัว <span class="math">$k = -0.1 \text{ min}^{-1}$</span class="math"> จงหาสมการอุณหภูมิ <span class="math">$T(t)$</span class="math> โดยใช้ <span class="math">$\frac{dT}{dt} = k(T - T_m)$</span class="math>
+            อุณหภูมิเริ่มต้นของนมคือ $T_0 = 80^\circ \text{C}$ อุณหภูมิห้องคือ $T_m = 25^\circ \text{C}$ และอัตราการเย็นตัว $k = -0.1 \text{ min}^{-1}$ จงหาสมการอุณหภูมิ $T(t)$ โดยใช้ $\frac{dT}{dt} = k(T - T_m)$
         </div>
         <div class="options-group">
-            <label><input type="radio" name="q12" value="A"> A) <span class="math">$T(t) = 25 + 55e^{0.1t}$</span></label>
-            <label><input type="radio" name="q12" value="B"> B) <span class="math">$T(t) = 80e^{-0.1t}$</span></label>
-            <label><input type="radio" name="q12" value="C"> C) <span class="math">$T(t) = 25 + 55e^{-0.1t}$</span></label>
-            <label><input type="radio" name="q12" value="D"> D) <span class="math">$T(t) = 25 + 80e^{-0.1t}$</span></label>
+            <label><input type="radio" name="q12" value="A"> A) $T(t) = 25 + 55e^{0.1t}$</label>
+            <label><input type="radio" name="q12" value="B"> B) $T(t) = 80e^{-0.1t}$</label>
+            <label><input type="radio" name="q12" value="C"> C) $T(t) = 25 + 55e^{-0.1t}$</label>
+            <label><input type="radio" name="q12" value="D"> D) $T(t) = 25 + 80e^{-0.1t}$</label>
         </div>
         <button class="check-answer-button" data-question="q12">ตรวจคำตอบ</button>
         <div class="feedback-box" id="feedback-q12"></div>
     </div>
 
     <div class="question-box" id="q13-box">
-        <h2>13. การประยุกต์: วิศวกรรมการเกษตร (การเจริญเติบโตของประชากร/ศัตรูพืช)</h2>
+        <h2>13. การประยุกต์: การเจริญเติบโตของประชากร</h2>
         <div class="question-text">
-            แบบจำลองการเจริญเติบโตของประชากรแมลงศัตรูพืชคือ <span class="math">$\frac{dP}{dt} = 0.5P - 0.005P^2$</span> สมการนี้สามารถจัดเป็นสมการประเภทใดที่ง่ายต่อการแก้?
+            แบบจำลองการเจริญเติบโตของประชากรแมลงศัตรูพืชคือ $\frac{dP}{dt} = 0.5P - 0.005P^2$ สมการนี้สามารถจัดเป็นสมการประเภทใดที่ง่ายต่อการแก้?
         </div>
         <div class="options-group">
             <label><input type="radio" name="q13" value="A"> A) สมการเชิงเส้น (Linear)</label>
@@ -252,30 +266,30 @@
     </div>
 
     <div class="question-box" id="q14-box">
-        <h2>14. การประยุกต์: วิศวกรรมอุตสาหกรรม (วงจรไฟฟ้า RL)</h2>
+        <h2>14. การประยุกต์: วงจรไฟฟ้า RL</h2>
         <div class="question-text">
-            วงจรไฟฟ้า RL อนุกรม มีแรงดันไฟฟ้า <span class="math">$E(t) = 10 \sin t$</span>, ความเหนี่ยวนำ <span class="math">$L = 1$</span class="math> และความต้านทาน <span class="math">$R = 1$</span class="math> สมการเชิงอนุพันธ์สำหรับกระแสไฟฟ้า <span class="math">$I(t)$</span class="math> คือ <span class="math">$L \frac{dI}{dt} + RI = E(t)$</span class="math> เมื่อจัดรูปสมการเชิงเส้นคืออะไร?
+            วงจรไฟฟ้า RL อนุกรม มีแรงดันไฟฟ้า $E(t) = 10 \sin t$, ความเหนี่ยวนำ $L = 1$ และความต้านทาน $R = 1$ สมการเชิงอนุพันธ์สำหรับกระแสไฟฟ้า $I(t)$ คือ $L \frac{dI}{dt} + RI = E(t)$ เมื่อจัดรูปสมการเชิงเส้นคืออะไร?
         </div>
         <div class="options-group">
-            <label><input type="radio" name="q14" value="A"> A) <span class="math">$\frac{dI}{dt} + I = 10 \sin t$</span></label>
-            <label><input type="radio" name="q14" value="B"> B) <span class="math">$\frac{dI}{dt} + 10I = \sin t$</span></label>
-            <label><input type="radio" name="q14" value="C"> C) <span class="math">$\frac{d^2I}{dt^2} + I = 10 \sin t$</span></label>
-            <label><input type="radio" name="q14" value="D"> D) <span class="math">$\frac{dI}{dt} + I = 0$</span></label>
+            <label><input type="radio" name="q14" value="A"> A) $\frac{dI}{dt} + I = 10 \sin t$</label>
+            <label><input type="radio" name="q14" value="B"> B) $\frac{dI}{dt} + 10I = \sin t$</label>
+            <label><input type="radio" name="q14" value="C"> C) $\frac{d^2I}{dt^2} + I = 10 \sin t$</label>
+            <label><input type="radio" name="q14" value="D"> D) $\frac{dI}{dt} + I = 0$</label>
         </div>
         <button class="check-answer-button" data-question="q14">ตรวจคำตอบ</button>
         <div class="feedback-box" id="feedback-q14"></div>
     </div>
 
     <div class="question-box" id="q15-box">
-        <h2>15. การประยุกต์: วิศวกรรมสิ่งแวดล้อม (มลพิษในน้ำ)</h2>
+        <h2>15. การประยุกต์: มลพิษในน้ำ</h2>
         <div class="question-text">
-            บ่อบำบัดน้ำเสียมีน้ำ 1,000 ลบ.ม. น้ำไหลเข้าและออกในอัตรา 10 ลบ.ม./วัน น้ำเข้ามีความเข้มข้นของสารพิษ **0.1 กก./ลบ.ม.** และมีการผสมอย่างดี จงหาสมการเชิงอนุพันธ์ของปริมาณสารพิษ <span class="math">$Q(t)$</span> (กก.)
+            บ่อบำบัดน้ำเสียมีน้ำ 1,000 ลบ.ม. น้ำไหลเข้าและออกในอัตรา 10 ลบ.ม./วัน น้ำเข้ามีความเข้มข้นของสารพิษ **0.1 กก./ลบ.ม.** และมีการผสมอย่างดี จงหาสมการเชิงอนุพันธ์ของปริมาณสารพิษ $Q(t)$ (กก.)
         </div>
         <div class="options-group">
-            <label><input type="radio" name="q15" value="A"> A) <span class="math">$\frac{dQ}{dt} = 0.1 - \frac{Q}{100}$</span></label>
-            <label><input type="radio" name="q15" value="B"> B) <span class="math">$\frac{dQ}{dt} = 1 - \frac{Q}{100}$</span></label>
-            <label><input type="radio" name="q15" value="C"> C) <span class="math">$\frac{dQ}{dt} = 10 - \frac{Q}{1000}$</span></label>
-            <label><input type="radio" name="q15" value="D"> D) <span class="math">$\frac{dQ}{dt} = 1 - \frac{Q}{1000}$</span></label>
+            <label><input type="radio" name="q15" value="A"> A) $\frac{dQ}{dt} = 0.1 - \frac{Q}{100}$</label>
+            <label><input type="radio" name="q15" value="B"> B) $\frac{dQ}{dt} = 1 - \frac{Q}{100}$</label>
+            <label><input type="radio" name="q15" value="C"> C) $\frac{dQ}{dt} = 10 - \frac{Q}{1000}$</label>
+            <label><input type="radio" name="q15" value="D"> D) $\frac{dQ}{dt} = 1 - \frac{Q}{1000}$</label>
         </div>
         <button class="check-answer-button" data-question="q15">ตรวจคำตอบ</button>
         <div class="feedback-box" id="feedback-q15"></div>
@@ -295,32 +309,30 @@
         'q11': 'A', 'q12': 'C', 'q13': 'B', 'q14': 'A', 'q15': 'B', 
     };
 
-    // 2. คำอธิบายแนวคิดในการแก้ปัญหา
+    // 2. คำอธิบายแนวคิดในการแก้ปัญหา (แก้ไข LaTeX เพื่อแก้ Math input error)
     const explanations = {
-        'q1': 'ใช้ตัวประกอบอินทิเกรต <span class="math">$\mu(x) = e^{\int P(x) dx}$</span class="math"> โดย <span class="math">$P(x) = 2/x$</span class="math">.',
-        'q2': 'เป็นสมการ **แยกตัวแปรได้** ใช้ <span class="math">$\int \frac{dy}{y} = \int -3 dx$</span class="math"> และเงื่อนไข <span class="math">$y(0)=4$</span class="math">.',
-        'q3': 'จัดรูปเป็น <span class="math">$y' - \frac{1}{x}y = x \sin x$</span class="math"> ตัวประกอบอินทิเกรตคือ <span class="math">$1/x$</span class="math">.',
-        'q4': 'สมการลักษณะเฉพาะ <span class="math">$m^2 - 5m + 6 = 0$</span class="math"> มีรากจริงต่างกัน (<span class="math">$m=2, 3$</span class="math>).',
-        'q5': 'ใช้วิธี **เทียบสัมประสิทธิ์** กำหนดให้ <span class="math">$y_p = Ax^2 + Bx + C$</span class="math">.',
-        'q6': 'รากเชิงซ้อน <span class="math">$m = \pm 3i$</span class="math"> ผลเฉลยคือ <span class="math">$c_1 \cos(3x) + c_2 \sin(3x)$</span class="math>.',
-        'q7': 'ตัวประกอบอินทิเกรต <span class="math">$\mu(x) = \sin x$</span class="math">.',
-        'q8': 'สมการลักษณะเฉพาะมี **รากซ้ำ** คือ <span class="math">$m = -2$</span class="math>.',
-        'q9': 'สมการเชิงเส้นต้องไม่มีฟังก์ชันซ้อนของตัวแปรตาม (<span class="math">$\sin(y)$</span class="math>).',
-        'q10': 'แทนค่าเริ่มต้น <span class="math">$y(1) = 3$</span class="math> ใน <span class="math">$y = C e^{2x}$</span class="math">.',
-        'q11': 'Rate In (<span class="math">$2$</span class="math>) ลบ Rate Out (<span class="math">$\frac{A}{100} \times 4 = \frac{A}{25}$</span class="math>).',
-        'q12': 'ใช้ผลเฉลย <span class="math">$T(t) = T_m + C e^{kt}$</span class="math"> และเงื่อนไข <span class="math">$T(0)=80$</span class="math>.',
-        'q13': 'สมการอยู่ในรูป <span class="math">$\frac{dP}{dt} = f(P)$</span class="math> ซึ่งสามารถ **แยกตัวแปรได้**.',
-        'q14': 'แทนค่า <span class="math">$L=1, R=1, E(t) = 10 \sin t$</span class="math> ในสมการวงจร.',
-        'q15': 'Rate In (<span class="math">$1$</span class="math>) ลบ Rate Out (<span class="math">$\frac{Q}{1000} \times 10 = \frac{Q}{100}$</span class="math>).',
+        'q1': 'ใช้ตัวประกอบอินทิเกรต $\\mu(x) = e^{\\int P(x) dx}$ โดย $P(x) = 2/x$.',
+        'q2': 'เป็นสมการ **แยกตัวแปรได้** ใช้ $\\int \\frac{dy}{y} = \\int -3 dx$ และเงื่อนไข $y(0)=4$.',
+        'q3': 'จัดรูปเป็น $y\' - \\frac{1}{x}y = x \\sin x$. ตัวประกอบอินทิเกรตคือ $1/x$.',
+        'q4': 'สมการลักษณะเฉพาะ $m^2 - 5m + 6 = 0$ มีรากจริงต่างกัน ($m=2, 3$).',
+        'q5': 'ใช้วิธี **เทียบสัมประสิทธิ์** กำหนดให้ $y_p = Ax^2 + Bx + C$.',
+        'q6': 'รากเชิงซ้อน $m = \\pm 3i$ ผลเฉลยคือ $c_1 \\cos(3x) + c_2 \\sin(3x)$.',
+        'q7': 'ตัวประกอบอินทิเกรต $\\mu(x) = \\sin x$.',
+        'q8': 'สมการลักษณะเฉพาะมี **รากซ้ำ** คือ $m = -2$.',
+        'q9': 'สมการเชิงเส้นต้องไม่มีฟังก์ชันซ้อนของตัวแปรตาม (เช่น $\\sin(y)$).',
+        'q10': 'แทนค่าเริ่มต้น $y(1) = 3$ ใน $y = C e^{2x}$ จะได้ $C = 3e^{-2}$.',
+        'q11': 'Rate In ($0.5 \\times 4 = 2$) ลบ Rate Out ($\\frac{A}{100} \\times 4 = \\frac{A}{25}$).',
+        'q12': 'ใช้ $T(t) = T_m + C e^{kt}$ และเงื่อนไข $T(0)=80$.',
+        'q13': 'สมการอยู่ในรูป $\\frac{dP}{dt} = f(P)$ ซึ่งสามารถ **แยกตัวแปรได้**.',
+        'q14': 'แทนค่า $L=1, R=1, E(t) = 10 \\sin t$ ในสมการวงจร.',
+        'q15': 'Rate In ($0.1 \\times 10 = 1$) ลบ Rate Out ($\\frac{Q}{1000} \\times 10 = \\frac{Q}{100}$).',
     };
 
-    // 3. ฟังก์ชันหลักสำหรับตรวจสอบคำตอบและแสดงคำอธิบาย
-    // ใช้เทคนิคการผูก event listener แบบดั้งเดิม
+    // 3. ฟังก์ชันหลักสำหรับตรวจสอบคำตอบและแสดงคำอธิบาย (JavaScript เหมือนเดิม)
     document.addEventListener('DOMContentLoaded', function() {
         const buttons = document.querySelectorAll('.check-answer-button');
 
         buttons.forEach(button => {
-            // ผูก Event Listener กับปุ่ม
             button.addEventListener('click', function() {
                 try {
                     const qName = this.getAttribute('data-question');
@@ -338,7 +350,6 @@
                     const selectedInput = questionBox.querySelector(`input[name="${qName}"]:checked`);
                     
                     if (!selectedInput) {
-                        // 2. ถ้ายังไม่ได้เลือกอะไร
                         feedbackBox.classList.add('wrong');
                         feedbackBox.innerHTML = 'โปรดเลือกคำตอบก่อนกดตรวจคำตอบค่ะ 😟';
                         feedbackBox.style.display = 'block';
@@ -351,22 +362,30 @@
                     const selectedLabel = selectedInput.closest('label');
                     
                     if (userAnswer === correctAnswer) {
-                        // 3. ตอบถูก
                         feedbackBox.classList.add('correct');
                         selectedLabel.classList.add('correct-selected');
                         feedbackBox.innerHTML = 'ถูกต้องครับ! 🎉<br><strong>แนวคิด:</strong> ' + explanationText;
                     } else {
-                        // 4. ตอบผิด
                         feedbackBox.classList.add('wrong');
                         selectedLabel.classList.add('wrong-selected');
                         feedbackBox.innerHTML = 'คำตอบของคุณไม่ถูกต้อง 😔<br><strong>แนวคิด:</strong> ' + explanationText;
                     }
                     
-                    // 5. แสดงกล่อง Feedback
+                    // 5. แสดงกล่อง Feedback และสั่งให้ MathJax ประมวลผลเฉพาะกล่องนี้
                     feedbackBox.style.display = 'block';
+                    
+                    // สำคัญ: สั่งให้ MathJax ประมวลผลเนื้อหาที่ถูกสร้างขึ้นมาใหม่
+                    if (window.MathJax) {
+                        // MathJax.typesetPromise จะแปลง LaTeX ใน feedbackBox
+                        MathJax.typesetPromise([feedbackBox]).catch((err) => console.log('MathJax Typeset Error: ' + err.message));
+                    }
+                    
+                    // เลื่อนหน้าจอไปที่ Feedback Box
+                    feedbackBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
                 } catch (error) {
                     console.error("เกิดข้อผิดพลาดในการตรวจคำตอบ:", error);
-                    alert("เกิดข้อผิดพลาดในการแสดงผล โปรดตรวจสอบ Console.");
+                    alert("เกิดข้อผิดพลาดรุนแรงในการทำงานของสคริปต์ โปรดลองใช้เบราว์เซอร์ Google Chrome.");
                 }
             });
         });
