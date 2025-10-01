@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แบบฝึกหัด: สมการเชิงอนุพันธ์เชิงเส้น</title>
+    <style>
+        /* Base Styling */
+        body {
+            font-family: 'Tahoma', sans-serif;
+            background-color: #f0f2f5;
+            padding: 20px;
+        }
+
+        /* Main Container for the Exercise Set */
+        .exercise-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            padding-bottom: 20px;
+        }
+
+        /* Header Styling */
+        .exercise-header {
+            background-color: #007bff;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            border-bottom: 3px solid #0056b3;
+        }
+
+        /* Styling for each Question Box */
+        .question-box {
+            border: 1px solid #dcdcdc;
+            border-radius: 6px;
+            padding: 15px 20px;
+            margin: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Question Title/Section Header */
+        .question-box h2 {
+            font-size: 18px;
+            color: #007bff;
+            margin-top: 0;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+
+        /* Question Text */
+        .question-text {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        /* Radio Button/Option Styling */
+        .options-group label {
+            display: block;
+            margin-bottom: 10px;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .options-group label:hover {
+            background-color: #f7f9fb;
+        }
+
+        .options-group input[type="radio"] {
+            margin-right: 10px;
+            transform: scale(1.2); /* Make radio button slightly larger */
+        }
+
+        /* Check Answer Button */
+        .check-answer-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #28a745; /* Green color like the image */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .check-answer-button:hover {
+            background-color: #1e7e34;
+        }
+
+        /* Feedback Box Styling (Similar to the Red box in the image) */
+        .feedback-box {
+            background-color: #f8d7da; /* Light Red */
+            color: #721c24; /* Dark Red text */
+            border: 1px solid #f5c6cb;
+            border-radius: 4px;
+            padding: 10px 15px;
+            margin-top: 15px;
+            font-size: 15px;
+            line-height: 1.5;
+            display: none; /* Hidden by default */
+        }
+
+        /* Style for mathematical notation using a custom font (if using MathJax/KaTeX, these would render properly) */
+        .math {
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+            font-size: 1.1em;
+            margin: 0 2px;
+        }
+
+        /* Specific style for a selected wrong answer for demonstration (D in Q1) */
+        .wrong-selected {
+            /* This is a visual representation of a wrong selection as seen in the image */
+            color: #dc3545; /* Red text for wrong answer */
+        }
+    </style>
+</head>
+<body>
+
+<div class="exercise-container">
+    <div class="exercise-header">
+        แบบฝึกหัด: สมการเชิงอนุพันธ์เชิงเส้น (15 ข้อ)
+    </div>
+
+    <div class="question-box">
+        <h2>1. สมการเชิงอนุพันธ์เชิงเส้น (พื้นฐาน)</h2>
+        <div class="question-text">
+            จงหาผลเฉลยทั่วไปของสมการเชิงอนุพันธ์อันดับหนึ่ง <span class="math">$\frac{dy}{dx} + \frac{2}{x}y = 6x$</span>
+        </div>
+        <div class="options-group">
+            <label>
+                <input type="radio" name="q1" value="A"> A) <span class="math">$y = 2x^2 + C/x^2$</span>
+            </label>
+            <label>
+                <input type="radio" name="q1" value="B"> B) <span class="math">$y = x^3 + C/x^2$</span>
+            </label>
+            <label>
+                <input type="radio" name="q1" value="C"> C) <span class="math">$y = 2x^2 + C/x$</span>
+            </label>
+            <label>
+                <input type="radio" name="q1" value="D" checked class="wrong-selected"> D) <span class="math">$y = x^2 + C/x^2$</span>
+            </label>
+        </div>
+        <button class="check-answer-button">ตรวจคำตอบ</button>
+        <div class="feedback-box" style="display: block;">
+            คำตอบของคุณไม่ถูกต้อง 😔 <br>
+            ใช้สูตรตัวประกอบอินทิเกรต <span class="math">$\mu(x) = e^{\int P(x) dx}$</span> สำหรับสมการ <span class="math">$\frac{dy}{dx} + P(x)y = Q(x)$</span>
+        </div>
+    </div>
+
+    <div class="question-box">
+        <h2>2. สมการเชิงอนุพันธ์เชิงเส้น (พื้นฐาน)</h2>
+        <div class="question-text">
+            จงหาผลเฉลยเฉพาะของสมการ <span class="math">$y' + 3y = 0$</span> เมื่อกำหนดค่าเริ่มต้น <span class="math">$y(0) = 4$</span>
+        </div>
+        <div class="options-group">
+            <label><input type="radio" name="q2" value="A"> A) <span class="math">$y = 4e^{3x}$</span></label>
+            <label><input type="radio" name="q2" value="B"> B) <span class="math">$y = 4e^{-3x}$</span></label>
+            <label><input type="radio" name="q2" value="C"> C) <span class="math">$y = e^{-3x} + 4$</span></label>
+            <label><input type="radio" name="q2" value="D"> D) <span class="math">$y = 3e^{4x}$</span></label>
+        </div>
+        <button class="check-answer-button">ตรวจคำตอบ</button>
+    </div>
+
+    <div class="question-box">
+        <h2>3. สมการเชิงอนุพันธ์เชิงเส้น (พื้นฐาน)</h2>
+        <div class="question-text">
+            พิจารณาสมการ <span class="math">$x \frac{dy}{dx} - y = x^2 \sin x$</span>
+        </div>
+        <div class="options-group">
+            <label><input type="radio" name="q3" value="A"> A) ตัวประกอบอินทิเกรตคือ <span class="math">$x$</span></label>
+            <label><input type="radio" name="q3" value="B"> B) ตัวประกอบอินทิเกรตคือ <span class="math">$1/x$</span></label>
+            <label><input type="radio" name="q3" value="C"> C) สมการนี้ไม่เป็นเชิงเส้น</label>
+            <label><input type="radio" name="q3" value="D"> D) ผลเฉลยทั่วไปคือ <span class="math">$y = x \sin x + C$</span></label>
+        </div>
+        <button class="check-answer-button">ตรวจคำตอบ</button>
+    </div>
+
+    <div class="question-box" style="background-color: #e9f0ff; border-color: #007bff;">
+        <h2 style="color: #0056b3;">*** โจทย์พื้นฐาน 10 ข้อ จบแล้ว ***</h2>
+    </div>
+
+    <div class="question-box">
+        <h2>11. การประยุกต์: วิศวกรรมการเกษตร (ปัญหาการผสม)</h2>
+        <div class="question-text">
+            ถังน้ำมีน้ำ 100 ลิตร ละลายปุ๋ยชีวภาพอยู่ 10 กิโลกรัม มีการเติมน้ำปุ๋ยความเข้มข้น 0.5 กก./ลิตร เข้ามาในอัตรา 4 ลิตร/นาที และปล่อยน้ำปุ๋ยที่ผสมแล้วออกในอัตรา 4 ลิตร/นาที จงหาสมการเชิงอนุพันธ์ที่อธิบายปริมาณปุ๋ย <span class="math">$A(t)$</span> ในถัง ณ เวลา <span class="math">$t$</span> ใดๆ
+        </div>
+        <div class="options-group">
+            <label><input type="radio" name="q11" value="A"> A) <span class="math">$\frac{dA}{dt} = 2 - \frac{A}{25}$</span></label>
+            <label><input type="radio" name="q11" value="B"> B) <span class="math">$\frac{dA}{dt} = 4 - \frac{A}{100}$</span></label>
+            <label><input type="radio" name="q11" value="C"> C) <span class="math">$\frac{dA}{dt} = 0.5 - \frac{A}{4}$</span></label>
+            <label><input type="radio" name="q11" value="D"> D) <span class="math">$\frac{dA}{dt} = 4 - \frac{4A}{100}$</span></label>
+        </div>
+        <button class="check-answer-button">ตรวจคำตอบ</button>
+    </div>
+    
+    <div class="question-box">
+        <h2>12. การประยุกต์: วิศวกรรมอุตสาหกรรม (กฎการเย็นตัวของนิวตัน)</h2>
+        <div class="question-text">
+            ในการพาสเจอร์ไรซ์ผลิตภัณฑ์นม หากอุณหภูมิเริ่มต้นของนมคือ <span class="math">$T_0 = 80^\circ \text{C}$</span> และอุณหภูมิห้องคือ <span class="math">$T_m = 25^\circ \text{C}$</span> ถ้าอัตราการเย็นตัวของนมเป็นไปตามกฎการเย็นตัวของนิวตัน <span class="math">$\frac{dT}{dt} = k(T - T_m)$</span> เมื่อ <span class="math">$k = -0.1 \text{ min}^{-1}$</span> จงหาสมการอุณหภูมิ <span class="math">$T(t)$</span>
+        </div>
+        <div class="options-group">
+            <label><input type="radio" name="q12" value="A"> A) <span class="math">$T(t) = 25 + 55e^{0.1t}$</span></label>
+            <label><input type="radio" name="q12" value="B"> B) <span class="math">$T(t) = 80e^{-0.1t}$</span></label>
+            <label><input type="radio" name="q12" value="C"> C) <span class="math">$T(t) = 25 + 55e^{-0.1t}$</span></label>
+            <label><input type="radio" name="q12" value="D"> D) <span class="math">$T(t) = 25 + 80e^{-0.1t}$</span></label>
+        </div>
+        <button class="check-answer-button">ตรวจคำตอบ</button>
+    </div>
+
+    <div class="question-box">
+        <h2>13. การประยุกต์: วิศวกรรมการเกษตร (การเจริญเติบโตของประชากร/พืช)</h2>
+        <div class="question-text">
+            แบบจำลองการเจริญเติบโตแบบโลจิสติกส์ (Logistic Model) สำหรับการแพร่พันธุ์ของศัตรูพืชในไร่คือ <span class="math">$\frac{dP}{dt} = 0.2P - 0.001P^2$</span> สมการนี้เป็นสมการเชิงอนุพันธ์ประเภทใด
+        </div>
+        <div class="options-group">
+            <label><input type="radio" name="q13" value="A"> A) เชิงเส้น (Linear)</label>
+            <label><input type="radio" name="q13" value="B"> B) แยกตัวแปรได้ (Separable)</label>
+            <label><input type="radio" name="q13" value="C"> C) เอกพันธุ์ (Homogeneous)</label>
+            <label><input type="radio" name="q13" value="D"> D) ก และ ข ถูก</label>
+        </div>
+        <button class="check-answer-button">ตรวจคำตอบ</button>
+    </div>
+
+    </div>
+
+</body>
+</html>
