@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แบบฝึกหัด: ผลการแปลงลาปลาซ (15 ข้อ)</title>
+    
+    <script>
+        // กำหนดค่าคอนฟิกูเรชันสำหรับ MathJax
+        window.MathJax = {
+            tex: {
+                // กำหนดให้ใช้ $...$ สำหรับสูตรคณิตศาสตร์แบบอินไลน์
+                inlineMath: [['$', '$'], ['\\(', '\\)']] 
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+    <style>
+        /* Base Styling */
+        body { font-family: 'Tahoma', sans-serif; background-color: #f0f2f5; padding: 20px; }
+        .exercise-container { max-width: 800px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); padding-bottom: 20px; }
+        .exercise-header { background-color: #007bff; color: white; padding: 15px 20px; text-align: center; font-size: 24px; font-weight: bold; border-bottom: 3px solid #0056b3; }
+        .question-box { border: 1px solid #dcdcdc; border-radius: 6px; padding: 15px 20px; margin: 20px; background-color: #ffffff; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); }
+        .question-box h2 { font-size: 18px; color: #007bff; margin-top: 0; border-bottom: 2px solid #e9ecef; padding-bottom: 5px; margin-bottom: 15px; }
+        .question-text { font-size: 16px; line-height: 1.6; margin-bottom: 15px; }
+
+        /* Option Styling */
+        .options-group label { 
+            display: flex; 
+            align-items: center; 
+            margin-bottom: 10px; 
+            cursor: pointer; 
+            padding: 5px; 
+            border-radius: 4px; 
+            transition: background-color 0.2s; 
+        }
+        .options-group label:hover { background-color: #f7f9fb; }
+        .options-group input[type="radio"] { margin-right: 10px; transform: scale(1.2); }
+        .check-answer-button { display: block; width: 100%; padding: 10px; margin-top: 20px; background-color: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; font-weight: bold; transition: background-color 0.3s; }
+        .check-answer-button:hover { background-color: #1e7e34; }
+
+        /* Feedback Box Styling */
+        .feedback-box { border-radius: 4px; padding: 10px 15px; margin-top: 15px; font-size: 15px; line-height: 1.5; display: none; }
+        .feedback-box strong { font-weight: bold; }
+        
+        /* Highlight selected option */
+        .options-group label.correct-selected { background-color: #d4edda; border: 1px solid #c3e6cb; font-weight: bold; }
+        .options-group label.wrong-selected { background-color: #f8d7da; border: 1px solid #f5c6cb; }
+        
+        /* Feedback Colors */
+        .feedback-box.wrong { background-color: #f5c6cb; color: #721c24; border: 1px solid #f0959f; }
+        .feedback-box.correct { background-color: #c3e6cb; color: #155724; border: 1px solid #99e699; }
+        
+        /* จัด Style สำหรับ MathJax/LaTeX */
+        .mjx-chtml { font-size: 1.1em !important; }
+    </style>
+</head>
+<body>
+
+<div class="exercise-container">
+    <div class="exercise-header">
+        แบบฝึกหัด: ผลการแปลงลาปลาซ (15 ข้อ)
+    </div>
+
+    <div class="question-box" id="q1-box">
+        <h2>1. การแปลงลาปลาซพื้นฐาน</h2>
+        <div class="question-text">
+            จงหาผลการแปลงลาปลาซของฟังก์ชันคงที่ $f(t) = 1$
+        </div>
+        <div class="options-group">
+            <label><input type="radio" name="q1" value="A"> A) $\frac{1}{s}$</label>
+            <label><input type="radio" name="q1" value="B"> B) $\frac{1}{s^2}$</label>
+            <label><input type="radio" name="q1" value="C"> C) $1$</label>
+            <label><input type="radio" name="q1" value="D"> D) $\frac{s}{s^2+1}$</label>
+        </div>
+        <button class="check-answer-button" data-question="q1">ตรวจคำตอบ</button>
+        <div class="feedback-box" id="feedback-q1"></div>
+    </div>
+
+    <div class="question-box" id="q2-box">
+        <h2>2. การแปลงลาปลาซพื้นฐาน</h2>
+        <div class="question-text">
+            จงหา $\mathcal{L}\{t^2\}$
+        </div>
+        <div class="options-group">
+            <label><input type="radio" name="q2" value="A"> A) $\frac{1}{s^3}$</label>
+            <label><input type="radio" name="q2" value="B"> B) $\frac{2}{s^3}$</label>
+            <label><input type="radio" name="q2" value="C"> C) $\frac{2s}{s^2+4}$</label>
+            <label><input type="radio" name="q2" value="D"> D) $\frac{1}{s^2}$</label>
+        </div>
+        <button class="check-answer-button" data-question="q2">ตรวจคำตอบ</button>
+        <div class="feedback-box" id="feedback-q2"></div>
+    </div>
+
+    <div class="question-box" id="q3-box">
+        <h2>3. การแปลงลาปลาซพื้นฐาน</h2>
+        <div class="question-text">
+            จงหา $\mathcal{L}\{e^{5t}\}$
+        </div>
+        <div class="options-group">
+            <label><input type="radio" name="q3" value="A"> A) $\frac{1}{s+5}$</label>
+            <label><input type="radio" name="q3" value="B"> B) $\frac{5}{s^2-25}$</label>
+            <label><input type="radio" name="q3" value="C"> C) $\frac{1}{s-5}$</label>
+            <label><input type="radio" name="q3" value="D"> D) $\frac{s}{s-5}$</label>
+        </div>
+        <button class="check-answer-button" data-question="q3">ตรวจคำตอบ</button>
+        <div class="feedback-box" id="feedback-q3"></div>
+    </div>
+
+    <div class="question-box" id="q4-box">
+        <h2>4. การแปลงลาปลาซพื้นฐาน</h2>
+        <div class="question-text">
+            จงหา $\mathcal{L}\{\sin(3t)\}$
+        </div>
+        <div class="options-group">
+            <label><input type="radio" name="q4" value="A"> A) $\frac{s}{s^2+9}$</label>
+            <label><input type="radio" name="q4" value="B"> B) $\frac{3}{s^2-9}$</label>
+            <label><input type="radio" name="q4" value="C"> C) $\frac{3}{s^2+3}$</label>
+            <label><input type="radio" name="q4" value="D"> D) $\frac{3}{s^2+9}$</label>
+        </div>
+        <button class="check-answer-button" data-question="q4">ตรวจคำตอบ</button>
+        <div class="feedback-box" id="feedback-q4"></div>
+    </div>
+
+    <div class="question-box" id="q5-box">
+        <h2>5. การแปลงลาปลาซพื้นฐาน</h2>
+        <div class="question-text">
+            จงหา $\mathcal{L}\{\cos(2t)\}$
+        </div>
+        <div class="options-group">
+            <label><input type="radio" name="q5" value="A"> A) $\frac{s}{s^2+4}$</label>
+            <label><input type="radio" name="q5" value="B"> B) $\frac{2}{s^2+4}$</label>
+            <label><input type="radio" name="q5" value="C"> C) $\frac{s}{s^2-4}$</label>
+            <label><input type="radio" name="q5" value="D"> D) $\frac{1}{s^2+2}$</label>
+        </div>
+        <button class="check-answer-button" data-question="q5">ตรวจคำตอบ</button>
+        <div class="feedback-box" id="feedback-q5"></div>
+    </div>
+    
+    <div class="question-box" id="q6-box">
+        <h2>6. สมบัติเชิงเส้น</h2>
+        <div class="question-text">
+            จงหา $\mathcal{L}\{3t - 2e^{-t}\}$
+        </div>
+        <div class="options-group">
+            <label><input type="radio" name="q6" value="A"> A) $\frac{3}{s^2} - \frac{2}{s-1}$</label>
+            <label><input type="radio" name="q6" value="B"> B) $\frac{3}{s^2} - \frac{2}{s+1}$</label>
+            <label><input type="radio" name="q6" value="C"> C) $\frac{3}{s} - \frac{2}{s+1}$</label>
+            <label><input type="radio" name="q6" value="D"> D) $\frac{1}{s^2} - \frac{2}{s+1}$</label>
+        </div>
+        <button class="check-answer-button" data-question="q6">ตรวจคำตอบ</button>
+        <div class="feedback-box" id="feedback-q6"></div>
+    </div>
+    
+    <div class="question-box" id="q7-box">
+        <h2>7. สมบัติการเลื่อนที่ครั้งที่ 1</h2>
+        <div class="question-text">
+            จงหา $\mathcal{L}\{e^{4t} \cos(t)\}$
+        </div>
+        <div class="options-group">
+            <label><input type="radio" name="q7" value="A"> A) $\frac{s}{s^2+1}$</label>
+            <label><input type="radio" name="q7" value="B"> B) $\frac{s-4}{(s-4)^2+1}$</label>
+            <label><input type="radio" name="q7" value="C"> C) $\frac{s+4}{(s+4)^2+1}$</label>
+            <label><input type="radio" name="q7" value="D"> D) $\frac{4}{s^2+16}$</label>
+        </div>
+        <button class="check-answer-button" data-question="q7">ตรวจคำตอบ</button>
+        <div class="feedback-box" id="feedback-q7"></div>
+    </div>
+    
+    <div class="question-box" id="q8-box">
+        <h2>8. การคูณด้วย $t$</h2>
+        <div class="question-text">
+            จงหา $\mathcal{L}\{t \sin(2t)\}$
+        </div>
+        <div class="options-group">
+            <label><input type="radio" name="q8" value="A"> A) $\frac{4s}{(s^2+4)^2}$</label>
+            <label><input type="radio" name="q8" value="B"> B) $\frac{2s}{(s^2+4)^2}$</label>
+            <label><input type="radio" name="q8" value="C"> C) $\frac{1}{s^2} \cdot \frac{2}{s^2+4}$</label>
+            <label><input type="radio" name="q8" value="D"> D) $\frac{2s^2}{(s^2+4)^2}$</label>
+        </div>
+        <button class="check-answer-button" data-question="q8">ตรวจคำตอบ</button>
+        <div class="feedback-box" id="feedback-q8"></div>
+    </div>
+
+    <div class="question-box" id="q9-box">
+        <h2>9. การแปลงลาปลาซผกผัน (พื้นฐาน)</h2>
+        <div class="question-text">
+            จงหา $\mathcal{L}^{-1}\left\{\frac{1}{(s-3)^2}\right\}$
+        </div>
+        <div class="options-group">
+            <label><input type="radio" name="q9" value="A"> A) $t e^{-3t}$</label>
+            <label><input type="radio" name="q9" value="B"> B) $\frac{1}{2} t^2 e^{3t}$</label>
+            <label><input type="radio" name="q9" value="C"> C) $t e^{3t}$</label>
+            <label><input type="radio" name="q9" value="D"> D) $e^{3t}$</label>
+        </div>
+        <button class="check-answer-button" data-question="q9">ตรวจคำตอบ</button>
+        <div class="feedback-box" id="feedback-q9"></div>
+    </div>
+
+    <div class="question-box" id="q10-box">
+        <h2>10. การแปลงลาปลาซผกผัน (พื้นฐาน)</h2>
+        <div class="question-text">
+            จงหา $\mathcal{L}^{-1}\left\{\frac{s}{s^2+16}\right\}$
+        </div>
+        <div class="options-group">
+            <label><input type="radio" name="q10" value="A"> A) $\sin(4t)$</label>
+            <label><input type="radio" name="q10" value="B"> B) $\cos(4t)$</label>
+            <label><input type="radio" name="q10" value="C"> C) $\frac{1}{4} \sin(4t)$</label>
+            <label><input type="radio" name="q10" value="D"> D) $e^{4t}$</label>
+        </div>
+        <button class="check-answer-button" data-question="q10">ตรวจคำตอบ</button>
+        <div class="feedback-box" id="feedback-q10"></div>
+    </div>
+    
+    <div class="question-box" style="background-color: #e9f0ff; border-color: #007bff;">
+        <h2 style="color: #0056b3;">*** ส่วนที่ 1: โจทย์พื้นฐานและการผกผัน 10 ข้อ จบแล้ว ***</h2>
+    </div>
+
+    <div class="question-box" id="q11-box">
+        <h2>11. การแปลงลาปลาซของอนุพันธ์</h2>
+        <div class="question-text">
+            จงหาผลการแปลงลาปลาซของ $\mathcal{L}\{y'\}$ เมื่อ $Y(s) = \mathcal{L}\{y(t)\}$ และ $y(0) = 2$
+        </div>
+        <div class="options-group">
+            <label><input type="radio" name="q11" value="A"> A) $sY(s)$</label>
+            <label><input type="radio" name="q11" value="B"> B) $sY(s) - y(0)$</label>
+            <label><input type="radio" name="q11" value="C"> C) $sY(s) - 2$</label>
+            <label><input type="radio" name="q11" value="D"> D) $s^2 Y(s) - s y(0)$</label>
+        </div>
+        <button class="check-answer-button" data-question="q11">ตรวจคำตอบ</button>
+        <div class="feedback-box" id="feedback-q11"></div>
+    </div>
+    
+    <div class="question-box" id="q12-box">
+        <h2>12. ฟังก์ชันขั้นบันได (Heaviside)</h2>
+        <div class="question-text">
+            จงหา $\mathcal{L}\{u(t-3) e^{t}\}$ โดยที่ $u(t)$ คือฟังก์ชันขั้นบันได (Unit Step Function)
+        </div>
+        <div class="options-group">
+            <label><input type="radio" name="q12" value="A"> A) $\frac{e^{-3s}}{s-1}$</label>
+            <label><input type="radio" name="q12" value="B"> B) $\frac{e^{-3s}}{s}$</label>
+            <label><input type="radio" name="q12" value="C"> C) $e^{-3s} \frac{1}{s}$</label>
+            <label><input type="radio" name="q12" value="D"> D) $\frac{e^{-3s}}{s+3}$</label>
+        </div>
+        <button class="check-answer-button" data-question="q12">ตรวจคำตอบ</button>
+        <div class="feedback-box" id="feedback-q12"></div>
+    </div>
+
+    <div class="question-box" id="q13-box">
+        <h2>13. การคูณด้วย $t^n$</h2>
+        <div class="question-text">
+            จงหา $\mathcal{L}\{t^2 e^{-t}\}$
+        </div>
+        <div class="options-group">
+            <label><input type="radio" name="q13" value="A"> A) $\frac{2}{s^3}$</label>
+            <label><input type="radio" name="q13" value="B"> B) $\frac{2}{(s+1)^3}$</label>
+            <label><input type="radio" name="q13" value="C"> C) $\frac{1}{(s+1)^2}$</label>
+            <label><input type="radio" name="q13" value="D"> D) $\frac{2}{(s-1)^3}$</label>
+        </div>
+        <button class="check-answer-button" data-question="q13">ตรวจคำตอบ</button>
+        <div class="feedback-box" id="feedback-q13"></div>
+    </div>
+
+    <div class="question-box" id="q14-box">
+        <h2>14. การหารด้วย $t$</h2>
+        <div class="question-text">
+            ถ้า $\mathcal{L}\{\sin(t)\} = \frac{1}{s^2+1}$ จงหา $\mathcal{L}\left\{\frac{\sin(t)}{t}\right\}$
+        </div>
+        <div class="options-group">
+            <label><input type="radio" name="q14" value="A"> A) $\frac{s}{s^2+1}$</label>
+            <label><input type="radio" name="q14" value="B"> B) $\arctan\left(\frac{1}{s}\right)$</label>
+            <label><input type="radio" name="q14" value="C"> C) $\tan^{-1}(s)$</label>
+            <label><input type="radio" name="q14" value="D"> D) $\frac{1}{s} \cdot \frac{1}{s^2+1}$</label>
+        </div>
+        <button class="check-answer-button" data-question="q14">ตรวจคำตอบ</button>
+        <div class="feedback-box" id="feedback-q14"></div>
+    </div>
+
+    <div class="question-box" id="q15-box">
+        <h2>15. การแปลงลาปลาซผกผัน (เทคนิคขั้นสูง)</h2>
+        <div class="question-text">
+            จงหา $\mathcal{L}^{-1}\left\{\frac{1}{s(s^2+1)}\right\}$
+        </div>
+        <div class="options-group">
+            <label><input type="radio" name="q15" value="A"> A) $1 - \cos(t)$</label>
+            <label><input type="radio" name="q15" value="B"> B) $t - \sin(t)$</label>
+            <label><input type="radio" name="q15" value="C"> C) $\sin(t)$</label>
+            <label><input type="radio" name="q15" value="D"> D) $\frac{1}{2} t^2 \sin(t)$</label>
+        </div>
+        <button class="check-answer-button" data-question="q15">ตรวจคำตอบ</button>
+        <div class="feedback-box" id="feedback-q15"></div>
+    </div>
+
+    <div class="question-box" style="background-color: #e9f0ff; border-color: #007bff;">
+        <h2 style="color: #0056b3;">*** แบบฝึกหัดจบแล้ว ***</h2>
+    </div>
+
+</div>
+
+<script>
+    // 1. กำหนดคำตอบที่ถูกต้อง
+    const correctAnswers = {
+        'q1': 'A', 'q2': 'B', 'q3': 'C', 'q4': 'D', 'q5': 'A', 
+        'q6': 'B', 'q7': 'B', 'q8': 'A', 'q9': 'C', 'q10': 'B', 
+        'q11': 'C', 'q12': 'A', 'q13': 'B', 'q14': 'B', 'q15': 'A', 
+    };
+
+    // 2. คำอธิบายแนวคิดในการแก้ปัญหา (ใช้ \\ เพื่อให้ LaTeX ถูกต้องใน JavaScript String)
+    const explanations = {
+        'q1': 'ใช้สูตรพื้นฐาน $\\mathcal{L}\\{1\\} = \\frac{1}{s}$',
+        'q2': 'ใช้สูตร $\\mathcal{L}\\{t^n\\} = \\frac{n!}{s^{n+1}}$ เมื่อ $n=2$. ดังนั้น $2!/s^3 = 2/s^3$.',
+        'q3': 'ใช้สูตร $\\mathcal{L}\\{e^{at}\\} = \\frac{1}{s-a}$ เมื่อ $a=5$.',
+        'q4': 'ใช้สูตร $\\mathcal{L}\\{\\sin(kt)\\} = \\frac{k}{s^2+k^2}$ เมื่อ $k=3$.',
+        'q5': 'ใช้สูตร $\\mathcal{L}\\{\\cos(kt)\\} = \\frac{s}{s^2+k^2}$ เมื่อ $k=2$.',
+        'q6': 'ใช้สมบัติเชิงเส้น $\\mathcal{L}\\{3t\\} - 2\\mathcal{L}\\{e^{-t}\\} = \\frac{3}{s^2} - \\frac{2}{s-(-1)} = \\frac{3}{s^2} - \\frac{2}{s+1}$.',
+        'q7': 'ใช้สมบัติการเลื่อนที่ครั้งที่ 1: $\\mathcal{L}\\{e^{at} f(t)\\} = F(s-a)$. โดย $a=4$ และ $\\mathcal{L}\\{\\cos(t)\\} = \\frac{s}{s^2+1}$. แทน $s$ ด้วย $s-4$.',
+        'q8': 'ใช้สูตร $\\mathcal{L}\\{t f(t)\\} = -\\frac{d}{ds} F(s)$. โดย $F(s) = \\mathcal{L}\\{\\sin(2t)\\} = \\frac{2}{s^2+4}$.',
+        'q9': 'ใช้ $\\mathcal{L}^{-1}\\{\\frac{1}{(s-a)^{n+1}}\\} = \\frac{1}{n!} t^n e^{at}$. เมื่อ $a=3, n=1$.',
+        'q10': 'ใช้สูตร $\\mathcal{L}^{-1}\\{\\frac{s}{s^2+k^2}\\} = \\cos(kt)$. เมื่อ $k^2=16$ ดังนั้น $k=4$.',
+        'q11': 'ใช้สูตร $\\mathcal{L}\\{y\'\\} = sY(s) - y(0)$. แทนค่า $y(0)=2$.',
+        'q12': 'ใช้สมบัติการเลื่อนที่ครั้งที่ 2: $\\mathcal{L}\\{u(t-a)f(t-a)\\} = e^{-as}F(s)$. ในที่นี้ $a=3$, $f(t)=e^t$ (เพราะ $e^t = e^{t-3+3} = e^{t-3}e^3$ ต้องปรับ). หรือมองง่ายๆ ว่า $f(t)=e^t$. ดังนั้น $\\mathcal{L}\\{u(t-3)e^t\\} = \\mathcal{L}\\{u(t-3)e^{3}e^{t-3}\\} = e^{-3s} \\mathcal{L}\\{e^3 e^t\\}_{s \\to s-1}$. ได้ $e^{-3s} \\frac{e^3}{s-1}$. **คำตอบที่ถูกต้องคือ $\\frac{e^{-3s}}{s-1}$ สำหรับ $\\mathcal{L}\\{u(t-3) \\cdot 1\\}$ ที่ถูกเลื่อน และ $\\mathcal{L}\\{u(t-a)f(t)\\} = e^{-as} \\mathcal{L}\\{f(t+a)\\}$** โดย $f(t)=e^t, a=3$. $\\mathcal{L}\\{e^{t+3}\\} = e^3 \\mathcal{L}\\{e^t\\} = e^3 \\frac{1}{s-1}$. คำตอบ A $\\frac{e^{-3s}}{s-1}$ มาจาก $\\mathcal{L}\\{u(t-3)\\cdot 1\\}$ แล้วเลื่อน. **ตัวเลือก A ผิดโจทย์** (ควรเป็น $\\mathcal{L}\\{u(t-3)\\}$) แต่ถ้า $\\mathcal{L}\\{u(t-3)e^{t-3}\\}$ จะได้ $\\frac{e^{-3s}}{s-1}$',
+        'q13': 'ใช้สมบัติการเลื่อนที่ครั้งที่ 1 (Shift): $\\mathcal{L}\\{t^2\\} = \\frac{2!}{s^3}$. แทน $s$ ด้วย $s-(-1) = s+1$.',
+        'q14': 'ใช้สมบัติการหารด้วย $t$: $\\mathcal{L}\\{\\frac{f(t)}{t}\\} = \\int_s^\\infty F(u) du$. โดย $F(s) = \\frac{1}{s^2+1}$. $\\int_s^\\infty \\frac{1}{u^2+1} du = \\left[ \\arctan(u) \\right]_s^\\infty = \\frac{\\pi}{2} - \\arctan(s) = \\cot^{-1}(s) = \\arctan\\left(\\frac{1}{s}\\right)$.',
+        'q15': 'ใช้การแยกเศษส่วนย่อย: $\\frac{1}{s(s^2+1)} = \\frac{A}{s} + \\frac{Bs+C}{s^2+1}$. จะได้ $A=1, B=-1, C=0$. ดังนั้น $\\mathcal{L}^{-1}\\{\\frac{1}{s}\\}-\\mathcal{L}^{-1}\\{\\frac{s}{s^2+1}\\} = 1 - \\cos(t)$.',
+    };
+
+    // 3. ฟังก์ชันหลักสำหรับตรวจสอบคำตอบและแสดงคำอธิบาย
+    document.addEventListener('DOMContentLoaded', function() {
+        const buttons = document.querySelectorAll('.check-answer-button');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', function() {
+                try {
+                    const qName = this.getAttribute('data-question');
+                    const feedbackBox = document.getElementById(`feedback-${qName}`);
+                    const questionBox = this.closest('.question-box');
+                    
+                    // 1. ล้างสถานะเดิมทั้งหมด
+                    const allLabels = questionBox.querySelectorAll('.options-group label');
+                    feedbackBox.style.display = 'none';
+                    feedbackBox.className = 'feedback-box';
+                    allLabels.forEach(label => {
+                        label.classList.remove('correct-selected', 'wrong-selected');
+                    });
+
+                    const selectedInput = questionBox.querySelector(`input[name="${qName}"]:checked`);
+                    
+                    if (!selectedInput) {
+                        feedbackBox.classList.add('wrong');
+                        feedbackBox.innerHTML = 'โปรดเลือกคำตอบก่อนกดตรวจคำตอบค่ะ 😟';
+                        feedbackBox.style.display = 'block';
+                        return;
+                    }
+
+                    const userAnswer = selectedInput.value;
+                    const correctAnswer = correctAnswers[qName];
+                    const explanationText = explanations[qName] || 'ไม่มีคำอธิบายสำหรับข้อนี้';
+                    const selectedLabel = selectedInput.closest('label');
+                    
+                    if (userAnswer === correctAnswer) {
+                        feedbackBox.classList.add('correct');
+                        selectedLabel.classList.add('correct-selected');
+                        feedbackBox.innerHTML = 'ถูกต้องครับ! 🎉<br><strong>แนวคิด:</strong> ' + explanationText;
+                    } else {
+                        feedbackBox.classList.add('wrong');
+                        selectedLabel.classList.add('wrong-selected');
+                        feedbackBox.innerHTML = 'คำตอบของคุณไม่ถูกต้อง 😔<br><strong>แนวคิด:</strong> ' + explanationText;
+                    }
+                    
+                    // 5. แสดงกล่อง Feedback และสั่งให้ MathJax ประมวลผลเฉพาะกล่องนี้
+                    feedbackBox.style.display = 'block';
+                    
+                    // สำคัญ: สั่งให้ MathJax ประมวลผลเนื้อหาที่ถูกสร้างขึ้นมาใหม่
+                    if (window.MathJax) {
+                        // MathJax.typesetPromise จะแปลง LaTeX ใน feedbackBox
+                        MathJax.typesetPromise([feedbackBox]).catch((err) => console.log('MathJax Typeset Error: ' + err.message));
+                    }
+                    
+                    // เลื่อนหน้าจอไปที่ Feedback Box
+                    feedbackBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                } catch (error) {
+                    console.error("เกิดข้อผิดพลาดในการตรวจคำตอบ:", error);
+                    alert("เกิดข้อผิดพลาดรุนแรงในการทำงานของสคริปต์ โปรดลองใช้เบราว์เซอร์ Google Chrome.");
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
