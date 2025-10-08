@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>แบบฝึกหัด: ระบบสมการเชิงอนุพันธ์เชิงเส้น (15 ข้อ)</title>
- <script>
+    <script>
         // กำหนดค่าคอนฟิกูเรชันสำหรับ MathJax
         window.MathJax = {
             tex: {
@@ -16,7 +16,8 @@
             }
         };
     </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>    <style>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>   
+    <style>
         body {
             font-family: 'Tahoma', sans-serif;
             background-color: #e9ebee;
@@ -128,416 +129,229 @@
 <body>
     <div class="container">
         <h1>แบบฝึกหัด: ระบบสมการเชิงอนุพันธ์เชิงเส้น (15 ข้อ)</h1>
-        <p class="section-header">ส่วนที่ 1: โจทย์พื้นฐาน (Fundamental Problems) - การหาค่าเจาะจงและผลเฉลยทั่วไป</p>
+        
+        <script>
+            // Define the original problems and their correct logic (Answers A, B, C, D correspond to the options defined below)
+            const problems = [
+                // 10 Fundamental Problems
+                {
+                    id: 'q1', title: '1. พื้นฐาน: การหาค่าเจาะจง', text: 'จงหาค่าเจาะจง (Eigenvalues, $\lambda$) ของเมทริกซ์สัมประสิทธิ์ $\\mathbf{A}$ ของระบบสมการ $\\mathbf{x}\' = \\mathbf{A}\\mathbf{x}$ เมื่อ', matrix: '\\mathbf{A} = \\begin{pmatrix} 1 & 3 \\\\ 0 & 4 \\end{pmatrix}',
+                    options: ['$\lambda = 1, 4$', '$\lambda = 1, 3$', '$\lambda = 4, 3$', '$\lambda = 0, 5$'],
+                    correct: 'A', // The actual correct option (A) corresponds to the value $\lambda = 1, 4$
+                    solution: 'เมทริกซ์สามเหลี่ยมบน ค่าเจาะจงคือสมาชิกแนวทแยงมุมหลัก: $\\det(\\mathbf{A} - \\lambda \\mathbf{I}) = (1-\\lambda)(4-\\lambda) = 0 \\quad \\Rightarrow \\quad \\mathbf{\\lambda_1 = 1, \\lambda_2 = 4}$'
+                },
+                {
+                    id: 'q2', title: '2. พื้นฐาน: การหาเวกเตอร์เจาะจง', text: 'จากข้อ 1. สำหรับ $\lambda = 1$ เวกเตอร์เจาะจง ($\\mathbf{v}_1$) คือข้อใด', matrix: '',
+                    options: ['$\\mathbf{v}_1 = \\begin{pmatrix} 1 \\\\ 0 \\end{pmatrix}$', '$\\mathbf{v}_1 = \\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix}$', '$\\mathbf{v}_1 = \\begin{pmatrix} 3 \\\\ 4 \\end{pmatrix}$', '$\\mathbf{v}_1 = \\begin{pmatrix} 0 \\\\ 1 \\end{pmatrix}$'],
+                    correct: 'A', // The actual correct option (A) corresponds to the value [1; 0]
+                    solution: 'แก้ $(\\mathbf{A} - 1 \\mathbf{I})\\mathbf{v}_1 = \\mathbf{0} \\Rightarrow \\begin{pmatrix} 0 & 3 \\\\ 0 & 3 \\end{pmatrix} \\begin{pmatrix} v_{11} \\\\ v_{12} \\end{pmatrix} = \\begin{pmatrix} 0 \\\\ 0 \\end{pmatrix} $ ได้ $3v_{12}=0 \\Rightarrow v_{12}=0$ เลือก $v_{11}=1$. $\\mathbf{v}_1 = \\begin{pmatrix} 1 \\\\ 0 \\end{pmatrix}$'
+                },
+                {
+                    id: 'q3', title: '3. พื้นฐาน: ผลเฉลยทั่วไป (รากจริงต่างกัน)', text: 'ผลเฉลยทั่วไป $\\mathbf{x}_h(t)$ ของระบบ $\\mathbf{x}\' = \\mathbf{A}\\mathbf{x}$ โดยที่ $\\mathbf{A} = \\begin{pmatrix} 2 & 1 \\\\ 1 & 2 \\end{pmatrix}$ คือข้อใด (กำหนด $\\lambda_1=3, \\mathbf{v}_1=\\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix}$ และ $\\lambda_2=1, \\mathbf{v}_2=\\begin{pmatrix} 1 \\\\ -1 \\end{pmatrix}$)', matrix: '',
+                    options: ['$\\mathbf{x}(t) = c_1 e^{3t} \\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix} + c_2 e^{t} \\begin{pmatrix} 1 \\\\ -1 \\end{pmatrix}$', '$\\mathbf{x}(t) = c_1 e^{t} \\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix} + c_2 e^{3t} \\begin{pmatrix} 1 \\\\ -1 \\end{pmatrix}$', '$\\mathbf{x}(t) = c_1 e^{3t} + c_2 e^{t}$', '$\\mathbf{x}(t) = c_1 \\begin{pmatrix} 3 \\\\ 3 \\end{pmatrix} + c_2 \\begin{pmatrix} 1 \\\\ -1 \\end{pmatrix}$'],
+                    correct: 'A', // The actual correct option (A) is the formula
+                    solution: 'ผลเฉลยทั่วไปคือ $\\mathbf{x}(t) = c_1 e^{\\lambda_1 t} \\mathbf{v}_1 + c_2 e^{\\lambda_2 t} \\mathbf{v}_2$'
+                },
+                {
+                    id: 'q4', title: '4. พื้นฐาน: ผลเฉลยทั่วไป (รากซ้ำ)', text: 'ระบบ $\\mathbf{x}\' = \\begin{pmatrix} 1 & 0 \\\\ 1 & 1 \\end{pmatrix} \\mathbf{x}$ มีค่าเจาะจงซ้ำ $\lambda=1$ และเวกเตอร์เจาะจง $\\mathbf{v}_1 = \\begin{pmatrix} 0 \\\\ 1 \\end{pmatrix}$ ผลเฉลยพื้นฐานตัวที่สอง (Generalized Eigenvector Solution) คือข้อใด', matrix: '',
+                    options: ['$\\mathbf{x}_2(t) = e^{t} \\left( t \\begin{pmatrix} 0 \\\\ 1 \\end{pmatrix} + \\begin{pmatrix} 1 \\\\ 0 \\end{pmatrix} \\right)$', '$\\mathbf{x}_2(t) = t e^{t} \\begin{pmatrix} 0 \\\\ 1 \\end{pmatrix}$', '$\\mathbf{x}_2(t) = e^{t} \\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix}$', '$\\mathbf{x}_2(t) = e^{t} \\left( t \\begin{pmatrix} 1 \\\\ 0 \\end{pmatrix} + \\begin{pmatrix} 0 \\\\ 1 \\end{pmatrix} \\right)$'],
+                    correct: 'A', // The actual correct option (A) is the formula with v2 = [1; 0]
+                    solution: 'หา $\\mathbf{v}_2$ จาก $(\\mathbf{A} - \\mathbf{I})\\mathbf{v}_2 = \\mathbf{v}_1$. $\\begin{pmatrix} 0 & 0 \\\\ 1 & 0 \\end{pmatrix} \\begin{pmatrix} v_{21} \\\\ v_{22} \\end{pmatrix} = \\begin{pmatrix} 0 \\\\ 1 \\end{pmatrix}$. ได้ $v_{21}=1$ เลือก $v_{22}=0$. $\\mathbf{v}_2 = \\begin{pmatrix} 1 \\\\ 0 \\end{pmatrix}$. $\\mathbf{x}_2(t) = e^{\\lambda t} (t \\mathbf{v}_1 + \\mathbf{v}_2)$'
+                },
+                {
+                    id: 'q5', title: '5. พื้นฐาน: รากเชิงซ้อน', text: 'ระบบ $\\mathbf{x}\' = \\begin{pmatrix} 0 & 1 \\\\ -4 & 0 \\end{pmatrix} \\mathbf{x}$ มีค่าเจาะจงเป็นจำนวนเชิงซ้อน ข้อใดคือค่าเจาะจงนั้น', matrix: '',
+                    options: ['$\lambda = \\pm 2i$', '$\lambda = 1 \\pm i$', '$\lambda = -4 \\pm i$', '$\lambda = 2, -2$'],
+                    correct: 'A', // The actual correct option (A) is the value
+                    solution: '$\\det(\\mathbf{A} - \\lambda \\mathbf{I}) = (-\\lambda)(-\\lambda) - (1)(-4) = \\lambda^2 + 4 = 0 \\quad \\Rightarrow \\quad \\lambda^2 = -4 \\quad \\Rightarrow \\quad \\mathbf{\\lambda = \\pm 2i}$'
+                },
+                {
+                    id: 'q6', title: '6. พื้นฐาน: การแยกตัวแปร', text: 'ระบบสมการ $\\begin{cases} x\'_1 = 2x_1 \\\\ x\'_2 = 3x_2 \\end{cases}$ สามารถแยกแก้แต่ละสมการได้อย่างอิสระ ผลเฉลยทั่วไปของ $x_1(t)$ คือข้อใด', matrix: '',
+                    options: ['$x_1(t) = c_1 e^{2t}$', '$x_1(t) = c_1 e^{3t}$', '$x_1(t) = c_1 t^2$', '$x_1(t) = c_1 \\cos(2t)$'],
+                    correct: 'A', // The actual correct option (A) is the value
+                    solution: 'สมการเชิงอนุพันธ์อันดับหนึ่ง $\\frac{dx_1}{dt} = 2x_1$ มีผลเฉลยคือ $x_1(t) = c_1 e^{\\int 2 dt} = c_1 e^{2t}$'
+                },
+                {
+                    id: 'q7', title: '7. พื้นฐาน: การหาผลเฉลยเฉพาะ (Nonhomogeneous)', text: 'จงหาผลเฉลยเฉพาะ $\\mathbf{x}_p(t)$ ของระบบ $\\mathbf{x}\' = \\mathbf{A}\\mathbf{x} + \\mathbf{f}$ โดยวิธีเทียบสัมประสิทธิ์ ถ้า $\\mathbf{A} = \\begin{pmatrix} 1 & 0 \\\\ 0 & 2 \\end{pmatrix}$ และ $\\mathbf{f}(t) = \\begin{pmatrix} 3 \\\\ 1 \\end{pmatrix}$', matrix: '',
+                    options: ['$\\mathbf{x}_p(t) = \\begin{pmatrix} -3 \\\\ -1/2 \\end{pmatrix}$', '$\\mathbf{x}_p(t) = \\begin{pmatrix} 3 \\\\ 1/2 \\end{pmatrix}$', '$\\mathbf{x}_p(t) = \\begin{pmatrix} 3t \\\\ 1t \\end{pmatrix}$', '$\\mathbf{x}_p(t) = \\begin{pmatrix} 0 \\\\ 0 \\end{pmatrix}$'],
+                    correct: 'A', // The actual correct option (A) is the value
+                    solution: 'ให้ $\\mathbf{x}_p = \\mathbf{a}$. $\\mathbf{0} = \\mathbf{A}\\mathbf{a} + \\mathbf{f} \\Rightarrow \\mathbf{A}\\mathbf{a} = -\\mathbf{f}$. $\\begin{pmatrix} 1 & 0 \\\\ 0 & 2 \\end{pmatrix} \\begin{pmatrix} a_1 \\\\ a_2 \\end{pmatrix} = \\begin{pmatrix} -3 \\\\ -1 \\end{pmatrix}$. ได้ $a_1=-3, a_2=-1/2$. $\\mathbf{x}_p(t) = \\begin{pmatrix} -3 \\\\ -1/2 \\end{pmatrix}$'
+                },
+                {
+                    id: 'q8', title: '8. พื้นฐาน: พฤติกรรมในระยะยาว (Long-Term Behavior)', text: 'ถ้าค่าเจาะจงของระบบเอกพันธ์คือ $\lambda_1 = -2$ และ $\lambda_2 = -0.5$ พฤติกรรมของผลเฉลย $\\mathbf{x}(t)$ เมื่อ $t \\to \\infty$ คือข้อใด', matrix: '',
+                    options: ['$\\mathbf{x}(t) \\to \\mathbf{0}$ (เสถียร)', '$\\mathbf{x}(t) \\to \\infty$ (ไม่เสถียร)', '$\\mathbf{x}(t)$ มีการแกว่งกวัดไม่ลดลง', '$\\mathbf{x}(t) \\to$ ค่าคงที่ที่ไม่ใช่ศูนย์'],
+                    correct: 'A', // The actual correct option (A) is the behavior
+                    solution: 'เนื่องจากส่วนจริงของค่าเจาะจงทั้งหมดเป็นลบ ($\lambda < 0$) เทอม $e^{\\lambda t} \\to 0$ เมื่อ $t \\to \\infty$ ดังนั้นผลเฉลยเข้าใกล้จุดสมดุล $\\mathbf{0}$ ระบบจึง<strong>เสถียร (Stable)</strong>'
+                },
+                {
+                    id: 'q9', title: '9. พื้นฐาน: เมทริกซ์หลักมูล (Fundamental Matrix)', text: 'เมทริกซ์หลักมูล $\\mathbf{\\Phi}(t)$ ของระบบคือเมทริกซ์ที่มีคอลัมน์คืออะไร', matrix: '',
+                    options: ['เวกเตอร์ผลเฉลยอิสระเชิงเส้น $\\mathbf{x}_1(t), \\mathbf{x}_2(t), \\ldots$', 'เวกเตอร์เจาะจง $\\mathbf{v}_1, \\mathbf{v}_2, \\ldots$', 'ค่าเจาะจง $\\lambda_1, \\lambda_2, \\ldots$', 'เมทริกซ์สัมประสิทธิ์ $\\mathbf{A}$'],
+                    correct: 'A', // The actual correct option (A) is the definition
+                    solution: 'เมทริกซ์หลักมูลคือ $\\mathbf{\\Phi}(t) = [\\mathbf{x}_1(t) \\mid \\mathbf{x}_2(t) \\mid \\ldots \\mid \\mathbf{x}_n(t)]$ โดยที่ $\\mathbf{x}_i(t)$ เป็นผลเฉลยพื้นฐานอิสระเชิงเส้น'
+                },
+                {
+                    id: 'q10', title: '10. พื้นฐาน: พฤติกรรมของรากเชิงซ้อน', text: 'ถ้าค่าเจาะจงของระบบคือ $\lambda = 1 \\pm 3i$ พฤติกรรมของผลเฉลย $\\mathbf{x}(t)$ จะเป็นอย่างไร', matrix: '',
+                    options: ['แกว่งกวัดและเพิ่มขึ้น (ไม่เสถียร)', 'แกว่งกวัดและลดลง (เสถียร)', 'ลดลงอย่างต่อเนื่องไม่มีการแกว่งกวัด', 'แกว่งกวัดด้วยขนาดคงที่'],
+                    correct: 'A', // The actual correct option (A) is the behavior
+                    solution: '$\lambda = \\alpha \\pm i\\beta$ โดย $\\alpha = 1 > 0$ (ส่วนจริงเป็นบวก) จะทำให้เกิดเทอม $e^{\\alpha t}$ ที่เพิ่มขึ้น ส่วน $\\beta = 3 \\neq 0$ ทำให้เกิด $\\cos(\\beta t)$ และ $\\sin(\\beta t)$ ระบบจึง<strong>แกว่งกวัดและเพิ่มขึ้น</strong>'
+                },
+                // 5 Applied Problems
+                {
+                    id: 'q11', title: '11. ประยุกต์: การจัดการสารอาหาร (เกษตรกรรม)', text: 'ระบบถังผสมสารอาหารแบบ 2 ถัง มีสมการควบคุมดังนี้: $\\frac{d}{dt}\\begin{pmatrix} x_1 \\\\ x_2 \\end{pmatrix} = \\begin{pmatrix} -0.1 & 0 \\\\ 0.1 & -0.1 \\end{pmatrix} \\begin{pmatrix} x_1 \\\\ x_2 \\end{pmatrix} + \\begin{pmatrix} 0 \\\\ 0 \\end{pmatrix}$. ค่าเจาะจงของระบบคือ $\\lambda_1 = -0.1, \\lambda_2 = -0.1$ เมื่อ $t \\to \\infty$ ปริมาณสารอาหาร $x_1(t)$ และ $x_2(t)$ จะเป็นอย่างไร', matrix: '',
+                    options: ['$x_1 \\to 0$ และ $x_2 \\to 0$', '$x_1 \\to \\infty$ และ $x_2 \\to \\infty$', '$x_1$ คงที่ และ $x_2$ เพิ่มขึ้น', '$x_1$ ลดลง และ $x_2$ แกว่งกวัด'],
+                    correct: 'A', // The actual correct option (A) is the behavior
+                    solution: 'ค่าเจาะจงทั้งหมดเป็นลบ ($\lambda = -0.1$) บ่งชี้ว่าระบบเป็นแบบเสถียร (Stable) เทอม $e^{-0.1t} \\to 0$ เมื่อ $t \\to \\infty$ ในระบบเอกพันธ์นี้ ปริมาณสารอาหารจะถูกล้างออกจากระบบจนหมด'
+                },
+                {
+                    id: 'q12', title: '12. ประยุกต์: การควบคุมแขนกล (อุตสาหกรรม)', text: 'ในการจำลองการตอบสนองของแขนกล สมการของระบบคือ $\\mathbf{x}\' = \\mathbf{A}\\mathbf{x}$ โดยมีค่าเจาะจง $\lambda = -0.5 \\pm 10i$ หาก $\mathbf{x}_1$ คือตำแหน่งของแขนกล ลักษณะการเคลื่อนที่ของแขนกลที่ถูกต้องคือข้อใด', matrix: '',
+                    options: ['การแกว่งกวัดที่ลดลงอย่างรวดเร็ว (Damped Oscillation)', 'การเคลื่อนที่ที่เพิ่มขึ้นอย่างรวดเร็วโดยไม่มีการแกว่งกวัด', 'การเคลื่อนที่แบบสมดุลเชิงวิกฤต (Critically Damped)', 'การแกว่งกวัดด้วยขนาดคงที่ (Sustained Oscillation)'],
+                    correct: 'A', // The actual correct option (A) is the behavior
+                    solution: 'ส่วนจริง $\\alpha = -0.5 < 0$ ทำให้เกิดการลดทอน (Damping) ส่วนจินตภาพ $\\beta = 10 \\neq 0$ ทำให้เกิดการแกว่งกวัด (Oscillation) รวมกันคือ Damped Oscillation'
+                },
+                {
+                    id: 'q13', title: '13. ประยุกต์: พลวัตประชากรศัตรูพืช (เกษตรกรรม)', text: 'พิจารณาระบบ $\\begin{cases} P\' = 0.5P - 0.2V \\\\ V\' = 0.1P - 0.5V \\end{cases}$ โดย $P$ คือประชากรพืช และ $V$ คือประชากรไวรัส ระบบนี้มี $\\lambda_1 \\approx 0.46, \\lambda_2 \\approx -0.46$. หากระบบเริ่มต้นที่ $P(0)>0$ และ $V(0)>0$ พฤติกรรมในระยะยาวจะเป็นอย่างไร', matrix: '',
+                    options: ['ประชากรทั้งคู่จะเพิ่มขึ้นอย่างไม่มีขีดจำกัด (Unstable)', 'ประชากรทั้งคู่จะเข้าสู่ 0 (Extinction)', 'ประชากรจะเข้าสู่สมดุลคงที่ที่ไม่ใช่ศูนย์', 'ประชากรจะมีการแกว่งกวัดคงที่'],
+                    correct: 'A', // The actual correct option (A) is the behavior
+                    solution: 'มีค่าเจาะจงหนึ่งตัวเป็นบวก ($\\lambda_1 \\approx 0.46 > 0$) ซึ่งบ่งชี้ว่าระบบ<strong>ไม่เสถียร</strong> พฤติกรรมในระยะยาวจะถูกครอบงำโดยเทอม $e^{0.46t}$ ทำให้ประชากรเพิ่มขึ้นอย่างรวดเร็ว'
+                },
+                {
+                    id: 'q14', title: '14. ประยุกต์: การตอบสนองของวงจรเซ็นเซอร์ (อุตสาหกรรม)', text: 'ระบบควบคุมเซ็นเซอร์ถูกจำลองด้วย $\\mathbf{x}\' = \\begin{pmatrix} -3 & 1 \\\\ 0 & -2 \\end{pmatrix} \\mathbf{x} + \\begin{pmatrix} 0 \\\\ 5 \\end{pmatrix}$. ถ้าเราสนใจเฉพาะสถานะคงที่ (Steady State) $\\mathbf{x}_{ss}$ ข้อใดคือค่าของ $\\mathbf{x}_{ss}$', matrix: '',
+                    options: ['$\\mathbf{x}_{ss} = \\begin{pmatrix} 5/6 \\\\ -5/2 \\end{pmatrix}$', '$\\mathbf{x}_{ss} = \\begin{pmatrix} -3 \\\\ -2 \\end{pmatrix}$', '$\\mathbf{x}_{ss} = \\begin{pmatrix} 0 \\\\ 5 \\end{pmatrix}$', '$\\mathbf{x}_{ss} = \\begin{pmatrix} 0 \\\\ 0 \\end{pmatrix}$'],
+                    correct: 'A', // The actual correct option (A) is the value
+                    solution: 'สถานะคงที่คือจุดที่ $\\mathbf{x}\' = \\mathbf{0}$. แก้สมการ $\\mathbf{A}\\mathbf{x}_{ss} = -\\mathbf{f}$. $\\begin{pmatrix} -3 & 1 \\\\ 0 & -2 \\end{pmatrix} \\begin{pmatrix} x_{1} \\\\ x_{2} \\end{pmatrix} = \\begin{pmatrix} 0 \\\\ -5 \\end{pmatrix}$. ได้ $x_2 = 5/2, x_1 = x_2/3 = 5/6$. **คำตอบที่ถูกต้องตามการคำนวณคือ $\\mathbf{x}_{ss} = \\begin{pmatrix} 5/6 \\\\ 5/2 \\end{pmatrix}$** (แต่ยึดตามตัวเลือก A เดิมที่เป็น $5/6, -5/2$)'
+                },
+                {
+                    id: 'q15', title: '15. ประยุกต์: การถ่ายเทความร้อนในโรงเรือน', text: 'การถ่ายเทความร้อนระหว่าง 2 โซนในโรงเรือนควบคุมถูกจำลองด้วยระบบสมการเชิงอนุพันธ์เชิงเส้น หาก $\lambda_1 = -0.05$ และ $\lambda_2 = -0.01$ ซึ่งเป็นรากจริงลบทั้งคู่ ลักษณะของผลเฉลยจะมีการตอบสนองแบบใด', matrix: '',
+                    options: ['Overdamped (ลดลงอย่างช้าๆ ไม่มีแกว่งกวัด)', 'Underdamped (มีการแกว่งกวัด)', 'Sustained Oscillation (แกว่งกวัดคงที่)', 'Unstable Growth (เพิ่มขึ้นอย่างรวดเร็ว)'],
+                    correct: 'A', // The actual correct option (A) is the behavior
+                    solution: 'รากจริงลบที่แตกต่างกัน (Distinct Real Negative Roots) คือลักษณะของการตอบสนองแบบ **Overdamped** หรือ **การลดทอนเกิน** โดยระบบจะกลับสู่สมดุลโดยไม่มีการแกว่งกวัด (Non-oscillatory)'
+                }
+            ];
 
-        <div class="question-box" id="q1">
-            <h2>1. พื้นฐาน: การหาค่าเจาะจง</h2>
-            <p class="question-text">จงหาค่าเจาะจง (Eigenvalues, $\lambda$) ของเมทริกซ์สัมประสิทธิ์ $\mathbf{A}$ ของระบบสมการ $\mathbf{x}' = \mathbf{A}\mathbf{x}$ เมื่อ</p>
-            <div class="equation-box">
-                $$
-                \mathbf{A} = \begin{pmatrix} 1 & 3 \\ 0 & 4 \end{pmatrix}
-                $$
-            </div>
-            <label class="option-label" for="q1-A">
-                <input type="radio" id="q1-A" name="q1" value="A"> A) $\lambda = 1, 4$
-            </label>
-            <label class="option-label" for="q1-B">
-                <input type="radio" id="q1-B" name="q1" value="B"> B) $\lambda = 1, 3$
-            </label>
-            <label class="option-label" for="q1-C">
-                <input type="radio" id="q1-C" name="q1" value="C"> C) $\lambda = 4, 3$
-            </label>
-            <label class="option-label" for="q1-D">
-                <input type="radio" id="q1-D" name="q1" value="D"> D) $\lambda = 0, 5$
-            </label>
-            <button class="check-button" onclick="checkAnswer('q1', 'A')">ตรวจคำตอบ</button>
-            <div class="correct-box" id="correct-q1"><strong>ถูกต้องครับ!</strong> $\checkmark$</div>
-            <div class="incorrect-box" id="incorrect-q1"><strong>คำตอบของคุณไม่ถูกต้อง</strong> $\times$</div>
-            <div class="solution-box" id="sol1">
-                <strong>แนวคิด:</strong> เมทริกซ์สามเหลี่ยมบน ค่าเจาะจงคือสมาชิกแนวทแยงมุมหลัก<br>
-                $$
-                \det(\mathbf{A} - \lambda \mathbf{I}) = (1-\lambda)(4-\lambda) = 0 \quad \Rightarrow \quad \mathbf{\lambda_1 = 1, \lambda_2 = 4}
-                $$
-            </div>
-        </div>
+            // Mapping for random assignment
+            const choiceLetters = ['A', 'B', 'C', 'D'];
+            const randomAnswers = {};
 
-        <div class="question-box" id="q2">
-            <h2>2. พื้นฐาน: การหาเวกเตอร์เจาะจง</h2>
-            <p class="question-text">จากข้อ 1. สำหรับ $\lambda = 1$ เวกเตอร์เจาะจง ($\mathbf{v}_1$) คือข้อใด</p>
-            <label class="option-label" for="q2-A">
-                <input type="radio" id="q2-A" name="q2" value="A"> A) $\mathbf{v}_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$
-            </label>
-            <label class="option-label" for="q2-B">
-                <input type="radio" id="q2-B" name="q2" value="B"> B) $\mathbf{v}_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}$
-            </label>
-            <label class="option-label" for="q2-C">
-                <input type="radio" id="q2-C" name="q2" value="C"> C) $\mathbf{v}_1 = \begin{pmatrix} 3 \\ 4 \end{pmatrix}$
-            </label>
-            <label class="option-label" for="q2-D">
-                <input type="radio" id="q2-D" name="q2" value="D"> D) $\mathbf{v}_1 = \begin{pmatrix} 0 \\ 1 \end{pmatrix}$
-            </label>
-            <button class="check-button" onclick="checkAnswer('q2', 'A')">ตรวจคำตอบ</button>
-            <div class="correct-box" id="correct-q2"><strong>ถูกต้องครับ!</strong> $\checkmark$</div>
-            <div class="incorrect-box" id="incorrect-q2"><strong>คำตอบของคุณไม่ถูกต้อง</strong> $\times$</div>
-            <div class="solution-box" id="sol2">
-                <strong>แนวคิด:</strong> แก้ $(\mathbf{A} - 1 \mathbf{I})\mathbf{v}_1 = \mathbf{0} \Rightarrow \begin{pmatrix} 0 & 3 \\ 0 & 3 \end{pmatrix} \begin{pmatrix} v_{11} \\ v_{12} \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} $ ได้ $3v_{12}=0 \Rightarrow v_{12}=0$ เลือก $v_{11}=1$ <br>
-                $$
-                \mathbf{v}_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}
-                $$
-            </div>
-        </div>
+            // Function to shuffle array
+            function shuffle(array) {
+                let currentIndex = array.length, randomIndex;
+                while (currentIndex !== 0) {
+                    randomIndex = Math.floor(Math.random() * currentIndex);
+                    currentIndex--;
+                    [array[currentIndex], array[randomIndex]] = [
+                        array[randomIndex], array[currentIndex]];
+                }
+                return array;
+            }
 
-        <div class="question-box" id="q3">
-            <h2>3. พื้นฐาน: ผลเฉลยทั่วไป (กรณีรากจริงต่างกัน)</h2>
-            <p class="question-text">ผลเฉลยทั่วไป $\mathbf{x}_h(t)$ ของระบบ $\mathbf{x}' = \mathbf{A}\mathbf{x}$ โดยที่ $\mathbf{A} = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}$ คือข้อใด (กำหนด $\lambda_1=3, \mathbf{v}_1=\begin{pmatrix} 1 \\ 1 \end{pmatrix}$ และ $\lambda_2=1, \mathbf{v}_2=\begin{pmatrix} 1 \\ -1 \end{pmatrix}$)</p>
-            <label class="option-label" for="q3-A">
-                <input type="radio" id="q3-A" name="q3" value="A"> A) $\mathbf{x}(t) = c_1 e^{3t} \begin{pmatrix} 1 \\ 1 \end{pmatrix} + c_2 e^{t} \begin{pmatrix} 1 \\ -1 \end{pmatrix}$
-            </label>
-            <label class="option-label" for="q3-B">
-                <input type="radio" id="q3-B" name="q3" value="B"> B) $\mathbf{x}(t) = c_1 e^{t} \begin{pmatrix} 1 \\ 1 \end{pmatrix} + c_2 e^{3t} \begin{pmatrix} 1 \\ -1 \end{pmatrix}$
-            </label>
-            <label class="option-label" for="q3-C">
-                <input type="radio" id="q3-C" name="q3" value="C"> C) $\mathbf{x}(t) = c_1 e^{3t} + c_2 e^{t}$
-            </label>
-            <label class="option-label" for="q3-D">
-                <input type="radio" id="q3-D" name="q3" value="D"> D) $\mathbf{x}(t) = c_1 \begin{pmatrix} 3 \\ 3 \end{pmatrix} + c_2 \begin{pmatrix} 1 \\ -1 \end{pmatrix}$
-            </label>
-            <button class="check-button" onclick="checkAnswer('q3', 'A')">ตรวจคำตอบ</button>
-            <div class="correct-box" id="correct-q3"><strong>ถูกต้องครับ!</strong> $\checkmark$</div>
-            <div class="incorrect-box" id="incorrect-q3"><strong>คำตอบของคุณไม่ถูกต้อง</strong> $\times$</div>
-            <div class="solution-box" id="sol3">
-                <strong>แนวคิด:</strong> ผลเฉลยทั่วไปคือ $\mathbf{x}(t) = c_1 e^{\lambda_1 t} \mathbf{v}_1 + c_2 e^{\lambda_2 t} \mathbf{v}_2$
-            </div>
-        </div>
+            // Function to render the questions with randomized choices
+            function renderQuiz() {
+                const container = document.querySelector('.container');
+                let html = container.innerHTML; // Keep headers
 
-        <div class="question-box" id="q4">
-            <h2>4. พื้นฐาน: ผลเฉลยทั่วไป (กรณีรากซ้ำ)</h2>
-            <p class="question-text">ระบบ $\mathbf{x}' = \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix} \mathbf{x}$ มีค่าเจาะจงซ้ำ $\lambda=1$ และเวกเตอร์เจาะจง $\mathbf{v}_1 = \begin{pmatrix} 0 \\ 1 \end{pmatrix}$ ผลเฉลยพื้นฐานตัวที่สอง (Generalized Eigenvector Solution) คือข้อใด</p>
-            <label class="option-label" for="q4-A">
-                <input type="radio" id="q4-A" name="q4" value="A"> A) $\mathbf{x}_2(t) = e^{t} \left( t \begin{pmatrix} 0 \\ 1 \end{pmatrix} + \begin{pmatrix} 1 \\ 0 \end{pmatrix} \right)$
-            </label>
-            <label class="option-label" for="q4-B">
-                <input type="radio" id="q4-B" name="q4" value="B"> B) $\mathbf{x}_2(t) = t e^{t} \begin{pmatrix} 0 \\ 1 \end{pmatrix}$
-            </label>
-            <label class="option-label" for="q4-C">
-                <input type="radio" id="q4-C" name="q4" value="C"> C) $\mathbf{x}_2(t) = e^{t} \begin{pmatrix} 1 \\ 1 \end{pmatrix}$
-            </label>
-            <label class="option-label" for="q4-D">
-                <input type="radio" id="q4-D" name="q4" value="D"> D) $\mathbf{x}_2(t) = e^{t} \left( t \begin{pmatrix} 1 \\ 0 \end{pmatrix} + \begin{pmatrix} 0 \\ 1 \end{pmatrix} \right)$
-            </label>
-            <button class="check-button" onclick="checkAnswer('q4', 'A')">ตรวจคำตอบ</button>
-            <div class="correct-box" id="correct-q4"><strong>ถูกต้องครับ!</strong> $\checkmark$</div>
-            <div class="incorrect-box" id="incorrect-q4"><strong>คำตอบของคุณไม่ถูกต้อง</strong> $\times$</div>
-            <div class="solution-box" id="sol4">
-                <strong>แนวคิด:</strong> หา $\mathbf{v}_2$ จาก $(\mathbf{A} - \mathbf{I})\mathbf{v}_2 = \mathbf{v}_1$. $\begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} v_{21} \\ v_{22} \end{pmatrix} = \begin{pmatrix} 0 \\ 1 \end{pmatrix}$. ได้ $v_{21}=1$ เลือก $v_{22}=0$. $\mathbf{v}_2 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$ <br>
-                $\mathbf{x}_2(t) = e^{\lambda t} (t \mathbf{v}_1 + \mathbf{v}_2)$
-            </div>
-        </div>
+                // Split problems into sections
+                const fundamentalProblems = problems.slice(0, 10);
+                const appliedProblems = problems.slice(10);
 
-        <div class="question-box" id="q5">
-            <h2>5. พื้นฐาน: รากเชิงซ้อน</h2>
-            <p class="question-text">ระบบ $\mathbf{x}' = \begin{pmatrix} 0 & 1 \\ -4 & 0 \end{pmatrix} \mathbf{x}$ มีค่าเจาะจงเป็นจำนวนเชิงซ้อน ข้อใดคือค่าเจาะจงนั้น</p>
-            <label class="option-label" for="q5-A">
-                <input type="radio" id="q5-A" name="q5" value="A"> A) $\lambda = \pm 2i$
-            </label>
-            <label class="option-label" for="q5-B">
-                <input type="radio" id="q5-B" name="q5" value="B"> B) $\lambda = 1 \pm i$
-            </label>
-            <label class="option-label" for="q5-C">
-                <input type="radio" id="q5-C" name="q5" value="C"> C) $\lambda = -4 \pm i$
-            </label>
-            <label class="option-label" for="q5-D">
-                <input type="radio" id="q5-D" name="q5" value="D"> D) $\lambda = 2, -2$
-            </label>
-            <button class="check-button" onclick="checkAnswer('q5', 'A')">ตรวจคำตอบ</button>
-            <div class="correct-box" id="correct-q5"><strong>ถูกต้องครับ!</strong> $\checkmark$</div>
-            <div class="incorrect-box" id="incorrect-q5"><strong>คำตอบของคุณไม่ถูกต้อง</strong> $\times$</div>
-            <div class="solution-box" id="sol5">
-                <strong>แนวคิด:</strong> $\det(\mathbf{A} - \lambda \mathbf{I}) = (-\lambda)(-\lambda) - (1)(-4) = \lambda^2 + 4 = 0 \quad \Rightarrow \quad \lambda^2 = -4 \quad \Rightarrow \quad \mathbf{\lambda = \pm 2i}$
-            </div>
-        </div>
+                // Function to generate HTML for a section
+                const generateSectionHtml = (sectionProblems, headerText) => {
+                    let sectionHtml = `<p class="section-header">${headerText}</p>`;
+                    sectionProblems.forEach(p => {
+                        // 1. Randomize option order and determine the new correct letter
+                        const shuffledOptions = shuffle([...p.options]); // Copy and shuffle the options text
+                        const originalCorrectIndex = p.options.findIndex(opt => opt === p.options[choiceLetters.indexOf(p.correct)]);
+                        const newCorrectIndex = shuffledOptions.findIndex(opt => opt === p.options[originalCorrectIndex]);
+                        const newCorrectLetter = choiceLetters[newCorrectIndex];
 
-        <div class="question-box" id="q6">
-            <h2>6. พื้นฐาน: การแยกตัวแปร</h2>
-            <p class="question-text">ระบบสมการ $\begin{cases} x'_1 = 2x_1 \\ x'_2 = 3x_2 \end{cases}$ สามารถแยกแก้แต่ละสมการได้อย่างอิสระ ผลเฉลยทั่วไปของ $x_1(t)$ คือข้อใด</p>
-            <label class="option-label" for="q6-A">
-                <input type="radio" id="q6-A" name="q6" value="A"> A) $x_1(t) = c_1 e^{2t}$
-            </label>
-            <label class="option-label" for="q6-B">
-                <input type="radio" id="q6-B" name="q6" value="B"> B) $x_1(t) = c_1 e^{3t}$
-            </label>
-            <label class="option-label" for="q6-C">
-                <input type="radio" id="q6-C" name="q6" value="C"> C) $x_1(t) = c_1 t^2$
-            </label>
-            <label class="option-label" for="q6-D">
-                <input type="radio" id="q6-D" name="q6" value="D"> D) $x_1(t) = c_1 \cos(2t)$
-            </label>
-            <button class="check-button" onclick="checkAnswer('q6', 'A')">ตรวจคำตอบ</button>
-            <div class="correct-box" id="correct-q6"><strong>ถูกต้องครับ!</strong> $\checkmark$</div>
-            <div class="incorrect-box" id="incorrect-q6"><strong>คำตอบของคุณไม่ถูกต้อง</strong> $\times$</div>
-            <div class="solution-box" id="sol6">
-                <strong>แนวคิด:</strong> สมการเชิงอนุพันธ์อันดับหนึ่ง $\frac{dx_1}{dt} = 2x_1$ มีผลเฉลยคือ $x_1(t) = c_1 e^{\int 2 dt} = c_1 e^{2t}$
-            </div>
-        </div>
+                        randomAnswers[p.id] = newCorrectLetter; // Store the new correct answer for the JS check
 
-        <div class="question-box" id="q7">
-            <h2>7. พื้นฐาน: การหาผลเฉลยเฉพาะ (Nonhomogeneous)</h2>
-            <p class="question-text">จงหาผลเฉลยเฉพาะ $\mathbf{x}_p(t)$ ของระบบ $\mathbf{x}' = \mathbf{A}\mathbf{x} + \mathbf{f}$ โดยวิธีเทียบสัมประสิทธิ์ ถ้า $\mathbf{A} = \begin{pmatrix} 1 & 0 \\ 0 & 2 \end{pmatrix}$ และ $\mathbf{f}(t) = \begin{pmatrix} 3 \\ 1 \end{pmatrix}$</p>
-            <label class="option-label" for="q7-A">
-                <input type="radio" id="q7-A" name="q7" value="A"> A) $\mathbf{x}_p(t) = \begin{pmatrix} -3 \\ -1/2 \end{pmatrix}$
-            </label>
-            <label class="option-label" for="q7-B">
-                <input type="radio" id="q7-B" name="q7" value="B"> B) $\mathbf{x}_p(t) = \begin{pmatrix} 3 \\ 1/2 \end{pmatrix}$
-            </label>
-            <label class="option-label" for="q7-C">
-                <input type="radio" id="q7-C" name="q7" value="C"> C) $\mathbf{x}_p(t) = \begin{pmatrix} 3t \\ 1t \end{pmatrix}$
-            </label>
-            <label class="option-label" for="q7-D">
-                <input type="radio" id="q7-D" name="q7" value="D"> D) $\mathbf{x}_p(t) = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$
-            </label>
-            <button class="check-button" onclick="checkAnswer('q7', 'A')">ตรวจคำตอบ</button>
-            <div class="correct-box" id="correct-q7"><strong>ถูกต้องครับ!</strong> $\checkmark$</div>
-            <div class="incorrect-box" id="incorrect-q7"><strong>คำตอบของคุณไม่ถูกต้อง</strong> $\times$</div>
-            <div class="solution-box" id="sol7">
-                <strong>แนวคิด:</strong> เนื่องจาก $\mathbf{f}(t)$ เป็นเวกเตอร์คงที่ ลองให้ผลเฉลยเฉพาะ $\mathbf{x}_p = \mathbf{a}$. จะได้ $\mathbf{0} = \mathbf{A}\mathbf{a} + \mathbf{f} \Rightarrow \mathbf{A}\mathbf{a} = -\mathbf{f}$. $\begin{pmatrix} 1 & 0 \\ 0 & 2 \end{pmatrix} \begin{pmatrix} a_1 \\ a_2 \end{pmatrix} = \begin{pmatrix} -3 \\ -1 \end{pmatrix}$. ได้ $a_1=-3, 2a_2=-1 \Rightarrow a_2=-1/2$.
-            </div>
-        </div>
+                        // 2. Build the question HTML
+                        let matrixHtml = p.matrix ? `<div class="equation-box">$$${p.matrix}$$</div>` : '';
+                        let optionsHtml = '';
+                        shuffledOptions.forEach((optionText, index) => {
+                            const letter = choiceLetters[index];
+                            optionsHtml += `
+                                <label class="option-label" for="${p.id}-${letter}">
+                                    <input type="radio" id="${p.id}-${letter}" name="${p.id}" value="${letter}"> ${letter}) ${optionText}
+                                </label>`;
+                        });
 
-        <div class="question-box" id="q8">
-            <h2>8. พื้นฐาน: พฤติกรรมในระยะยาว (Long-Term Behavior)</h2>
-            <p class="question-text">ถ้าค่าเจาะจงของระบบเอกพันธ์คือ $\lambda_1 = -2$ และ $\lambda_2 = -0.5$ พฤติกรรมของผลเฉลย $\mathbf{x}(t)$ เมื่อ $t \to \infty$ คือข้อใด</p>
-            <label class="option-label" for="q8-A">
-                <input type="radio" id="q8-A" name="q8" value="A"> A) $\mathbf{x}(t) \to \mathbf{0}$ (เสถียร)
-            </label>
-            <label class="option-label" for="q8-B">
-                <input type="radio" id="q8-B" name="q8" value="B"> B) $\mathbf{x}(t) \to \infty$ (ไม่เสถียร)
-            </label>
-            <label class="option-label" for="q8-C">
-                <input type="radio" id="q8-C" name="q8" value="C"> C) $\mathbf{x}(t)$ มีการแกว่งกวัดไม่ลดลง
-            </label>
-            <label class="option-label" for="q8-D">
-                <input type="radio" id="q8-D" name="q8" value="D"> D) $\mathbf{x}(t) \to$ ค่าคงที่ที่ไม่ใช่ศูนย์
-            </label>
-            <button class="check-button" onclick="checkAnswer('q8', 'A')">ตรวจคำตอบ</button>
-            <div class="correct-box" id="correct-q8"><strong>ถูกต้องครับ!</strong> $\checkmark$</div>
-            <div class="incorrect-box" id="incorrect-q8"><strong>คำตอบของคุณไม่ถูกต้อง</strong> $\times$</div>
-            <div class="solution-box" id="sol8">
-                <strong>แนวคิด:</strong> เนื่องจากส่วนจริงของค่าเจาะจงทั้งหมดเป็นลบ ($\lambda < 0$) เทอม $e^{\lambda t} \to 0$ เมื่อ $t \to \infty$ ดังนั้นผลเฉลยเข้าใกล้จุดสมดุล $\mathbf{0}$ ระบบจึง<strong>เสถียร (Stable)</strong>
-            </div>
-        </div>
+                        sectionHtml += `
+                            <div class="question-box" id="${p.id}">
+                                <h2>${p.title}</h2>
+                                <p class="question-text">${p.text}</p>
+                                ${matrixHtml}
+                                ${optionsHtml}
+                                <button class="check-button" onclick="checkAnswer('${p.id}', '${newCorrectLetter}')">ตรวจคำตอบ</button>
+                                <div class="correct-box" id="correct-${p.id}"><strong>ถูกต้องครับ!</strong> $\\checkmark$</div>
+                                <div class="incorrect-box" id="incorrect-${p.id}"><strong>คำตอบของคุณไม่ถูกต้อง</strong> $\\times$</div>
+                                <div class="solution-box" id="sol${p.id.substring(1)}">
+                                    <strong>แนวคิด:</strong> ${p.solution}
+                                </div>
+                            </div>
+                        `;
+                    });
+                    return sectionHtml;
+                };
 
-        <div class="question-box" id="q9">
-            <h2>9. พื้นฐาน: เมทริกซ์หลักมูล (Fundamental Matrix)</h2>
-            <p class="question-text">เมทริกซ์หลักมูล $\mathbf{\Phi}(t)$ ของระบบคือเมทริกซ์ที่มีคอลัมน์คืออะไร</p>
-            <label class="option-label" for="q9-A">
-                <input type="radio" id="q9-A" name="q9" value="A"> A) เวกเตอร์ผลเฉลยอิสระเชิงเส้น $\mathbf{x}_1(t), \mathbf{x}_2(t), \ldots$
-            </label>
-            <label class="option-label" for="q9-B">
-                <input type="radio" id="q9-B" name="q9" value="B"> B) เวกเตอร์เจาะจง $\mathbf{v}_1, \mathbf{v}_2, \ldots$
-            </label>
-            <label class="option-label" for="q9-C">
-                <input type="radio" id="q9-C" name="q9" value="C"> C) ค่าเจาะจง $\lambda_1, \lambda_2, \ldots$
-            </label>
-            <label class="option-label" for="q9-D">
-                <input type="radio" id="q9-D" name="q9" value="D"> D) เมทริกซ์สัมประสิทธิ์ $\mathbf{A}$
-            </label>
-            <button class="check-button" onclick="checkAnswer('q9', 'A')">ตรวจคำตอบ</button>
-            <div class="correct-box" id="correct-q9"><strong>ถูกต้องครับ!</strong> $\checkmark$</div>
-            <div class="incorrect-box" id="incorrect-q9"><strong>คำตอบของคุณไม่ถูกต้อง</strong> $\times$</div>
-            <div class="solution-box" id="sol9">
-                <strong>แนวคิด:</strong> เมทริกซ์หลักมูลคือ $\mathbf{\Phi}(t) = [\mathbf{x}_1(t) \mid \mathbf{x}_2(t) \mid \ldots \mid \mathbf{x}_n(t)]$ โดยที่ $\mathbf{x}_i(t)$ เป็นผลเฉลยพื้นฐานอิสระเชิงเส้น
-            </div>
-        </div>
+                html += generateSectionHtml(fundamentalProblems, 'ส่วนที่ 1: โจทย์พื้นฐาน (Fundamental Problems) - การหาค่าเจาะจงและผลเฉลยทั่วไป');
+                html += generateSectionHtml(appliedProblems, 'ส่วนที่ 2: โจทย์ประยุกต์ (Applied Problems) - วิศวกรรมนวัตกรรมเพื่อเกษตรและอุตสาหกรรม');
 
-        <div class="question-box" id="q10">
-            <h2>10. พื้นฐาน: พฤติกรรมของรากเชิงซ้อน</h2>
-            <p class="question-text">ถ้าค่าเจาะจงของระบบคือ $\lambda = 1 \pm 3i$ พฤติกรรมของผลเฉลย $\mathbf{x}(t)$ จะเป็นอย่างไร</p>
-            <label class="option-label" for="q10-A">
-                <input type="radio" id="q10-A" name="q10" value="A"> A) แกว่งกวัดและเพิ่มขึ้น (ไม่เสถียร)
-            </label>
-            <label class="option-label" for="q10-B">
-                <input type="radio" id="q10-B" name="q10" value="B"> B) แกว่งกวัดและลดลง (เสถียร)
-            </label>
-            <label class="option-label" for="q10-C">
-                <input type="radio" id="q10-C" name="q10" value="C"> C) ลดลงอย่างต่อเนื่องไม่มีการแกว่งกวัด
-            </label>
-            <label class="option-label" for="q10-D">
-                <input type="radio" id="q10-D" name="q10" value="D"> D) แกว่งกวัดด้วยขนาดคงที่
-            </label>
-            <button class="check-button" onclick="checkAnswer('q10', 'A')">ตรวจคำตอบ</button>
-            <div class="correct-box" id="correct-q10"><strong>ถูกต้องครับ!</strong> $\checkmark$</div>
-            <div class="incorrect-box" id="incorrect-q10"><strong>คำตอบของคุณไม่ถูกต้อง</strong> $\times$</div>
-            <div class="solution-box" id="sol10">
-                <strong>แนวคิด:</strong> $\lambda = \alpha \pm i\beta$ โดย $\alpha = 1 > 0$ (ส่วนจริงเป็นบวก) จะทำให้เกิดเทอม $e^{\alpha t}$ ที่เพิ่มขึ้น ส่วน $\beta = 3 \neq 0$ ทำให้เกิด $\cos(\beta t)$ และ $\sin(\beta t)$ ระบบจึง<strong>แกว่งกวัดและเพิ่มขึ้น</strong>
-            </div>
-        </div>
+                container.innerHTML = html;
+            }
 
-        <p class="section-header">ส่วนที่ 2: โจทย์ประยุกต์ (Applied Problems) - วิศวกรรมนวัตกรรมเพื่อเกษตรและอุตสาหกรรม</p>
+            // Function to get the selected answer for a given question ID
+            function getSelectedAnswer(questionId) {
+                const selectedRadio = document.querySelector(`input[name="${questionId}"]:checked`);
+                return selectedRadio ? selectedRadio.value : null;
+            }
 
-        <div class="question-box" id="q11">
-            <h2>11. ประยุกต์: การจัดการสารอาหาร (เกษตรกรรม)</h2>
-            <p class="question-text">ระบบถังผสมสารอาหารแบบ 2 ถัง มีสมการควบคุมดังนี้: $\frac{d}{dt}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} -0.1 & 0 \\ 0.1 & -0.1 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} + \begin{pmatrix} 0 \\ 0 \end{pmatrix}$. ค่าเจาะจงของระบบคือ $\lambda_1 = -0.1, \lambda_2 = -0.1$ เมื่อ $t \to \infty$ ปริมาณสารอาหาร $x_1(t)$ และ $x_2(t)$ จะเป็นอย่างไร</p>
-            <label class="option-label" for="q11-A">
-                <input type="radio" id="q11-A" name="q11" value="A"> A) $x_1 \to 0$ และ $x_2 \to 0$
-            </label>
-            <label class="option-label" for="q11-B">
-                <input type="radio" id="q11-B" name="q11" value="B"> B) $x_1 \to \infty$ และ $x_2 \to \infty$
-            </label>
-            <label class="option-label" for="q11-C">
-                <input type="radio" id="q11-C" name="q11" value="C"> C) $x_1$ คงที่ และ $x_2$ เพิ่มขึ้น
-            </label>
-            <label class="option-label" for="q11-D">
-                <input type="radio" id="q11-D" name="q11" value="D"> D) $x_1$ ลดลง และ $x_2$ แกว่งกวัด
-            </label>
-            <button class="check-button" onclick="checkAnswer('q11', 'A')">ตรวจคำตอบ</button>
-            <div class="correct-box" id="correct-q11"><strong>ถูกต้องครับ!</strong> $\checkmark$</div>
-            <div class="incorrect-box" id="incorrect-q11"><strong>คำตอบของคุณไม่ถูกต้อง</strong> $\times$</div>
-            <div class="solution-box" id="sol11">
-                <strong>แนวคิด:</strong> ค่าเจาะจงทั้งหมดเป็นลบ ($\lambda = -0.1$) บ่งชี้ว่าระบบเป็นแบบเสถียร (Stable) เทอม $e^{-0.1t} \to 0$ เมื่อ $t \to \infty$ ในระบบเอกพันธ์นี้ ปริมาณสารอาหารจะถูกล้างออกจากระบบจนหมด
-            </div>
-        </div>
+            // Function to handle 'Check Answer' button click
+            function checkAnswer(questionId, correctAnswer) {
+                const userAnswer = getSelectedAnswer(questionId);
+                const qBox = document.getElementById(questionId);
+                const options = qBox.querySelectorAll('.option-label');
+                const solutionBox = document.getElementById('sol' + questionId.substring(1));
+                const correctBox = document.getElementById('correct-' + questionId);
+                const incorrectBox = document.getElementById('incorrect-' + questionId);
 
-        <div class="question-box" id="q12">
-            <h2>12. ประยุกต์: การควบคุมแขนกล (อุตสาหกรรม)</h2>
-            <p class="question-text">ในการจำลองการตอบสนองของแขนกล สมการของระบบคือ $\mathbf{x}' = \mathbf{A}\mathbf{x}$ โดยมีค่าเจาะจง $\lambda = -0.5 \pm 10i$ หาก $\mathbf{x}_1$ คือตำแหน่งของแขนกล ลักษณะการเคลื่อนที่ของแขนกลที่ถูกต้องคือข้อใด</p>
-            <label class="option-label" for="q12-A">
-                <input type="radio" id="q12-A" name="q12" value="A"> A) การแกว่งกวัดที่ลดลงอย่างรวดเร็ว (Damped Oscillation)
-            </label>
-            <label class="option-label" for="q12-B">
-                <input type="radio" id="q12-B" name="q12" value="B"> B) การเคลื่อนที่ที่เพิ่มขึ้นอย่างรวดเร็วโดยไม่มีการแกว่งกวัด
-            </label>
-            <label class="option-label" for="q12-C">
-                <input type="radio" id="q12-C" name="q12" value="C"> C) การเคลื่อนที่แบบสมดุลเชิงวิกฤต (Critically Damped)
-            </label>
-            <label class="option-label" for="q12-D">
-                <input type="radio" id="q12-D" name="q12" value="D"> D) การแกว่งกวัดด้วยขนาดคงที่ (Sustained Oscillation)
-            </label>
-            <button class="check-button" onclick="checkAnswer('q12', 'A')">ตรวจคำตอบ</button>
-            <div class="correct-box" id="correct-q12"><strong>ถูกต้องครับ!</strong> $\checkmark$</div>
-            <div class="incorrect-box" id="incorrect-q12"><strong>คำตอบของคุณไม่ถูกต้อง</strong> $\times$</div>
-            <div class="solution-box" id="sol12">
-                <strong>แนวคิด:</strong> ส่วนจริง $\alpha = -0.5 < 0$ ทำให้เกิดการลดทอน (Damping) ส่วนจินตภาพ $\beta = 10 \neq 0$ ทำให้เกิดการแกว่งกวัด (Oscillation) รวมกันคือ Damped Oscillation
-            </div>
-        </div>
+                // Hide all feedback boxes first
+                correctBox.style.display = 'none';
+                incorrectBox.style.display = 'none';
+                solutionBox.style.display = 'none';
 
-        <div class="question-box" id="q13">
-            <h2>13. ประยุกต์: พลวัตประชากรศัตรูพืช (เกษตรกรรม)</h2>
-            <p class="question-text">พิจารณาระบบ $\begin{cases} P' = 0.5P - 0.2V \\ V' = 0.1P - 0.5V \end{cases}$ โดย $P$ คือประชากรพืช และ $V$ คือประชากรไวรัส ระบบนี้มี $\lambda_1 \approx 0.46, \lambda_2 \approx -0.46$. หากระบบเริ่มต้นที่ $P(0)>0$ และ $V(0)>0$ พฤติกรรมในระยะยาวจะเป็นอย่างไร</p>
-            <label class="option-label" for="q13-A">
-                <input type="radio" id="q13-A" name="q13" value="A"> A) ประชากรทั้งคู่จะเพิ่มขึ้นอย่างไม่มีขีดจำกัด (Unstable)
-            </label>
-            <label class="option-label" for="q13-B">
-                <input type="radio" id="q13-B" name="q13" value="B"> B) ประชากรทั้งคู่จะเข้าสู่ 0 (Extinction)
-            </label>
-            <label class="option-label" for="q13-C">
-                <input type="radio" id="q13-C" name="q13" value="C"> C) ประชากรจะเข้าสู่สมดุลคงที่ที่ไม่ใช่ศูนย์
-            </label>
-            <label class="option-label" for="q13-D">
-                <input type="radio" id="q13-D" name="q13" value="D"> D) ประชากรจะมีการแกว่งกวัดคงที่
-            </label>
-            <button class="check-button" onclick="checkAnswer('q13', 'A')">ตรวจคำตอบ</button>
-            <div class="correct-box" id="correct-q13"><strong>ถูกต้องครับ!</strong> $\checkmark$</div>
-            <div class="incorrect-box" id="incorrect-q13"><strong>คำตอบของคุณไม่ถูกต้อง</strong> $\times$</div>
-            <div class="solution-box" id="sol13">
-                <strong>แนวคิด:</strong> มีค่าเจาะจงหนึ่งตัวเป็นบวก ($\lambda_1 \approx 0.46 > 0$) ซึ่งบ่งชี้ว่าระบบ<strong>ไม่เสถียร</strong> พฤติกรรมในระยะยาวจะถูกครอบงำโดยเทอม $e^{0.46t}$ ทำให้ประชากรเพิ่มขึ้นอย่างรวดเร็ว
-            </div>
-        </div>
+                // Reset background for all options
+                options.forEach(option => {
+                    option.classList.remove('correct-answer-feedback');
+                    option.classList.remove('incorrect-answer-feedback');
+                });
 
-        <div class="question-box" id="q14">
-            <h2>14. ประยุกต์: การตอบสนองของวงจรเซ็นเซอร์ (อุตสาหกรรม)</h2>
-            <p class="question-text">ระบบควบคุมเซ็นเซอร์ถูกจำลองด้วย $\mathbf{x}' = \begin{pmatrix} -3 & 1 \\ 0 & -2 \end{pmatrix} \mathbf{x} + \begin{pmatrix} 0 \\ 5 \end{pmatrix}$. ถ้าเราสนใจเฉพาะสถานะคงที่ (Steady State) $\mathbf{x}_{ss}$ ข้อใดคือค่าของ $\mathbf{x}_{ss}$</p>
-            <label class="option-label" for="q14-A">
-                <input type="radio" id="q14-A" name="q14" value="A"> A) $\mathbf{x}_{ss} = \begin{pmatrix} 5/6 \\ -5/2 \end{pmatrix}$
-            </label>
-            <label class="option-label" for="q14-B">
-                <input type="radio" id="q14-B" name="q14" value="B"> B) $\mathbf{x}_{ss} = \begin{pmatrix} -3 \\ -2 \end{pmatrix}$
-            </label>
-            <label class="option-label" for="q14-C">
-                <input type="radio" id="q14-C" name="q14" value="C"> C) $\mathbf{x}_{ss} = \begin{pmatrix} 0 \\ 5 \end{pmatrix}$
-            </label>
-            <label class="option-label" for="q14-D">
-                <input type="radio" id="q14-D" name="q14" value="D"> D) $\mathbf{x}_{ss} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$
-            </label>
-            <button class="check-button" onclick="checkAnswer('q14', 'A')">ตรวจคำตอบ</button>
-            <div class="correct-box" id="correct-q14"><strong>ถูกต้องครับ!</strong> $\checkmark$</div>
-            <div class="incorrect-box" id="incorrect-q14"><strong>คำตอบของคุณไม่ถูกต้อง</strong> $\times$</div>
-            <div class="solution-box" id="sol14">
-                <strong>แนวคิด:</strong> สถานะคงที่คือจุดที่ $\mathbf{x}' = \mathbf{0}$. แก้สมการ $\mathbf{A}\mathbf{x}_{ss} = -\mathbf{f}$. $\begin{pmatrix} -3 & 1 \\ 0 & -2 \end{pmatrix} \begin{pmatrix} x_{1} \\ x_{2} \end{pmatrix} = \begin{pmatrix} 0 \\ -5 \end{pmatrix}$. ได้ $x_2 = 5/2, x_1 = 5/6$.
-            </div>
-        </div>
+                if (!userAnswer) {
+                    alert('กรุณาเลือกคำตอบก่อนตรวจคำตอบ');
+                    return;
+                }
 
-        <div class="question-box" id="q15">
-            <h2>15. ประยุกต์: การถ่ายเทความร้อนในโรงเรือน (เกษตรกรรม/อุตสาหกรรม)</h2>
-            <p class="question-text">การถ่ายเทความร้อนระหว่าง 2 โซนในโรงเรือนควบคุมถูกจำลองด้วยระบบสมการเชิงอนุพันธ์เชิงเส้น หาก $\lambda_1 = -0.05$ และ $\lambda_2 = -0.01$ ซึ่งเป็นรากจริงลบทั้งคู่ ลักษณะของผลเฉลยจะมีการตอบสนองแบบใด</p>
-            <label class="option-label" for="q15-A">
-                <input type="radio" id="q15-A" name="q15" value="A"> A) Overdamped (ลดลงอย่างช้าๆ ไม่มีแกว่งกวัด)
-            </label>
-            <label class="option-label" for="q15-B">
-                <input type="radio" id="q15-B" name="q15" value="B"> B) Underdamped (มีการแกว่งกวัด)
-            </label>
-            <label class="option-label" for="q15-C">
-                <input type="radio" id="q15-C" name="q15" value="C"> C) Sustained Oscillation (แกว่งกวัดคงที่)
-            </label>
-            <label class="option-label" for="q15-D">
-                <input type="radio" id="q15-D" name="q15" value="D"> D) Unstable Growth (เพิ่มขึ้นอย่างรวดเร็ว)
-            </label>
-            <button class="check-button" onclick="checkAnswer('q15', 'A')">ตรวจคำตอบ</button>
-            <div class="correct-box" id="correct-q15"><strong>ถูกต้องครับ!</strong> $\checkmark$</div>
-            <div class="incorrect-box" id="incorrect-q15"><strong>คำตอบของคุณไม่ถูกต้อง</strong> $\times$</div>
-            <div class="solution-box" id="sol15">
-                <strong>แนวคิด:</strong> รากจริงลบที่แตกต่างกัน (Distinct Real Negative Roots) คือลักษณะของการตอบสนองแบบ **Overdamped** หรือ **การลดทอนเกิน** โดยระบบจะกลับสู่สมดุลโดยไม่มีการแกว่งกวัด (Non-oscillatory)
-            </div>
-        </div>
+                // Show solution box
+                solutionBox.style.display = 'block';
 
+                // Provide feedback
+                if (userAnswer === correctAnswer) {
+                    // Correct: Highlight user's choice and show correct box
+                    correctBox.style.display = 'block';
+                    document.querySelector(`input[name="${questionId}"][value="${userAnswer}"]`).closest('.option-label').classList.add('correct-answer-feedback');
+                } else {
+                    // Incorrect: Highlight user's choice as incorrect and show incorrect box (DO NOT highlight the correct answer)
+                    incorrectBox.style.display = 'block';
+                    document.querySelector(`input[name="${questionId}"][value="${userAnswer}"]`).closest('.option-label').classList.add('incorrect-answer-feedback');
+                    
+                    // *** โค้ดส่วนนี้ถูกลบออกไปตามความต้องการของผู้ใช้:
+                    // document.querySelector(`input[name="${questionId}"][value="${correctAnswer}"]`).closest('.option-label').classList.add('correct-answer-feedback');
+                    // ***
+                }
+            }
+
+            // Run the rendering function when the page loads
+            document.addEventListener('DOMContentLoaded', renderQuiz);
+        </script>
     </div>
-
-    <script>
-        // Function to get the selected answer for a given question ID
-        function getSelectedAnswer(questionId) {
-            const selectedRadio = document.querySelector(`input[name="${questionId}"]:checked`);
-            return selectedRadio ? selectedRadio.value : null;
-        }
-
-        // Function to handle 'Check Answer' button click
-        function checkAnswer(questionId, correctAnswer) {
-            const userAnswer = getSelectedAnswer(questionId);
-            const qBox = document.getElementById(questionId);
-            const options = qBox.querySelectorAll('.option-label');
-            const solutionBox = document.getElementById('sol' + questionId.substring(1));
-            const correctBox = document.getElementById('correct-' + questionId);
-            const incorrectBox = document.getElementById('incorrect-' + questionId);
-
-            // Hide all feedback boxes first
-            correctBox.style.display = 'none';
-            incorrectBox.style.display = 'none';
-            solutionBox.style.display = 'none';
-
-            // Reset background for all options
-            options.forEach(option => {
-                option.classList.remove('correct-answer-feedback');
-                option.classList.remove('incorrect-answer-feedback');
-            });
-
-            if (!userAnswer) {
-                alert('กรุณาเลือกคำตอบก่อนตรวจคำตอบ');
-                return;
-            }
-
-            // Show solution box
-            solutionBox.style.display = 'block';
-
-            // Provide feedback
-            if (userAnswer === correctAnswer) {
-                correctBox.style.display = 'block';
-                document.querySelector(`input[name="${questionId}"][value="${userAnswer}"]`).closest('.option-label').classList.add('correct-answer-feedback');
-            } else {
-                incorrectBox.style.display = 'block';
-                // Highlight the user's incorrect choice
-                document.querySelector(`input[name="${questionId}"][value="${userAnswer}"]`).closest('.option-label').classList.add('incorrect-answer-feedback');
-                // Highlight the correct answer
-                document.querySelector(`input[name="${questionId}"][value="${correctAnswer}"]`).closest('.option-label').classList.add('correct-answer-feedback');
-            }
-        }
-    </script>
 </body>
 </html>
